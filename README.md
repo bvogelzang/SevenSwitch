@@ -11,8 +11,13 @@ Initializing and adding the switch to the screen
 
 ```objective-c
 SevenSwitch *mySwitch = [[SevenSwitch alloc] initWithFrame:CGRectMake(10, 10, 0, 0)];
-[mySwitch addTarget:self action:@selector(valueChanged:) forControlEvents:UIControlEventValueChanged];
 [self.view addSubview:mySwitch];
+```
+
+When the user manipulates the switch control ("flips" it) a `UIControlEventValueChanged` event is generated.
+
+```objective-c
+[mySwitch addTarget:self action:@selector(switchChanged:) forControlEvents:UIControlEventValueChanged];
 ```
 
 You can also customize the switches colors

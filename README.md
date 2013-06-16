@@ -25,11 +25,12 @@ When the user manipulates the switch control ("flips" it) a `UIControlEventValue
 You can also customize the switches colors
 
 ```objective-c
-mySwitch.inactiveColor = [UIColor darkGrayColor];
-mySwitch.activeColor = [UIColor greenColor];
-mySwitch.onColor = [UIColor blueColor];
-mySwitch.knobColor = [UIColor redColor];
-mySwitch.borderColor = [UIColor blackColor];
+mySwitch.knobColor = [UIColor colorWithRed:0.19f green:0.23f blue:0.33f alpha:1.00f];
+mySwitch.activeColor = [UIColor colorWithRed:0.07f green:0.09f blue:0.11f alpha:1.00f];
+mySwitch.inactiveColor = [UIColor colorWithRed:0.07f green:0.09f blue:0.11f alpha:1.00f];
+mySwitch.onColor = [UIColor colorWithRed:0.45f green:0.58f blue:0.67f alpha:1.00f];
+mySwitch.borderColor = [UIColor clearColor];
+mySwitch.shadowColor = [UIColor blackColor];
 ```
 
 ## Requirements

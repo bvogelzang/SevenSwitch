@@ -5,6 +5,7 @@ iOS 7 style drop in replacement for UISwitch
 ![Animation](https://raw.github.com/bvogelzang/SevenSwitch/master/example.gif)
 ![Default](https://raw.github.com/bvogelzang/SevenSwitch/master/example.png)
 ![Custom](https://raw.github.com/bvogelzang/SevenSwitch/master/example2.png)
+![Custom Dark](https://raw.github.com/bvogelzang/SevenSwitch/master/example3.png)
 
 ## Usage
 

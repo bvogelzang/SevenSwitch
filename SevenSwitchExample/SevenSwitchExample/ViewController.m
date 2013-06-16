@@ -18,16 +18,22 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	// Do any additional setup after loading the view, typically from a nib.
     
+    // this will create the switch with default dimensions, you'll still need to set the position though
+    // you also have the option to pass in a frame of any size you choose
+    SevenSwitch *mySwitch = [[SevenSwitch alloc] initWithFrame:CGRectZero];
+    mySwitch.center = CGPointMake(self.view.bounds.size.width * 0.5, self.view.bounds.size.height * 0.5);
     
-    SevenSwitch *mySwitch = [[SevenSwitch alloc] initWithFrame:CGRectMake(self.view.bounds.size.width * 0.5 - 25, self.view.bounds.size.height * 0.5 - 15, 0, 0)];
+// Example of a bigger switch. Uncomment to see it in action
+//    CGFloat switchWidth = 100;
+//    CGFloat switchHeight = 50;
+//    mySwitch.frame = CGRectMake((self.view.bounds.size.width * 0.5) - (switchWidth * 0.5), (self.view.bounds.size.height * 0.5) - (switchHeight * 0.5), switchWidth, switchHeight);
+    
     [mySwitch addTarget:self action:@selector(switchChanged:) forControlEvents:UIControlEventValueChanged];
     [self.view addSubview:mySwitch];
     
-
-//    // Example of customiztion
-//    // Use this if you want to set the switch to a darker style
+// Example of color customization
+// Uncomment if you want to set the switch to a darker style
 //    self.view.backgroundColor = [UIColor colorWithRed:0.19f green:0.23f blue:0.33f alpha:1.00f];
 //    mySwitch.knobColor = [UIColor colorWithRed:0.19f green:0.23f blue:0.33f alpha:1.00f];
 //    mySwitch.activeColor = [UIColor colorWithRed:0.07f green:0.09f blue:0.11f alpha:1.00f];

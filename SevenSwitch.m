@@ -39,7 +39,7 @@
 
 @implementation SevenSwitch
 
-@synthesize inactiveColor, activeColor, onColor, borderColor, knobColor, on;
+@synthesize inactiveColor, activeColor, onColor, borderColor, knobColor, shadowColor, on;
 
 - (id)initWithFrame:(CGRect)frame
 {
@@ -53,6 +53,7 @@
         self.onColor = [UIColor colorWithRed:0.30f green:0.85f blue:0.39f alpha:1.00f];
         self.borderColor = [UIColor colorWithRed:0.89f green:0.89f blue:0.91f alpha:1.00f];
         self.knobColor = [UIColor whiteColor];
+        self.shadowColor = [UIColor grayColor];
 
         // background
         background = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 50, 30)];
@@ -67,7 +68,7 @@
         knob = [[UIView alloc] initWithFrame:CGRectMake(1, 1, 28, 28)];
         knob.backgroundColor = self.knobColor;
         knob.layer.cornerRadius = 14.0;
-        knob.layer.shadowColor = [UIColor grayColor].CGColor;
+        knob.layer.shadowColor = self.shadowColor.CGColor;
         knob.layer.shadowRadius = 2.0;
         knob.layer.shadowOpacity = 0.5;
         knob.layer.shadowOffset = CGSizeMake(0, 3);
@@ -172,6 +173,11 @@
 - (void)setKnobColor:(UIColor *)color {
     knobColor = color;
     knob.backgroundColor = color;
+}
+
+- (void)setShadowColor:(UIColor *)color {
+    shadowColor = color;
+    knob.layer.shadowColor = color.CGColor;
 }
 
 /*

@@ -32,6 +32,7 @@
 @property (nonatomic, strong) UIColor *onColor;
 @property (nonatomic, strong) UIColor *borderColor;
 @property (nonatomic, strong) UIColor *knobColor;
+@property (nonatomic, strong) UIColor *shadowColor;
 
 - (void)setOn:(BOOL)on animated:(BOOL)animated;
 

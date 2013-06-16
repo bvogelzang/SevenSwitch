@@ -12,7 +12,7 @@ iOS 7 style drop in replacement for UISwitch
 Initializing and adding the switch to the screen
 
 ```objective-c
-SevenSwitch *mySwitch = [[SevenSwitch alloc] initWithFrame:CGRectMake(10, 10, 0, 0)];
+SevenSwitch *mySwitch = [[SevenSwitch alloc] initWithFrame:CGRectMake(10, 10, 50, 30)];
 [self.view addSubview:mySwitch];
 ```
 

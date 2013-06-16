@@ -108,7 +108,7 @@
 
     // make the knob larger and animate to the correct color
     CGFloat activeKnobWidth = self.bounds.size.height - 2 + 5;
-    [UIView animateWithDuration:0.3 delay:0.0 options:UIViewAnimationOptionCurveEaseOut animations:^{
+    [UIView animateWithDuration:0.3 delay:0.0 options:UIViewAnimationOptionCurveEaseOut|UIViewAnimationOptionBeginFromCurrentState animations:^{
         if (self.on) {
             knob.frame = CGRectMake(self.bounds.size.width - (activeKnobWidth + 1), knob.frame.origin.y, activeKnobWidth, knob.frame.size.height);
             background.backgroundColor = self.onColor;
@@ -265,7 +265,7 @@
     CGFloat normalKnobWidth = self.bounds.size.height - 2;
     CGFloat activeKnobWidth = normalKnobWidth + 5;
     if (animated) {
-        [UIView animateWithDuration:0.3 delay:0.0 options:UIViewAnimationOptionCurveEaseOut animations:^{
+        [UIView animateWithDuration:0.3 delay:0.0 options:UIViewAnimationOptionCurveEaseOut|UIViewAnimationOptionBeginFromCurrentState animations:^{
             if (self.tracking)
                 knob.frame = CGRectMake(self.bounds.size.width - (activeKnobWidth + 1), knob.frame.origin.y, activeKnobWidth, knob.frame.size.height);
             else
@@ -297,7 +297,7 @@
     CGFloat normalKnobWidth = self.bounds.size.height - 2;
     CGFloat activeKnobWidth = normalKnobWidth + 5;
     if (animated) {
-        [UIView animateWithDuration:0.3 delay:0.0 options:UIViewAnimationOptionCurveEaseOut animations:^{
+        [UIView animateWithDuration:0.3 delay:0.0 options:UIViewAnimationOptionCurveEaseOut|UIViewAnimationOptionBeginFromCurrentState animations:^{
             if (self.tracking) {
                 knob.frame = CGRectMake(1, knob.frame.origin.y, activeKnobWidth, knob.frame.size.height);
                 background.backgroundColor = self.activeColor;

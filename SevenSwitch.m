@@ -186,10 +186,11 @@
  * Set the state of the switch to On or Off, optionally animating the transition.
  */
 - (void)setOn:(BOOL)isOn animated:(BOOL)animated {
-    if (on != isOn)
-        [self sendActionsForControlEvents:UIControlEventValueChanged];
-
+    BOOL previousValue = self.on;
     on = isOn;
+    
+    if (previousValue != isOn)
+        [self sendActionsForControlEvents:UIControlEventValueChanged];
 
     if (isOn) {
         [self showOn:animated];

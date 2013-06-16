@@ -28,6 +28,8 @@
 @interface SevenSwitch ()  {
     UIView *background;
     UIView *knob;
+    UIImageView *onImageView;
+    UIImageView *offImageView;
     double startTime;
 }
 
@@ -39,7 +41,7 @@
 
 @implementation SevenSwitch
 
-@synthesize inactiveColor, activeColor, onColor, borderColor, knobColor, shadowColor, on;
+@synthesize inactiveColor, activeColor, onColor, borderColor, knobColor, shadowColor, onImage, offImage, on;
 
 - (id)initWithFrame:(CGRect)frame
 {
@@ -71,6 +73,17 @@
         background.layer.borderWidth = 1.0;
         background.userInteractionEnabled = NO;
         [self addSubview:background];
+        
+        // images
+        onImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, self.frame.size.width - self.frame.size.height, self.frame.size.height)];
+        onImageView.alpha = 0;
+        onImageView.contentMode = UIViewContentModeCenter;
+        [self addSubview:onImageView];
+        
+        offImageView = [[UIImageView alloc] initWithFrame:CGRectMake(self.frame.size.height, 0, self.frame.size.width - self.frame.size.height, self.frame.size.height)];
+        offImageView.alpha = 1.0;
+        offImageView.contentMode = UIViewContentModeCenter;
+        [self addSubview:offImageView];
 
         // knob
         knob = [[UIView alloc] initWithFrame:CGRectMake(1, 1, self.frame.size.height - 2, self.frame.size.height - 2)];
@@ -170,6 +183,10 @@
     background.frame = CGRectMake(0, 0, frame.size.width, frame.size.height);
     background.layer.cornerRadius = frame.size.height * 0.5;
     
+    // images
+    onImageView.frame = CGRectMake(0, 0, frame.size.width - frame.size.height, frame.size.height);
+    offImageView.frame = CGRectMake(frame.size.height, 0, frame.size.width - frame.size.height, frame.size.height);
+    
     // knob
     knob.frame = CGRectMake(1, 1, frame.size.height - 2, frame.size.height - 2);
     knob.layer.cornerRadius = (frame.size.height * 0.5) - 1;
@@ -201,6 +218,16 @@
 - (void)setShadowColor:(UIColor *)color {
     shadowColor = color;
     knob.layer.shadowColor = color.CGColor;
+}
+
+- (void)setOnImage:(UIImage *)image {
+    onImage = image;
+    onImageView.image = image;
+}
+
+- (void)setOffImage:(UIImage *)image {
+    offImage = image;
+    offImageView.image = image;
 }
 
 /*
@@ -245,6 +272,8 @@
                 knob.frame = CGRectMake(self.bounds.size.width - (normalKnobWidth + 1), knob.frame.origin.y, normalKnobWidth, knob.frame.size.height);
             background.backgroundColor = self.onColor;
             background.layer.borderColor = self.onColor.CGColor;
+            onImageView.alpha = 1.0;
+            offImageView.alpha = 0;
         } completion:nil];
     }
     else {
@@ -254,6 +283,8 @@
             knob.frame = CGRectMake(self.bounds.size.width - (normalKnobWidth + 1), knob.frame.origin.y, normalKnobWidth, knob.frame.size.height);
         background.backgroundColor = self.onColor;
         background.layer.borderColor = self.onColor.CGColor;
+        onImageView.alpha = 1.0;
+        offImageView.alpha = 0;
     }
 }
 
@@ -276,6 +307,8 @@
                 background.backgroundColor = self.inactiveColor;
             }
             background.layer.borderColor = self.borderColor.CGColor;
+            onImageView.alpha = 0;
+            offImageView.alpha = 1.0;
         } completion:nil];
     }
     else {
@@ -287,6 +320,8 @@
             knob.frame = CGRectMake(1, knob.frame.origin.y, normalKnobWidth, knob.frame.size.height);
             background.backgroundColor = self.inactiveColor;
         }
+        onImageView.alpha = 0;
+        offImageView.alpha = 1.0;
     }
 }
 

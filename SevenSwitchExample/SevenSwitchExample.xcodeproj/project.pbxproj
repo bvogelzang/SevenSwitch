@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		45B6529F176E3A440006F201 /* check.png in Resources */ = {isa = PBXBuildFile; fileRef = 45B6529B176E3A440006F201 /* check.png */; };
+		45B652A0176E3A440006F201 /* check@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 45B6529C176E3A440006F201 /* check@2x.png */; };
+		45B652A1176E3A440006F201 /* cross.png in Resources */ = {isa = PBXBuildFile; fileRef = 45B6529D176E3A440006F201 /* cross.png */; };
+		45B652A2176E3A440006F201 /* cross@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 45B6529E176E3A440006F201 /* cross@2x.png */; };
 		45F7C632176D202700AE1301 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 45F7C631176D202700AE1301 /* UIKit.framework */; };
 		45F7C634176D202700AE1301 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 45F7C633176D202700AE1301 /* Foundation.framework */; };
 		45F7C636176D202700AE1301 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 45F7C635176D202700AE1301 /* CoreGraphics.framework */; };
@@ -22,6 +26,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		45B6529B176E3A440006F201 /* check.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = check.png; sourceTree = "<group>"; };
+		45B6529C176E3A440006F201 /* check@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "check@2x.png"; sourceTree = "<group>"; };
+		45B6529D176E3A440006F201 /* cross.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cross.png; sourceTree = "<group>"; };
+		45B6529E176E3A440006F201 /* cross@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "cross@2x.png"; sourceTree = "<group>"; };
 		45F7C62E176D202700AE1301 /* SevenSwitchExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SevenSwitchExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		45F7C631176D202700AE1301 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		45F7C633176D202700AE1301 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -93,6 +101,10 @@
 				45F7C64D176D202700AE1301 /* ViewController.m */,
 				45F7C654176D203F00AE1301 /* SevenSwitch.h */,
 				45F7C655176D203F00AE1301 /* SevenSwitch.m */,
+				45B6529B176E3A440006F201 /* check.png */,
+				45B6529C176E3A440006F201 /* check@2x.png */,
+				45B6529D176E3A440006F201 /* cross.png */,
+				45B6529E176E3A440006F201 /* cross@2x.png */,
 				45F7C638176D202700AE1301 /* Supporting Files */,
 			);
 			path = SevenSwitchExample;
@@ -168,6 +180,10 @@
 				45F7C646176D202700AE1301 /* Default@2x.png in Resources */,
 				45F7C648176D202700AE1301 /* Default-568h@2x.png in Resources */,
 				45F7C64B176D202700AE1301 /* MainStoryboard.storyboard in Resources */,
+				45B6529F176E3A440006F201 /* check.png in Resources */,
+				45B652A0176E3A440006F201 /* check@2x.png in Resources */,
+				45B652A1176E3A440006F201 /* cross.png in Resources */,
+				45B652A2176E3A440006F201 /* cross@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -304,6 +320,7 @@
 				45F7C653176D202700AE1301 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

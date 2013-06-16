@@ -34,6 +34,9 @@
 @property (nonatomic, strong) UIColor *knobColor;
 @property (nonatomic, strong) UIColor *shadowColor;
 
+@property (nonatomic, strong) UIImage *onImage;
+@property (nonatomic, strong) UIImage *offImage;
+
 - (void)setOn:(BOOL)on animated:(BOOL)animated;
 
 @end

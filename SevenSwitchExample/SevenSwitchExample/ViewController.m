@@ -23,24 +23,30 @@
     // you also have the option to pass in a frame of any size you choose
     SevenSwitch *mySwitch = [[SevenSwitch alloc] initWithFrame:CGRectZero];
     mySwitch.center = CGPointMake(self.view.bounds.size.width * 0.5, self.view.bounds.size.height * 0.5);
-    
-// Example of a bigger switch. Uncomment to see it in action
-//    CGFloat switchWidth = 100;
-//    CGFloat switchHeight = 50;
-//    mySwitch.frame = CGRectMake((self.view.bounds.size.width * 0.5) - (switchWidth * 0.5), (self.view.bounds.size.height * 0.5) - (switchHeight * 0.5), switchWidth, switchHeight);
-    
     [mySwitch addTarget:self action:@selector(switchChanged:) forControlEvents:UIControlEventValueChanged];
     [self.view addSubview:mySwitch];
     
-// Example of color customization
-// Uncomment if you want to set the switch to a darker style
-//    self.view.backgroundColor = [UIColor colorWithRed:0.19f green:0.23f blue:0.33f alpha:1.00f];
-//    mySwitch.knobColor = [UIColor colorWithRed:0.19f green:0.23f blue:0.33f alpha:1.00f];
-//    mySwitch.activeColor = [UIColor colorWithRed:0.07f green:0.09f blue:0.11f alpha:1.00f];
-//    mySwitch.inactiveColor = [UIColor colorWithRed:0.07f green:0.09f blue:0.11f alpha:1.00f];
-//    mySwitch.onColor = [UIColor colorWithRed:0.45f green:0.58f blue:0.67f alpha:1.00f];
-//    mySwitch.borderColor = [UIColor clearColor];
-//    mySwitch.shadowColor = [UIColor blackColor];
+    // Example of a bigger switch with images
+    SevenSwitch *mySwitch2 = [[SevenSwitch alloc] initWithFrame:CGRectMake(0, 0, 100, 50)];
+    mySwitch2.center = CGPointMake(self.view.bounds.size.width * 0.5, self.view.bounds.size.height * 0.5 - 80);
+    [mySwitch2 addTarget:self action:@selector(switchChanged:) forControlEvents:UIControlEventValueChanged];
+    mySwitch2.offImage = [UIImage imageNamed:@"cross.png"];
+    mySwitch2.onImage = [UIImage imageNamed:@"check.png"];
+    mySwitch2.onColor = [UIColor colorWithHue:0.08f saturation:0.74f brightness:1.00f alpha:1.00f];
+    [self.view addSubview:mySwitch2];
+    
+    // Example of color customization
+    SevenSwitch *mySwitch3 = [[SevenSwitch alloc] initWithFrame:CGRectZero];
+    mySwitch3.center = CGPointMake(self.view.bounds.size.width * 0.5, self.view.bounds.size.height * 0.5 + 70);
+    [mySwitch3 addTarget:self action:@selector(switchChanged:) forControlEvents:UIControlEventValueChanged];
+    [self.view addSubview:mySwitch3];
+    //self.view.backgroundColor = [UIColor colorWithRed:0.19f green:0.23f blue:0.33f alpha:1.00f];
+    mySwitch3.knobColor = [UIColor colorWithRed:0.19f green:0.23f blue:0.33f alpha:1.00f];
+    mySwitch3.activeColor = [UIColor colorWithRed:0.07f green:0.09f blue:0.11f alpha:1.00f];
+    mySwitch3.inactiveColor = [UIColor colorWithRed:0.07f green:0.09f blue:0.11f alpha:1.00f];
+    mySwitch3.onColor = [UIColor colorWithRed:0.45f green:0.58f blue:0.67f alpha:1.00f];
+    mySwitch3.borderColor = [UIColor clearColor];
+    mySwitch3.shadowColor = [UIColor blackColor];
 }
 
 - (void)switchChanged:(SevenSwitch *)sender {

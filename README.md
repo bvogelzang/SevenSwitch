@@ -1,6 +1,6 @@
 ## SevenSwitch
 
-iOS 7 style drop in replacement for UISwitch
+iOS7 style drop in replacement for UISwitch
 
 ![Animation](https://raw.github.com/bvogelzang/SevenSwitch/master/Examples/example.gif)
 ![Default](https://raw.github.com/bvogelzang/SevenSwitch/master/Examples/example.png)
@@ -8,6 +8,8 @@ iOS 7 style drop in replacement for UISwitch
 ![Custom Dark](https://raw.github.com/bvogelzang/SevenSwitch/master/Examples/example3.png)
 
 ## Usage
+
+To use it, add SevenSwitch.h and SevenSwitch.m files to your project and add the QuartzCore framework to your project.
 
 Initializing and adding the switch to the screen
 
@@ -22,6 +24,13 @@ When the user manipulates the switch control ("flips" it) a `UIControlEventValue
 [mySwitch addTarget:self action:@selector(switchChanged:) forControlEvents:UIControlEventValueChanged];
 ```
 
+You can set images for the on/off states
+
+```objective-c
+mySwitch.offImage = [UIImage imageNamed:@"cross.png"];
+mySwitch.onImage = [UIImage imageNamed:@"check.png"];
+```
+
 You can also customize the switches colors
 
 ```objective-c
@@ -33,6 +42,12 @@ mySwitch.borderColor = [UIColor clearColor];
 mySwitch.shadowColor = [UIColor blackColor];
 ```
 
+You can resize the switch frame to whatever you like to make fatter/skinnier controls
+
+```objective-c
+mySwitch.frame = CGRectMake(0, 0, 100, 50);
+```
+
 ## Requirements
 
 SevenSwitch requires iOS 5.0 and above.
@@ -40,3 +55,7 @@ SevenSwitch requires iOS 5.0 and above.
 #### ARC
 
 SevenSwitch uses ARC as of its 1.0 release.
+
+## License
+
+Made available under the MIT License. Attribution would be nice.

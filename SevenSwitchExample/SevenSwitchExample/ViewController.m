@@ -36,6 +36,7 @@
     mySwitch2.offImage = [UIImage imageNamed:@"cross.png"];
     mySwitch2.onImage = [UIImage imageNamed:@"check.png"];
     mySwitch2.onColor = [UIColor colorWithHue:0.08f saturation:0.74f brightness:1.00f alpha:1.00f];
+    mySwitch2.isRounded = NO;
     [self.view addSubview:mySwitch2];
     
     // turn the switch on with animation

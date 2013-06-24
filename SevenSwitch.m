@@ -41,7 +41,10 @@
 
 @implementation SevenSwitch
 
-@synthesize inactiveColor, activeColor, onColor, borderColor, knobColor, shadowColor, onImage, offImage, on;
+@synthesize inactiveColor, activeColor, onColor, borderColor, knobColor, shadowColor;
+@synthesize onImage, offImage;
+@synthesize isRounded;
+@synthesize on;
 
 - (id)initWithFrame:(CGRect)frame
 {
@@ -56,8 +59,9 @@
     self = [super initWithFrame:initialFrame];
     if (self) {
 
-        // default colors
+        // default values
         self.on = NO;
+        self.isRounded = YES;
         self.inactiveColor = [UIColor clearColor];
         self.activeColor = [UIColor colorWithRed:0.89f green:0.89f blue:0.89f alpha:1.00f];
         self.onColor = [UIColor colorWithRed:0.30f green:0.85f blue:0.39f alpha:1.00f];
@@ -228,6 +232,19 @@
 - (void)setOffImage:(UIImage *)image {
     offImage = image;
     offImageView.image = image;
+}
+
+- (void)setIsRounded:(BOOL)rounded {
+    isRounded = rounded;
+    
+    if (rounded) {
+        background.layer.cornerRadius = self.frame.size.height * 0.5;
+        knob.layer.cornerRadius = (self.frame.size.height * 0.5) - 1;
+    }
+    else {
+        background.layer.cornerRadius = 2;
+        knob.layer.cornerRadius = 2;
+    }
 }
 
 /*

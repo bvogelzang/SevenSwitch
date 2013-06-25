@@ -14,14 +14,16 @@
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="htP-wM-0uv" customClass="SevenSwitch">
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="85" type="user" id="2m5-2R-1DF"/>
+                                    <constraint firstAttribute="height" constant="46" type="user" id="hlw-Ds-Cgk"/>
+                                </constraints>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="htP-wM-0uv" firstAttribute="leading" secondItem="3" secondAttribute="leading" constant="118" id="4bo-8d-iaX"/>
-                            <constraint firstAttribute="bottom" secondItem="htP-wM-0uv" secondAttribute="bottom" constant="431" id="F5V-vt-8Tu"/>
-                            <constraint firstItem="htP-wM-0uv" firstAttribute="top" secondItem="3" secondAttribute="top" constant="71" id="hVz-fF-1Un"/>
-                            <constraint firstItem="htP-wM-0uv" firstAttribute="centerX" secondItem="3" secondAttribute="centerX" type="default" id="oRk-du-DXW"/>
+                            <constraint firstItem="htP-wM-0uv" firstAttribute="top" secondItem="3" secondAttribute="top" constant="85" id="CAm-AU-494"/>
+                            <constraint firstItem="htP-wM-0uv" firstAttribute="centerX" secondItem="3" secondAttribute="centerX" type="user" id="oRk-du-DXW"/>
                         </constraints>
                     </view>
                     <connections>

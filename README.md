@@ -47,6 +47,12 @@ You can resize the switch frame to whatever you like to make fatter/skinnier con
 mySwitch.frame = CGRectMake(0, 0, 100, 50);
 ```
 
+You can turn off the rounded look by setting the `isRounded` property to `NO`
+
+```objective-c
+mySwitch.isRounded = NO;
+```
+
 ## Requirements
 
 SevenSwitch requires iOS 5.0 and above.

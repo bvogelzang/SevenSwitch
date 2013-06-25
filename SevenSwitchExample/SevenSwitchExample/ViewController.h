@@ -7,7 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "SevenSwitch.h"
 
 @interface ViewController : UIViewController
+
+@property (nonatomic, strong) IBOutlet SevenSwitch *ibSwitch;
 
 @end

@@ -284,6 +284,11 @@
     }
 }
 
+- (BOOL)isOn {
+    return self.on;
+}
+
+
 /*
  * set (without animation) whether the switch is ON or OFF
  */

@@ -223,7 +223,12 @@
         offImageView.frame = CGRectMake(frame.size.height, 0, frame.size.width - frame.size.height, frame.size.height);
         
         // knob
-        knob.frame = CGRectMake(1, 1, frame.size.height - 2, frame.size.height - 2);
+        CGFloat normalKnobWidth = frame.size.height - 2;
+        if (self.on)
+            knob.frame = CGRectMake(frame.size.width - (normalKnobWidth + 1), 1, frame.size.height - 2, normalKnobWidth);
+        else
+            knob.frame = CGRectMake(1, 1, normalKnobWidth, normalKnobWidth);
+            
         knob.layer.cornerRadius = self.isRounded ? (frame.size.height * 0.5) - 1 : 2;
     }
 }

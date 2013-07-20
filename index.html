@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link href='https://fonts.googleapis.com/css?family=Architects+Daughter' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="stylesheets/pygment_trac.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="stylesheets/print.css" media="print" />
+
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <title>SevenSwitch by bvogelzang</title>
+  </head>
+
+  <body>
+    <header>
+      <div class="inner">
+        <h1>SevenSwitch</h1>
+        <h2>iOS7 style drop in replacement for UISwitch</h2>
+        <a href="https://github.com/bvogelzang/SevenSwitch" class="button"><small>View project on</small>GitHub</a>
+      </div>
+    </header>
+
+    <div id="content-wrapper">
+      <div class="inner clearfix">
+        <section id="main-content">
+          <p><img src="https://raw.github.com/bvogelzang/SevenSwitch/master/ExampleImages/example.gif" alt="Animation"></p>
+
+<p><img src="https://raw.github.com/bvogelzang/SevenSwitch/master/ExampleImages/example.png" alt="Default"></p>
+
+<h2>
+<a name="usage" class="anchor" href="#usage"><span class="octicon octicon-link"></span></a>Usage</h2>
+
+<p>To use it, add SevenSwitch.h and SevenSwitch.m files to your project and add the QuartzCore framework to your project.</p>
+
+<p>Initializing and adding the switch to the screen</p>
+
+<div class="highlight"><pre><span class="n">SevenSwitch</span> <span class="o">*</span><span class="n">mySwitch</span> <span class="o">=</span> <span class="p">[[</span><span class="n">SevenSwitch</span> <span class="n">alloc</span><span class="p">]</span> <span class="n">initWithFrame</span><span class="o">:</span><span class="n">CGRectMake</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="mi">30</span><span class="p">)];</span>
+<span class="p">[</span><span class="n">self</span><span class="p">.</span><span class="n">view</span> <span class="n">addSubview</span><span class="o">:</span><span class="n">mySwitch</span><span class="p">];</span>
+</pre></div>
+
+<p>When the user manipulates the switch control ("flips" it) a <code>UIControlEventValueChanged</code> event is generated.</p>
+
+<div class="highlight"><pre><span class="p">[</span><span class="n">mySwitch</span> <span class="n">addTarget</span><span class="o">:</span><span class="n">self</span> <span class="n">action</span><span class="o">:</span><span class="k">@selector</span><span class="p">(</span><span class="n">switchChanged</span><span class="o">:</span><span class="p">)</span> <span class="n">forControlEvents</span><span class="o">:</span><span class="n">UIControlEventValueChanged</span><span class="p">];</span>
+</pre></div>
+
+<p>You can set images for the on/off states</p>
+
+<div class="highlight"><pre><span class="n">mySwitch</span><span class="p">.</span><span class="n">offImage</span> <span class="o">=</span> <span class="p">[</span><span class="n">UIImage</span> <span class="n">imageNamed</span><span class="o">:</span><span class="s">@"cross.png"</span><span class="p">];</span>
+<span class="n">mySwitch</span><span class="p">.</span><span class="n">onImage</span> <span class="o">=</span> <span class="p">[</span><span class="n">UIImage</span> <span class="n">imageNamed</span><span class="o">:</span><span class="s">@"check.png"</span><span class="p">];</span>
+</pre></div>
+
+<p>You can also customize the switches colors</p>
+
+<div class="highlight"><pre><span class="n">mySwitch</span><span class="p">.</span><span class="n">knobColor</span> <span class="o">=</span> <span class="p">[</span><span class="n">UIColor</span> <span class="n">colorWithRed</span><span class="o">:</span><span class="mf">0.19f</span> <span class="n">green</span><span class="o">:</span><span class="mf">0.23f</span> <span class="n">blue</span><span class="o">:</span><span class="mf">0.33f</span> <span class="n">alpha</span><span class="o">:</span><span class="mf">1.00f</span><span class="p">];</span>
+<span class="n">mySwitch</span><span class="p">.</span><span class="n">activeColor</span> <span class="o">=</span> <span class="p">[</span><span class="n">UIColor</span> <span class="n">colorWithRed</span><span class="o">:</span><span class="mf">0.07f</span> <span class="n">green</span><span class="o">:</span><span class="mf">0.09f</span> <span class="n">blue</span><span class="o">:</span><span class="mf">0.11f</span> <span class="n">alpha</span><span class="o">:</span><span class="mf">1.00f</span><span class="p">];</span>
+<span class="n">mySwitch</span><span class="p">.</span><span class="n">inactiveColor</span> <span class="o">=</span> <span class="p">[</span><span class="n">UIColor</span> <span class="n">colorWithRed</span><span class="o">:</span><span class="mf">0.07f</span> <span class="n">green</span><span class="o">:</span><span class="mf">0.09f</span> <span class="n">blue</span><span class="o">:</span><span class="mf">0.11f</span> <span class="n">alpha</span><span class="o">:</span><span class="mf">1.00f</span><span class="p">];</span>
+<span class="n">mySwitch</span><span class="p">.</span><span class="n">onColor</span> <span class="o">=</span> <span class="p">[</span><span class="n">UIColor</span> <span class="n">colorWithRed</span><span class="o">:</span><span class="mf">0.45f</span> <span class="n">green</span><span class="o">:</span><span class="mf">0.58f</span> <span class="n">blue</span><span class="o">:</span><span class="mf">0.67f</span> <span class="n">alpha</span><span class="o">:</span><span class="mf">1.00f</span><span class="p">];</span>
+<span class="n">mySwitch</span><span class="p">.</span><span class="n">borderColor</span> <span class="o">=</span> <span class="p">[</span><span class="n">UIColor</span> <span class="n">clearColor</span><span class="p">];</span>
+<span class="n">mySwitch</span><span class="p">.</span><span class="n">shadowColor</span> <span class="o">=</span> <span class="p">[</span><span class="n">UIColor</span> <span class="n">blackColor</span><span class="p">];</span>
+</pre></div>
+
+<p>You can resize the switch frame to whatever you like to make fatter/skinnier controls</p>
+
+<div class="highlight"><pre><span class="n">mySwitch</span><span class="p">.</span><span class="n">frame</span> <span class="o">=</span> <span class="n">CGRectMake</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">50</span><span class="p">);</span>
+</pre></div>
+
+<p>You can turn off the rounded look by setting the <code>isRounded</code> property to <code>NO</code></p>
+
+<div class="highlight"><pre><span class="n">mySwitch</span><span class="p">.</span><span class="n">isRounded</span> <span class="o">=</span> <span class="nb">NO</span><span class="p">;</span>
+</pre></div>
+
+<h2>
+<a name="release-notes" class="anchor" href="#release-notes"><span class="octicon octicon-link"></span></a>Release Notes</h2>
+
+<ul>
+<li>1.0.0
+
+<ul>
+<li>Initial commit</li>
+</ul>
+</li>
+<li>1.1.0
+
+<ul>
+<li>Add option to turn off rounded look.</li>
+</ul>
+</li>
+<li>1.1.1
+
+<ul>
+<li>Add interface builder support</li>
+<li>Fix <code>isRounded</code> bug</li>
+</ul>
+</li>
+<li>1.2.0
+
+<ul>
+<li>Fix <code>[switch setOn:YES animated:NO]</code> bug where knob wouldn't move to correct position</li>
+<li>add <code>isOn</code> method</li>
+<li>Fix example image</li>
+</ul>
+</li>
+</ul><h2>
+<a name="requirements" class="anchor" href="#requirements"><span class="octicon octicon-link"></span></a>Requirements</h2>
+
+<p>SevenSwitch requires iOS 5.0 and above.</p>
+
+<h4>
+<a name="arc" class="anchor" href="#arc"><span class="octicon octicon-link"></span></a>ARC</h4>
+
+<p>SevenSwitch uses ARC as of its 1.0 release.</p>
+
+<h2>
+<a name="license" class="anchor" href="#license"><span class="octicon octicon-link"></span></a>License</h2>
+
+<p>Made available under the MIT License. Attribution would be nice.</p>
+        </section>
+
+        <aside id="sidebar">
+          <a href="https://github.com/bvogelzang/SevenSwitch/zipball/master" class="button">
+            <small>Download</small>
+            .zip file
+          </a>
+          <a href="https://github.com/bvogelzang/SevenSwitch/tarball/master" class="button">
+            <small>Download</small>
+            .tar.gz file
+          </a>
+
+          <p class="repo-owner"><a href="https://github.com/bvogelzang/SevenSwitch"></a> is maintained by <a href="https://github.com/bvogelzang">bvogelzang</a>.</p>
+
+          <p>This page was generated by <a href="pages.github.com">GitHub Pages</a> using the Architect theme by <a href="https://twitter.com/jasonlong">Jason Long</a>.</p>
+        </aside>
+      </div>
+    </div>
+
+  
+  </body>
+</html>

@@ -241,8 +241,10 @@
 
 - (void)setOnColor:(UIColor *)color {
     onColor = color;
-    if (self.on && !self.isTracking)
+    if (self.on && !self.isTracking) {
         background.backgroundColor = color;
+        background.layer.borderColor = color.CGColor;
+    }
 }
 
 - (void)setBorderColor:(UIColor *)color {

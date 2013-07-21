@@ -48,6 +48,9 @@
 @synthesize isRounded;
 @synthesize on;
 
+
+#pragma mark init Methods
+
 - (id)init {
     self = [super initWithFrame:CGRectMake(0, 0, 50, 30)];
     if (self) {
@@ -82,6 +85,9 @@
 }
 
 
+/**
+ *	Setup the individual elements of the switch and set default values
+ */
 - (void)setup {
     
     // default values
@@ -129,6 +135,8 @@
     isAnimating = NO;
 }
 
+
+#pragma mark Touch Tracking
 
 - (BOOL)beginTrackingWithTouch:(UITouch *)touch withEvent:(UIEvent *)event {
     [super beginTrackingWithTouch:touch withEvent:event];
@@ -233,12 +241,23 @@
     }
 }
 
+
+#pragma mark Setters
+
+/*
+ *	Sets the background color when the switch is off. 
+ *  Defaults to clear color.
+ */
 - (void)setInactiveColor:(UIColor *)color {
     inactiveColor = color;
     if (!self.on && !self.isTracking)
         background.backgroundColor = color;
 }
 
+/*
+ *	Sets the background color that shows when the switch is on. 
+ *  Defaults to green.
+ */
 - (void)setOnColor:(UIColor *)color {
     onColor = color;
     if (self.on && !self.isTracking) {
@@ -247,32 +266,58 @@
     }
 }
 
+/*
+ *	Sets the border color that shows when the switch is off. Defaults to light gray.
+ */
 - (void)setBorderColor:(UIColor *)color {
     borderColor = color;
     if (!self.on)
         background.layer.borderColor = color.CGColor;
 }
 
+/*
+ *	Sets the knob color. Defaults to white.
+ */
 - (void)setKnobColor:(UIColor *)color {
     knobColor = color;
     knob.backgroundColor = color;
 }
 
+/*
+ *	Sets the shadow color of the knob. Defaults to gray.
+ */
 - (void)setShadowColor:(UIColor *)color {
     shadowColor = color;
     knob.layer.shadowColor = color.CGColor;
 }
 
+
+/*
+ *	Sets the image that shows when the switch is on.
+ *  The image is centered in the area not covered by the knob.
+ *  Make sure to size your images appropriately.
+ */
 - (void)setOnImage:(UIImage *)image {
     onImage = image;
     onImageView.image = image;
 }
 
+/*
+ *	Sets the image that shows when the switch is off.
+ *  The image is centered in the area not covered by the knob.
+ *  Make sure to size your images appropriately.
+ */
 - (void)setOffImage:(UIImage *)image {
     offImage = image;
     offImageView.image = image;
 }
 
+
+/*
+ *	Sets whether or not the switch edges are rounded. 
+ *  Set to NO to get a stylish square switch.
+ *  Defaults to YES.
+ */
 - (void)setIsRounded:(BOOL)rounded {
     isRounded = rounded;
     
@@ -286,13 +331,9 @@
     }
 }
 
-- (BOOL)isOn {
-    return self.on;
-}
-
 
 /*
- * set (without animation) whether the switch is ON or OFF
+ * Set (without animation) whether the switch is on or off
  */
 - (void)setOn:(BOOL)isOn {
     [self setOn:isOn animated:NO];
@@ -300,7 +341,7 @@
 
 
 /*
- * Set the state of the switch to On or Off, optionally animating the transition.
+ * Set the state of the switch to on or off, optionally animating the transition.
  */
 - (void)setOn:(BOOL)isOn animated:(BOOL)animated {
     BOOL previousValue = self.on;
@@ -308,7 +349,7 @@
     
     if (previousValue != isOn)
         [self sendActionsForControlEvents:UIControlEventValueChanged];
-
+    
     if (isOn) {
         [self showOn:animated];
     }
@@ -318,8 +359,23 @@
 }
 
 
+#pragma mark Getters
+
 /*
- * update the looks of the switch to be in the ON position
+ *	Detects whether the switch is on or off
+ *
+ *	@return	BOOL YES if switch is on. NO if switch is off
+ */
+- (BOOL)isOn {
+    return self.on;
+}
+
+
+#pragma mark State Changes
+
+
+/*
+ * update the looks of the switch to be in the on position
  * optionally make it animated
  */
 - (void)showOn:(BOOL)animated {
@@ -354,7 +410,7 @@
 
 
 /*
- * update the looks of the switch to be in the OFF position
+ * update the looks of the switch to be in the off position
  * optionally make it animated
  */
 - (void)showOff:(BOOL)animated {

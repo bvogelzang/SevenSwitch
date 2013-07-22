@@ -185,7 +185,8 @@
     // capture time to see if this was a tap action
     double endTime = [[NSDate date] timeIntervalSince1970];
     double difference = endTime - startTime;
-
+    BOOL previousValue = self.on;
+    
     // determine if the user tapped the switch or has held it for longer
     if (difference <= 0.2) {
         CGFloat normalKnobWidth = self.bounds.size.height - 2;
@@ -195,7 +196,7 @@
     else {
         // Get touch location
         CGPoint lastPoint = [touch locationInView:self];
-
+        
         // update the switch to the correct value depending on if
         // their touch finished on the right or left side of the switch
         if (lastPoint.x > self.bounds.size.width * 0.5)
@@ -203,6 +204,9 @@
         else
             [self setOn:NO animated:YES];
     }
+    
+    if (previousValue != self.on)
+        [self sendActionsForControlEvents:UIControlEventValueChanged];
 }
 
 - (void)cancelTrackingWithEvent:(UIEvent *)event {
@@ -344,11 +348,7 @@
  * Set the state of the switch to on or off, optionally animating the transition.
  */
 - (void)setOn:(BOOL)isOn animated:(BOOL)animated {
-    BOOL previousValue = self.on;
     on = isOn;
-    
-    if (previousValue != isOn)
-        [self sendActionsForControlEvents:UIControlEventValueChanged];
     
     if (isOn) {
         [self showOn:animated];

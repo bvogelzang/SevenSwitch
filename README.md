@@ -33,10 +33,10 @@ mySwitch.onImage = [UIImage imageNamed:@"check.png"];
 You can also customize the switches colors
 
 ```objective-c
-mySwitch.knobColor = [UIColor colorWithRed:0.19f green:0.23f blue:0.33f alpha:1.00f];
+mySwitch.thumbTintColor = [UIColor colorWithRed:0.19f green:0.23f blue:0.33f alpha:1.00f];
 mySwitch.activeColor = [UIColor colorWithRed:0.07f green:0.09f blue:0.11f alpha:1.00f];
 mySwitch.inactiveColor = [UIColor colorWithRed:0.07f green:0.09f blue:0.11f alpha:1.00f];
-mySwitch.onColor = [UIColor colorWithRed:0.45f green:0.58f blue:0.67f alpha:1.00f];
+mySwitch.onTintColor = [UIColor colorWithRed:0.45f green:0.58f blue:0.67f alpha:1.00f];
 mySwitch.borderColor = [UIColor clearColor];
 mySwitch.shadowColor = [UIColor blackColor];
 ```

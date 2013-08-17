@@ -97,7 +97,7 @@
     self.activeColor = [UIColor colorWithRed:0.89f green:0.89f blue:0.89f alpha:1.00f];
     self.onTintColor = [UIColor colorWithRed:0.30f green:0.85f blue:0.39f alpha:1.00f];
     self.borderColor = [UIColor colorWithRed:0.89f green:0.89f blue:0.91f alpha:1.00f];
-    self.knobColor = [UIColor whiteColor];
+    self.thumbTintColor = [UIColor whiteColor];
     self.shadowColor = [UIColor grayColor];
 
     // background
@@ -122,7 +122,7 @@
 
     // knob
     knob = [[UIView alloc] initWithFrame:CGRectMake(1, 1, self.frame.size.height - 2, self.frame.size.height - 2)];
-    knob.backgroundColor = self.knobColor;
+    knob.backgroundColor = self.thumbTintColor;
     knob.layer.cornerRadius = (self.frame.size.height * 0.5) - 1;
     knob.layer.shadowColor = self.shadowColor.CGColor;
     knob.layer.shadowRadius = 2.0;

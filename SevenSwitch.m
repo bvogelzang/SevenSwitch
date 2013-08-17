@@ -30,7 +30,9 @@
     UIView *knob;
     UIImageView *onImageView;
     UIImageView *offImageView;
-    double startTime;
+    BOOL currentVisualValue;
+    BOOL startTrackingValue;
+    BOOL didChangeWhileTracking;
     BOOL isAnimating;
 }
 
@@ -99,6 +101,7 @@
     self.borderColor = [UIColor colorWithRed:0.89f green:0.89f blue:0.91f alpha:1.00f];
     self.thumbTintColor = [UIColor whiteColor];
     self.shadowColor = [UIColor grayColor];
+    currentVisualValue = NO;
 
     // background
     background = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.frame.size.width, self.frame.size.height)];
@@ -141,8 +144,8 @@
 - (BOOL)beginTrackingWithTouch:(UITouch *)touch withEvent:(UIEvent *)event {
     [super beginTrackingWithTouch:touch withEvent:event];
 
-    // start timer to detect tap later in endTrackingWithTouch:withEvent:
-    startTime = [[NSDate date] timeIntervalSince1970];
+    startTrackingValue = self.on;
+    didChangeWhileTracking = NO;
 
     // make the knob larger and animate to the correct color
     CGFloat activeKnobWidth = self.bounds.size.height - 2 + 5;
@@ -171,10 +174,18 @@
 
     // update the switch to the correct visuals depending on if
     // they moved their touch to the right or left side of the switch
-    if (lastPoint.x > self.bounds.size.width * 0.5)
+    if (lastPoint.x > self.bounds.size.width * 0.5) {
         [self showOn:YES];
-    else
+        if (!startTrackingValue) {
+            didChangeWhileTracking = YES;
+        }
+    }
+    else {
         [self showOff:YES];
+        if (startTrackingValue) {
+            didChangeWhileTracking = YES;
+        }
+    }
 
     return YES;
 }
@@ -182,27 +193,13 @@
 - (void)endTrackingWithTouch:(UITouch *)touch withEvent:(UIEvent *)event {
     [super endTrackingWithTouch:touch withEvent:event];
 
-    // capture time to see if this was a tap action
-    double endTime = [[NSDate date] timeIntervalSince1970];
-    double difference = endTime - startTime;
     BOOL previousValue = self.on;
-
-    // determine if the user tapped the switch or has held it for longer
-    if (difference <= 0.2) {
-        CGFloat normalKnobWidth = self.bounds.size.height - 2;
-        knob.frame = CGRectMake(knob.frame.origin.x, knob.frame.origin.y, normalKnobWidth, knob.frame.size.height);
-        [self setOn:!self.on animated:YES];
+    
+    if (didChangeWhileTracking) {
+        [self setOn:currentVisualValue animated:YES];
     }
     else {
-        // Get touch location
-        CGPoint lastPoint = [touch locationInView:self];
-
-        // update the switch to the correct value depending on if
-        // their touch finished on the right or left side of the switch
-        if (lastPoint.x > self.bounds.size.width * 0.5)
-            [self setOn:YES animated:YES];
-        else
-            [self setOn:NO animated:YES];
+        [self setOn:!self.on animated:YES];
     }
 
     if (previousValue != self.on)
@@ -406,6 +403,8 @@
         onImageView.alpha = 1.0;
         offImageView.alpha = 0;
     }
+    
+    currentVisualValue = YES;
 }
 
 
@@ -447,6 +446,8 @@
         onImageView.alpha = 0;
         offImageView.alpha = 1.0;
     }
+    
+    currentVisualValue = NO;
 }
 
 - (UIColor *)onColor {

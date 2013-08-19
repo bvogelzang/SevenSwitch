@@ -96,6 +96,7 @@
     self.on = NO;
     self.isRounded = YES;
     self.inactiveColor = [UIColor clearColor];
+    self.middleColor = [UIColor clearColor];
     self.activeColor = [UIColor colorWithRed:0.89f green:0.89f blue:0.89f alpha:1.00f];
     self.onTintColor = [UIColor colorWithRed:0.30f green:0.85f blue:0.39f alpha:1.00f];
     self.borderColor = [UIColor colorWithRed:0.89f green:0.89f blue:0.91f alpha:1.00f];
@@ -151,13 +152,17 @@
     CGFloat activeKnobWidth = self.bounds.size.height - 2 + 5;
     isAnimating = YES;
     [UIView animateWithDuration:0.3 delay:0.0 options:UIViewAnimationOptionCurveEaseOut|UIViewAnimationOptionBeginFromCurrentState animations:^{
-        if (self.on) {
-            knob.frame = CGRectMake(self.bounds.size.width - (activeKnobWidth + 1), knob.frame.origin.y, activeKnobWidth, knob.frame.size.height);
-            background.backgroundColor = self.onTintColor;
-        }
-        else {
-            knob.frame = CGRectMake(knob.frame.origin.x, knob.frame.origin.y, activeKnobWidth, knob.frame.size.height);
-            background.backgroundColor = self.activeColor;
+        if(self.middle){
+            background.backgroundColor = self.middleColor;
+        } else {
+            if (self.on) {
+                knob.frame = CGRectMake(self.bounds.size.width - (activeKnobWidth + 1), knob.frame.origin.y, activeKnobWidth, knob.frame.size.height);
+                background.backgroundColor = self.onTintColor;
+            }
+            else {
+                knob.frame = CGRectMake(knob.frame.origin.x, knob.frame.origin.y, activeKnobWidth, knob.frame.size.height);
+                background.backgroundColor = self.activeColor;
+            }
         }
     } completion:^(BOOL finished) {
         isAnimating = NO;
@@ -176,13 +181,13 @@
     // they moved their touch to the right or left side of the switch
     if (lastPoint.x > self.bounds.size.width * 0.5) {
         [self showOn:YES];
-        if (!startTrackingValue) {
+        if (!startTrackingValue||_middle) {
             didChangeWhileTracking = YES;
         }
     }
     else {
         [self showOff:YES];
-        if (startTrackingValue) {
+        if (startTrackingValue||_middle) {
             didChangeWhileTracking = YES;
         }
     }
@@ -233,11 +238,15 @@
 
         // knob
         CGFloat normalKnobWidth = frame.size.height - 2;
+        if(self.middle){
+            knob.frame = CGRectMake(0.5*(self.bounds.size.width - (normalKnobWidth + 1)), 1, frame.size.height - 2, normalKnobWidth);
+            
+        } else {
         if (self.on)
             knob.frame = CGRectMake(frame.size.width - (normalKnobWidth + 1), 1, frame.size.height - 2, normalKnobWidth);
         else
             knob.frame = CGRectMake(1, 1, normalKnobWidth, normalKnobWidth);
-
+        }
         knob.layer.cornerRadius = self.isRounded ? (frame.size.height * 0.5) - 1 : 2;
     }
 }
@@ -346,7 +355,8 @@
  */
 - (void)setOn:(BOOL)isOn animated:(BOOL)animated {
     on = isOn;
-
+    _middle=NO;
+    
     if (isOn) {
         [self showOn:animated];
     }
@@ -355,6 +365,11 @@
     }
 }
 
+-(void)setMiddle:(BOOL)animated{
+    _middle=YES;
+    
+    [self showMiddle:animated];
+}
 
 #pragma mark Getters
 
@@ -445,6 +460,44 @@
         background.layer.borderColor = self.borderColor.CGColor;
         onImageView.alpha = 0;
         offImageView.alpha = 1.0;
+    }
+    
+    currentVisualValue = NO;
+}
+
+- (void)showMiddle:(BOOL)animated {
+    CGFloat normalKnobWidth = self.bounds.size.height - 2;
+    CGFloat activeKnobWidth = normalKnobWidth + 5;
+    if (animated) {
+        isAnimating = YES;
+        [UIView animateWithDuration:0.3 delay:0.0 options:UIViewAnimationOptionCurveEaseOut|UIViewAnimationOptionBeginFromCurrentState animations:^{
+            if (self.tracking) {
+                knob.frame = CGRectMake(0.5*(self.bounds.size.width - (normalKnobWidth + 1)), knob.frame.origin.y, activeKnobWidth, knob.frame.size.height);
+                background.backgroundColor = self.activeColor;
+            }
+            else {
+                knob.frame = CGRectMake(0.5*(self.bounds.size.width - (normalKnobWidth + 1)), knob.frame.origin.y, normalKnobWidth, knob.frame.size.height);
+                background.backgroundColor = self.middleColor;
+            }
+            background.layer.borderColor = self.borderColor.CGColor;
+            onImageView.alpha = 0;
+            offImageView.alpha = 1.0;
+        } completion:^(BOOL finished) {
+            isAnimating = NO;
+        }];
+    }
+    else {
+        if (self.tracking) {
+            knob.frame = CGRectMake(0.5*(self.bounds.size.width - (normalKnobWidth + 1)), knob.frame.origin.y, activeKnobWidth, knob.frame.size.height);
+            background.backgroundColor = self.activeColor;
+        }
+        else {
+            knob.frame = CGRectMake(0.5*(self.bounds.size.width - (normalKnobWidth + 1)), knob.frame.origin.y, normalKnobWidth, knob.frame.size.height);
+            background.backgroundColor = self.middleColor;
+        }
+        background.layer.borderColor = self.borderColor.CGColor;
+        onImageView.alpha = 0;
+        offImageView.alpha = 0;
     }
     
     currentVisualValue = NO;

@@ -31,6 +31,10 @@
  */
 @property (nonatomic, assign) BOOL on;
 
+/*
+ * Set (without animation) whether the switch is in the middle
+ */
+@property (nonatomic, assign) BOOL middle;
 
 /*
  *	Sets the background color when the switch is off.
@@ -43,6 +47,12 @@
  *  Defaults to light gray.
  */
 @property (nonatomic, strong) UIColor *activeColor;
+
+/*
+ *	Sets the background color that shows when the switch middle.
+ *  Defaults to clear color.
+ */
+@property (nonatomic, strong) UIColor *middleColor;
 
 /*
  *	Sets the background color that shows when the switch is on.
@@ -95,6 +105,11 @@
  * Set whether the switch is on or off. Optionally animate the change
  */
 - (void)setOn:(BOOL)on animated:(BOOL)animated;
+
+/*
+ * Set the switch to the middle position. Optionally animate the change
+ */
+- (void)setMiddle:(BOOL)animated;
 
 /*
  *	Detects whether the switch is on or off

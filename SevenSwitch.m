@@ -110,18 +110,21 @@
     background.layer.borderColor = self.borderColor.CGColor;
     background.layer.borderWidth = 1.0;
     background.userInteractionEnabled = NO;
+	background.clipsToBounds = YES;
     [self addSubview:background];
 
     // images
     onImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, self.frame.size.width - self.frame.size.height, self.frame.size.height)];
     onImageView.alpha = 0;
     onImageView.contentMode = UIViewContentModeCenter;
-    [self addSubview:onImageView];
+    [background addSubview:onImageView];
 
     offImageView = [[UIImageView alloc] initWithFrame:CGRectMake(self.frame.size.height, 0, self.frame.size.width - self.frame.size.height, self.frame.size.height)];
     offImageView.alpha = 1.0;
     offImageView.contentMode = UIViewContentModeCenter;
-    [self addSubview:offImageView];
+    [background addSubview:offImageView];
+	
+	
 
     // knob
     knob = [[UIView alloc] initWithFrame:CGRectMake(1, 1, self.frame.size.height - 2, self.frame.size.height - 2)];

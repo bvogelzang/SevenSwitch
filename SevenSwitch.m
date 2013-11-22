@@ -134,6 +134,7 @@
     knob.layer.shadowRadius = 2.0;
     knob.layer.shadowOpacity = 0.5;
     knob.layer.shadowOffset = CGSizeMake(0, 3);
+    knob.layer.shadowPath = [UIBezierPath bezierPathWithRoundedRect:knob.bounds cornerRadius:knob.layer.cornerRadius].CGPath;
     knob.layer.masksToBounds = NO;
     knob.userInteractionEnabled = NO;
     [self addSubview:knob];
@@ -333,6 +334,8 @@
         background.layer.cornerRadius = 2;
         knob.layer.cornerRadius = 2;
     }
+    
+    knob.layer.shadowPath = [UIBezierPath bezierPathWithRoundedRect:knob.bounds cornerRadius:knob.layer.cornerRadius].CGPath;
 }
 
 

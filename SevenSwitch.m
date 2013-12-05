@@ -144,21 +144,6 @@
     [knob addSubview:knobImageView];
     [self addSubview:knob];
 
-    NSDictionary *views = @{@"knobImageView": knobImageView};
-    NSArray *horizontalConstraints = [NSLayoutConstraint constraintsWithVisualFormat:@"H:|[knobImageView]|"
-                                                                             options:0
-                                                                             metrics:nil
-                                                                               views:views];
-    NSArray *verticalConstraints = [NSLayoutConstraint constraintsWithVisualFormat:@"V:|[knobImageView]|"
-                                                                           options:0
-                                                                           metrics:nil
-                                                                            views:views];
-    [knob addConstraints:horizontalConstraints];
-    [knob addConstraints:verticalConstraints];
-    
-    
-    
-
     isAnimating = NO;
 }
 

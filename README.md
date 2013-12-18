@@ -6,6 +6,14 @@ iOS7 style drop in replacement for UISwitch
 
 ![Default](https://raw.github.com/bvogelzang/SevenSwitch/master/ExampleImages/example.png)
 
+## Donate Bitcoin
+
+<a href="bitcoin:13ENR7QKya5WpbyWRfr4Ek818Na2cnguuY?label=SevenSwitch">
+  <img src="https://raw.github.com/bvogelzang/SevenSwitch/master/ExampleImages/donate.png" >
+</a>
+
+`13ENR7QKya5WpbyWRfr4Ek818Na2cnguuY`
+
 ## Usage
 
 To use it, add SevenSwitch.h and SevenSwitch.m files to your project and add the QuartzCore framework to your project.

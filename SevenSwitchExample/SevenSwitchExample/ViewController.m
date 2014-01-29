@@ -22,14 +22,18 @@
     
     ibSwitch.onTintColor = [UIColor colorWithRed:0.20f green:0.42f blue:0.86f alpha:1.00f];
     ibSwitch.on = YES;
-    
+	
+	
     // this will create the switch with default dimensions, you'll still need to set the position though
     // you also have the option to pass in a frame of any size you choose
     SevenSwitch *mySwitch = [[SevenSwitch alloc] initWithFrame:CGRectZero];
     mySwitch.center = CGPointMake(self.view.bounds.size.width * 0.5, self.view.bounds.size.height * 0.5);
     [mySwitch addTarget:self action:@selector(switchChanged:) forControlEvents:UIControlEventValueChanged];
+	[mySwitch setOnText:@"on"];
+	[mySwitch setOffText:@"off"];
+	[[SevenSwitch appearance] setLabelFont:[UIFont systemFontOfSize:10]];
     [self.view addSubview:mySwitch];
-    
+
     // turn the switch on
     mySwitch.on = YES;
     

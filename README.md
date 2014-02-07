@@ -8,11 +8,9 @@ iOS7 style drop in replacement for UISwitch
 
 ## Donate Bitcoin
 
-<a href="bitcoin:13ENR7QKya5WpbyWRfr4Ek818Na2cnguuY?label=SevenSwitch">
-  <img src="https://raw.github.com/bvogelzang/SevenSwitch/master/ExampleImages/donate.png" >
-</a>
+If you're using `SevenSwitch` in an app or for some other reason consider throwing me some coin.
 
-`13ENR7QKya5WpbyWRfr4Ek818Na2cnguuY`
+`1GuFb1y7xEmKiD6XD3tGEJBriYJ2hXp8zY`
 
 ## Usage
 

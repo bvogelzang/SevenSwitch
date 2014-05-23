@@ -121,6 +121,14 @@
 @property (nonatomic, strong) UIColor *offFontColor UI_APPEARANCE_SELECTOR;
 
 
+/**
+ * Sets an image to be shown on top of the knob.
+ *
+ * Note that if your image does not have a clear or white background, you will want to set
+ * the thumbTintColor to either match your image's background color, or to [UIColor clearColor].
+ */
+@property (nonatomic, strong) UIImage *thumbImage;
+
 /*
  * Set whether the switch is on or off. Optionally animate the change
  */

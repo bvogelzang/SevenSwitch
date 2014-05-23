@@ -30,6 +30,7 @@
     UIView *knob;
     UIImageView *onImageView;
     UIImageView *offImageView;
+    UIImageView *knobImageView;
     BOOL currentVisualValue;
     BOOL startTrackingValue;
     BOOL didChangeWhileTracking;
@@ -152,6 +153,10 @@
     knob.layer.shadowPath = [UIBezierPath bezierPathWithRoundedRect:knob.bounds cornerRadius:knob.layer.cornerRadius].CGPath;
     knob.layer.masksToBounds = NO;
     knob.userInteractionEnabled = NO;
+    
+    //Knob image view.
+    knobImageView = [[UIImageView alloc] initWithFrame:knob.bounds];
+    [knob addSubview:knobImageView];
     [self addSubview:knob];
 
     isAnimating = NO;
@@ -375,6 +380,12 @@
     }
     
     knob.layer.shadowPath = [UIBezierPath bezierPathWithRoundedRect:knob.bounds cornerRadius:knob.layer.cornerRadius].CGPath;
+}
+
+
+- (void)setThumbImage:(UIImage *)thumbImage
+{
+    knobImageView.image = thumbImage;
 }
 
 

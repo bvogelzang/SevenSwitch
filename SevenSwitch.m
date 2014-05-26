@@ -30,6 +30,7 @@
     UIView *knob;
     UIImageView *onImageView;
     UIImageView *offImageView;
+    UIImageView *thumbImageView;
     BOOL currentVisualValue;
     BOOL startTrackingValue;
     BOOL didChangeWhileTracking;
@@ -49,7 +50,7 @@
 @implementation SevenSwitch
 
 @synthesize inactiveColor, activeColor, onTintColor, borderColor, thumbTintColor, shadowColor;
-@synthesize onImage, offImage;
+@synthesize onImage, offImage, thumbImage;
 @synthesize isRounded;
 @synthesize on;
 
@@ -153,6 +154,11 @@
     knob.layer.masksToBounds = NO;
     knob.userInteractionEnabled = NO;
     [self addSubview:knob];
+    
+    thumbImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, knob.frame.size.width, knob.frame.size.height)];
+    thumbImageView.contentMode = UIViewContentModeCenter;
+    thumbImageView.autoresizingMask = UIViewAutoresizingFlexibleWidth;
+    [knob addSubview:thumbImageView];
 
     isAnimating = NO;
 }
@@ -314,6 +320,15 @@
 - (void)setShadowColor:(UIColor *)color {
     shadowColor = color;
     knob.layer.shadowColor = color.CGColor;
+}
+
+/*
+ *	Sets the thumb image.
+ */
+- (void)setThumbImage:(UIImage *)image
+{
+    thumbImage = image;
+    thumbImageView.image = image;
 }
 
 /*

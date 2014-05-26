@@ -77,6 +77,12 @@
 
 
 /*
+ *  Sets the image that shows on the switch thumb.
+ */
+@property (nonatomic, strong) UIImage *thumbImage;
+
+
+/*
  *	Sets the image that shows when the switch is on.
  *  The image is centered in the area not covered by the knob.
  *  Make sure to size your images appropriately.

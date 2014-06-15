@@ -49,7 +49,7 @@
 
 @implementation SevenSwitch
 
-@synthesize inactiveColor, activeColor, onTintColor, borderColor, thumbTintColor, shadowColor;
+@synthesize inactiveColor, activeColor, onTintColor, borderColor, thumbTintColor, onThumbTintColor, shadowColor;
 @synthesize onImage, offImage, thumbImage;
 @synthesize isRounded;
 @synthesize on;
@@ -108,6 +108,7 @@
     self.onTintColor = [UIColor colorWithRed:0.30f green:0.85f blue:0.39f alpha:1.00f];
     self.borderColor = [UIColor colorWithRed:0.89f green:0.89f blue:0.91f alpha:1.00f];
     self.thumbTintColor = [UIColor whiteColor];
+    self.onThumbTintColor = [UIColor whiteColor];
     self.shadowColor = [UIColor grayColor];
     currentVisualValue = NO;
 
@@ -179,10 +180,12 @@
         if (self.on) {
             knob.frame = CGRectMake(self.bounds.size.width - (activeKnobWidth + 1), knob.frame.origin.y, activeKnobWidth, knob.frame.size.height);
             background.backgroundColor = self.onTintColor;
+            knob.backgroundColor = self.onThumbTintColor;
         }
         else {
             knob.frame = CGRectMake(knob.frame.origin.x, knob.frame.origin.y, activeKnobWidth, knob.frame.size.height);
             background.backgroundColor = self.activeColor;
+            knob.backgroundColor = self.thumbTintColor;
         }
     } completion:^(BOOL finished) {
         isAnimating = NO;
@@ -307,11 +310,21 @@
 }
 
 /*
- *	Sets the knob color. Defaults to white.
+ *	Sets the knob color that shows when the switch is off. Defaults to white.
  */
 - (void)setThumbTintColor:(UIColor *)color {
     thumbTintColor = color;
-    knob.backgroundColor = color;
+    if (!self.on && !self.isTracking)
+        knob.backgroundColor = color;
+}
+
+/*
+ *	Sets the knob color that shows when the switch is on. Defaults to white.
+ */
+- (void)setOnThumbTintColor:(UIColor *)color {
+    onThumbTintColor = color;
+    if (self.on && !self.isTracking)
+        knob.backgroundColor = color;
 }
 
 /*
@@ -447,6 +460,7 @@
                 knob.frame = CGRectMake(self.bounds.size.width - (normalKnobWidth + 1), knob.frame.origin.y, normalKnobWidth, knob.frame.size.height);
             background.backgroundColor = self.onTintColor;
             background.layer.borderColor = self.onTintColor.CGColor;
+            knob.backgroundColor = self.onThumbTintColor;
             onImageView.alpha = 1.0;
             offImageView.alpha = 0;
 			self.onLabel.alpha = 1.0;
@@ -462,6 +476,7 @@
             knob.frame = CGRectMake(self.bounds.size.width - (normalKnobWidth + 1), knob.frame.origin.y, normalKnobWidth, knob.frame.size.height);
         background.backgroundColor = self.onTintColor;
         background.layer.borderColor = self.onTintColor.CGColor;
+        knob.backgroundColor = self.onThumbTintColor;
         onImageView.alpha = 1.0;
         offImageView.alpha = 0;
 		self.onLabel.alpha = 1.0;
@@ -491,6 +506,7 @@
                 background.backgroundColor = self.inactiveColor;
             }
             background.layer.borderColor = self.borderColor.CGColor;
+            knob.backgroundColor = self.thumbTintColor;
             onImageView.alpha = 0;
             offImageView.alpha = 1.0;
 			self.onLabel.alpha = 0;
@@ -509,6 +525,7 @@
             background.backgroundColor = self.inactiveColor;
         }
         background.layer.borderColor = self.borderColor.CGColor;
+        knob.backgroundColor = self.thumbTintColor;
         onImageView.alpha = 0;
         offImageView.alpha = 1.0;
 		self.onLabel.alpha = 0;

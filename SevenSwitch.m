@@ -35,6 +35,7 @@
     BOOL startTrackingValue;
     BOOL didChangeWhileTracking;
     BOOL isAnimating;
+    BOOL userDidSpecifyOnThumbTintColor;
 }
 
 @property (nonatomic, strong) UILabel*onLabel;
@@ -111,6 +112,7 @@
     self.onThumbTintColor = [UIColor whiteColor];
     self.shadowColor = [UIColor grayColor];
     currentVisualValue = NO;
+    userDidSpecifyOnThumbTintColor = NO;
 
     // background
     background = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.frame.size.width, self.frame.size.height)];
@@ -310,11 +312,13 @@
 }
 
 /*
- *	Sets the knob color that shows when the switch is off. Defaults to white.
+ *	Sets the knob color. Defaults to white.
  */
 - (void)setThumbTintColor:(UIColor *)color {
     thumbTintColor = color;
-    if (!self.on && !self.isTracking)
+    if (!userDidSpecifyOnThumbTintColor)
+        onThumbTintColor = color;
+    if ((!userDidSpecifyOnThumbTintColor || !self.on) && !self.isTracking)
         knob.backgroundColor = color;
 }
 
@@ -323,6 +327,7 @@
  */
 - (void)setOnThumbTintColor:(UIColor *)color {
     onThumbTintColor = color;
+    userDidSpecifyOnThumbTintColor = YES;
     if (self.on && !self.isTracking)
         knob.backgroundColor = color;
 }

@@ -6,12 +6,6 @@ iOS7 style drop in replacement for UISwitch
 
 ![Default](https://raw.github.com/bvogelzang/SevenSwitch/master/ExampleImages/example.png)
 
-## Donate Bitcoin
-
-If you're using `SevenSwitch` in an app or for some other reason consider throwing me some coin.
-
-`1GuFb1y7xEmKiD6XD3tGEJBriYJ2hXp8zY`
-
 ## Usage
 
 To use it, add SevenSwitch.h and SevenSwitch.m files to your project and add the QuartzCore framework to your project.
@@ -34,6 +28,14 @@ You can set images for the on/off states
 ```objective-c
 mySwitch.offImage = [UIImage imageNamed:@"cross.png"];
 mySwitch.onImage = [UIImage imageNamed:@"check.png"];
+mySwitch.thumbImage = [UIImage imageNamed:@"thumb.png"];
+```
+
+You can set text for the on/off states
+
+```objective-c
+mySwitch.offLabel.text = @"on";
+mySwitch.onLabel.text = @"off";
 ```
 
 You can also customize the switches colors

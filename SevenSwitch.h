@@ -100,32 +100,13 @@
  *	Sets the text that shows when the switch is off.
  *  The text is centered in the area not covered by the knob.
  */
-@property (nonatomic, strong) NSString *offText;
+@property (nonatomic, strong) UILabel *offLabel;
 
 /*
  *	Sets the text that shows when the switch is on.
  *  The text is centered in the area not covered by the knob.
  */
-@property (nonatomic, strong) NSString *onText;
-
-/*
- *	Sets the on/off label's font.
- *  Access it through [[SevenSwitch appearance] setLabelFont:]
- */
-@property (nonatomic, strong) UIFont *labelFont UI_APPEARANCE_SELECTOR;
-
-/*
- *	Sets the on/off label's font color.
- *  Access it through [[SevenSwitch appearance] setOnFontColor:]
- */
-@property (nonatomic, strong) UIColor *onFontColor UI_APPEARANCE_SELECTOR;
-
-/*
- *	Sets the on/off label's font color.
- *  Access it through [[SevenSwitch appearance] setOffFontColor:]
- */
-@property (nonatomic, strong) UIColor *offFontColor UI_APPEARANCE_SELECTOR;
-
+@property (nonatomic, strong) UILabel *onLabel;
 
 /*
  * Set whether the switch is on or off. Optionally animate the change

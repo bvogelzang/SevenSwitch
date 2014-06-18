@@ -29,9 +29,6 @@
     SevenSwitch *mySwitch = [[SevenSwitch alloc] initWithFrame:CGRectZero];
     mySwitch.center = CGPointMake(self.view.bounds.size.width * 0.5, self.view.bounds.size.height * 0.5);
     [mySwitch addTarget:self action:@selector(switchChanged:) forControlEvents:UIControlEventValueChanged];
-	[mySwitch setOnText:@"on"];
-	[mySwitch setOffText:@"off"];
-	[[SevenSwitch appearance] setLabelFont:[UIFont systemFontOfSize:10]];
     [self.view addSubview:mySwitch];
 
     // turn the switch on

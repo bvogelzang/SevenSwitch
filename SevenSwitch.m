@@ -37,9 +37,6 @@
     BOOL isAnimating;
 }
 
-@property (nonatomic, strong) UILabel*onLabel;
-@property (nonatomic, strong) UILabel*offLabel;
-
 - (void)showOn:(BOOL)animated;
 - (void)showOff:(BOOL)animated;
 - (void)setup;
@@ -96,10 +93,6 @@
  */
 - (void)setup {
 
-	self.onFontColor = [UIColor whiteColor];
-	self.offFontColor = [UIColor lightGrayColor];
-	self.labelFont = [UIFont systemFontOfSize:12];
-	
     // default values
     self.on = NO;
     self.isRounded = YES;
@@ -121,7 +114,7 @@
 	background.clipsToBounds = YES;
     [self addSubview:background];
 
-    // images
+    // on/off images
     onImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, self.frame.size.width - self.frame.size.height, self.frame.size.height)];
     onImageView.alpha = 0;
     onImageView.contentMode = UIViewContentModeCenter;
@@ -132,14 +125,17 @@
     offImageView.contentMode = UIViewContentModeCenter;
     [background addSubview:offImageView];
 	
+    // labels
 	self.onLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, self.frame.size.width - self.frame.size.height, self.frame.size.height)];
 	self.onLabel.textAlignment = NSTextAlignmentCenter;
+    self.onLabel.textColor = [UIColor lightGrayColor];
+    self.onLabel.font = [UIFont systemFontOfSize:12];
     [background addSubview:self.onLabel];
 
 	self.offLabel = [[UILabel alloc] initWithFrame:CGRectMake(self.frame.size.height, 0, self.frame.size.width - self.frame.size.height, self.frame.size.height)];
-    self.offLabel.font = self.labelFont;
-	self.offLabel.textColor = self.offFontColor;
-	self.offLabel.textAlignment = NSTextAlignmentCenter;
+    self.offLabel.textAlignment = NSTextAlignmentCenter;
+    self.offLabel.textColor = [UIColor lightGrayColor];
+    self.offLabel.font = [UIFont systemFontOfSize:12];
     [background addSubview:self.offLabel];
 	
     // knob
@@ -155,6 +151,7 @@
     knob.userInteractionEnabled = NO;
     [self addSubview:knob];
     
+    // kob image
     thumbImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, knob.frame.size.width, knob.frame.size.height)];
     thumbImageView.contentMode = UIViewContentModeCenter;
     thumbImageView.autoresizingMask = UIViewAutoresizingFlexibleWidth;
@@ -244,10 +241,7 @@
 
 - (void)layoutSubviews {
     [super layoutSubviews];
-    self.onLabel.font = self.labelFont;
-	self.onLabel.textColor = self.onFontColor;
-	self.offLabel.font = self.labelFont;
-	self.offLabel.textColor = self.offFontColor;
+
     if (!isAnimating) {
         CGRect frame = self.frame;
 
@@ -329,26 +323,6 @@
 {
     thumbImage = image;
     thumbImageView.image = image;
-}
-
-/*
- *	Sets the text that shows when the switch is on.
- *  The text is centered in the area not covered by the knob.
- */
-- (void)setOnText:(NSString *)onText
-{
-	_onText = onText;
-	self.onLabel.text = onText;
-}
-
-/*
- *	Sets the text that shows when the switch is off.
- *  The text is centered in the area not covered by the knob.
- */
-- (void)setOffText:(NSString *)offText
-{
-	_offText = offText;
-	self.offLabel.text = offText;
 }
 
 /*

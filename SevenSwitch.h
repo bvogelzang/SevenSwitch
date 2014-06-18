@@ -60,6 +60,7 @@
  *	Sets the knob color. Defaults to white.
  */
 @property (nonatomic, strong) UIColor *thumbTintColor;
+@property (nonatomic, strong) UIColor *onThumbTintColor;
 @property (nonatomic, strong) UIColor *knobColor __deprecated;
 
 /*

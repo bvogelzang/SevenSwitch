@@ -67,13 +67,7 @@ class SevenSwitch: UIControl {
     }
     
     init(frame: CGRect) {
-        var initialFrame: CGRect
-        if CGRectIsEmpty(frame) {
-            initialFrame = CGRectMake(0, 0, 50, 30)
-        }
-        else {
-            initialFrame = frame
-        }
+        let initialFrame = CGRectIsEmpty(frame) ? CGRectMake(0, 0, 50, 30) : frame;
         super.initWithFrame(initialFrame)
         setup()
     }

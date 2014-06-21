@@ -25,7 +25,7 @@
 import UIKit
 import QuartzCore
 
-class SevenSwitch: UIControl {
+@objc class SevenSwitch: UIControl {
     
     // public
     

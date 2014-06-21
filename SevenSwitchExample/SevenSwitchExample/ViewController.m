@@ -7,6 +7,7 @@
 //
 
 #import "ViewController.h"
+#import "SevenSwitchExample-Swift.h"
 
 @interface ViewController ()
 
@@ -22,7 +23,6 @@
     
     ibSwitch.onTintColor = [UIColor colorWithRed:0.20f green:0.42f blue:0.86f alpha:1.00f];
     ibSwitch.on = YES;
-	
 	
     // this will create the switch with default dimensions, you'll still need to set the position though
     // you also have the option to pass in a frame of any size you choose

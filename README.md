@@ -14,6 +14,8 @@ iOS7 style drop in replacement for UISwitch
 pod 'SevenSwitch', '~> 2.0'
 ```
 
+*Currently swift is not supported in cocoapods. so `2.0` will not work. You should be using `1.3` for the time being.*
+
 ### Without Cocoapods
 
 Add `SevenSwitch.swift` to your project and add the `QuartzCore` framework to your project.

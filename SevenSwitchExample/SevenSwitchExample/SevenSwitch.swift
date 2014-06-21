@@ -305,12 +305,12 @@ class SevenSwitch: UIControl {
         UIView.animateWithDuration(0.3, delay: 0.0, options: UIViewAnimationOptions.CurveEaseOut | UIViewAnimationOptions.BeginFromCurrentState, animations: {
                 if self.on {
                     thumb.frame = CGRectMake(self.bounds.size.width - (activeKnobWidth + 1), thumb.frame.origin.y, activeKnobWidth, thumb.frame.size.height)
-                    background.backgroundColor = self.onTintColor
+                    backgroundView.backgroundColor = self.onTintColor
                     thumb.backgroundColor = self.onThumbTintColor
                 }
                 else {
                     thumb.frame = CGRectMake(thumb.frame.origin.x, thumb.frame.origin.y, activeKnobWidth, thumb.frame.size.height)
-                    background.backgroundColor = self.activeColor
+                    backgroundView.backgroundColor = self.activeColor
                     thumb.backgroundColor = self.thumbTintColor
                 }
             }, completion: {
@@ -380,8 +380,8 @@ class SevenSwitch: UIControl {
             let frame = self.frame
             
             // background
-            background.frame = CGRectMake(0, 0, frame.size.width, frame.size.height)
-            background.layer.cornerRadius = self.isRounded ? frame.size.height * 0.5 : 2
+            backgroundView.frame = CGRectMake(0, 0, frame.size.width, frame.size.height)
+            backgroundView.layer.cornerRadius = self.isRounded ? frame.size.height * 0.5 : 2
             
             // images
             onImageView.frame = CGRectMake(0, 0, frame.size.width - frame.size.height, frame.size.height)
@@ -440,8 +440,8 @@ class SevenSwitch: UIControl {
                     thumb.frame = CGRectMake(self.bounds.size.width - (normalKnobWidth + 1), thumb.frame.origin.y, normalKnobWidth, thumb.frame.size.height)
                 }
                 
-                background.backgroundColor = self.onTintColor
-                background.layer.borderColor = self.onTintColor.CGColor
+                backgroundView.backgroundColor = self.onTintColor
+                backgroundView.layer.borderColor = self.onTintColor.CGColor
                 thumb.backgroundColor = self.onThumbTintColor
                 onImageView.alpha = 1.0
                 offImageView.alpha = 0
@@ -459,8 +459,8 @@ class SevenSwitch: UIControl {
                 thumb.frame = CGRectMake(self.bounds.size.width - (normalKnobWidth + 1), thumb.frame.origin.y, normalKnobWidth, thumb.frame.size.height)
             }
             
-            background.backgroundColor = self.onTintColor
-            background.layer.borderColor = self.onTintColor.CGColor
+            backgroundView.backgroundColor = self.onTintColor
+            backgroundView.layer.borderColor = self.onTintColor.CGColor
             thumb.backgroundColor = self.onThumbTintColor
             onImageView.alpha = 1.0
             offImageView.alpha = 0
@@ -484,14 +484,14 @@ class SevenSwitch: UIControl {
             UIView.animateWithDuration(0.3, delay: 0.0, options: UIViewAnimationOptions.CurveEaseOut | UIViewAnimationOptions.BeginFromCurrentState, animations: {
                 if self.tracking {
                     thumb.frame = CGRectMake(1, thumb.frame.origin.y, activeKnobWidth, thumb.frame.size.height);
-                    background.backgroundColor = self.activeColor
+                    backgroundView.backgroundColor = self.activeColor
                 }
                 else {
                     thumb.frame = CGRectMake(1, thumb.frame.origin.y, normalKnobWidth, thumb.frame.size.height);
-                    background.backgroundColor = self.inactiveColor
+                    backgroundView.backgroundColor = self.inactiveColor
                 }
                 
-                background.layer.borderColor = self.borderColor.CGColor
+                backgroundView.layer.borderColor = self.borderColor.CGColor
                 thumb.backgroundColor = self.thumbTintColor
                 onImageView.alpha = 0
                 offImageView.alpha = 1.0
@@ -505,11 +505,11 @@ class SevenSwitch: UIControl {
         else {
             if (self.tracking) {
                 thumb.frame = CGRectMake(1, thumb.frame.origin.y, activeKnobWidth, thumb.frame.size.height)
-                background.backgroundColor = self.activeColor
+                backgroundView.backgroundColor = self.activeColor
             }
             else {
                 thumb.frame = CGRectMake(1, thumb.frame.origin.y, normalKnobWidth, thumb.frame.size.height)
-                background.backgroundColor = self.inactiveColor
+                backgroundView.backgroundColor = self.inactiveColor
             }
             backgroundView.layer.borderColor = self.borderColor.CGColor
             thumb.backgroundColor = self.thumbTintColor

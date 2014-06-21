@@ -16,7 +16,7 @@ pod 'SevenSwitch', '~> 2.0'
 
 ### Without Cocoapods
 
-To use it, add SevenSwitch.swift file to your project and add the QuartzCore framework to your project.
+Add `SevenSwitch.swift` to your project and add the `QuartzCore` framework to your project.
 
 ### Examples
 

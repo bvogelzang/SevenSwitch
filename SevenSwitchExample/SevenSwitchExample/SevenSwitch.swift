@@ -28,20 +28,163 @@ import QuartzCore
 class SevenSwitch: UIControl {
     
     // public
-    var on: Bool
-    var activeColor: UIColor
-    var inactiveColor: UIColor
-    var onTintColor: UIColor
-    var offTintColor: UIColor
-    var borderColor: UIColor
-    var thumbTintColor: UIColor
-    var onThumbTintColor: UIColor
-    var shadowColor: UIColor
-    var isRounded: Bool
-    var thumbImage: UIImage
-    var onImage: UIImage
-    var offImage: UIImage
+    
+    /*
+    *   Set (without animation) whether the switch is on or off
+    */
+    var on: Bool {
+    get { return on }
+    set {
+        self.setOn(newValue, animated: false)
+    }
+    }
+    
+    /*
+    *	Sets the background color that shows when the switch off and actively being touched.
+    *   Defaults to light gray.
+    */
+    var activeColor: UIColor {
+    willSet {
+        if self.on && !self.isTracking {
+            backgroundView.backgroundColor = newValue
+        }
+    }
+    }
+    
+    /*
+    *	Sets the background color when the switch is off.
+    *   Defaults to clear color.
+    */
+    var inactiveColor: UIColor {
+    willSet {
+        if !self.on && !self.isTracking {
+            backgroundView.backgroundColor = newValue
+        }
+    }
+    }
+    
+    /*
+    *   Sets the background color that shows when the switch is on.
+    *   Defaults to green.
+    */
+    var onTintColor: UIColor {
+    willSet {
+        if self.on && !self.isTracking {
+            backgroundView.backgroundColor = newValue
+            backgroundView.layer.borderColor = newValue.CGColor
+        }
+    }
+    }
+    
+    //var offTintColor: UIColor
+    
+    /*
+    *   Sets the border color that shows when the switch is off. Defaults to light gray.
+    */
+    var borderColor: UIColor {
+    willSet {
+        if !self.on {
+            backgroundView.layer.borderColor = newValue.CGColor
+        }
+    }
+    }
+    
+    /*
+    *	Sets the knob color. Defaults to white.
+    */
+    var thumbTintColor: UIColor {
+    willSet {
+        if !userDidSpecifyOnThumbTintColor {
+            onThumbTintColor = newValue
+        }
+        if (!userDidSpecifyOnThumbTintColor || !self.on) && !self.isTracking {
+            thumb.backgroundColor = newValue
+        }
+    }
+    }
+    
+    /*
+    *	Sets the knob color that shows when the switch is on. Defaults to white.
+    */
+    var onThumbTintColor: UIColor {
+    willSet {
+        userDidSpecifyOnThumbTintColor = YES
+        if self.on && !self.isTracking {
+            thumb.backgroundColor = newValue
+        }
+    }
+    }
+    
+    /*
+    *	Sets the shadow color of the knob. Defaults to gray.
+    */
+    var shadowColor: UIColor {
+    willSet {
+        thumb.layer.shadowColor = newValue.CGColor
+    }
+    }
+    
+    /*
+    *	Sets whether or not the switch edges are rounded.
+    *   Set to NO to get a stylish square switch.
+    *   Defaults to YES.
+    */
+    var isRounded: Bool {
+    willSet {
+        if newValue {
+            backgroundView.layer.cornerRadius = self.frame.size.height * 0.5
+            thumb.layer.cornerRadius = (self.frame.size.height * 0.5) - 1
+        }
+        else {
+            backgroundView.layer.cornerRadius = 2
+            thumb.layer.cornerRadius = 2
+        }
+        
+        thumb.layer.shadowPath = UIBezierPath(roundedRect: thumb.bounds, cornerRadius: thumb.layer.cornerRadius).CGPath
+    }
+    }
+    
+    /*
+    *   Sets the image that shows on the switch thumb.
+    */
+    var thumbImage: UIImage {
+    willSet {
+        thumbImageView.image = newValue
+    }
+    }
+    
+    /*
+    *   Sets the image that shows when the switch is on.
+    *   The image is centered in the area not covered by the knob.
+    *   Make sure to size your images appropriately.
+    */
+    var onImage: UIImage {
+    willSet {
+        onImageView.image = newValue
+    }
+    }
+    
+    /*
+    *	Sets the image that shows when the switch is off.
+    *   The image is centered in the area not covered by the knob.
+    *   Make sure to size your images appropriately.
+    */
+    var offImage: UIImage {
+    willSet {
+        offImageView.image = newValue
+    }
+    }
+    
+    /*
+    *	Sets the text that shows when the switch is on.
+    *   The text is centered in the area not covered by the knob.
+    */
     var onLabel: UILabel
+    
+    /*
+    *	Sets the text that shows when the switch is off.
+    *   The text is centered in the area not covered by the knob.
+    */
     var offLabel: UILabel
     
     // private

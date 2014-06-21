@@ -32,8 +32,12 @@ import QuartzCore
     /*
     *   Set (without animation) whether the switch is on or off
     */
-    var on: Bool = false {
-    willSet {
+    var on: Bool {
+    get {
+        return switchValue
+    }
+    set {
+        switchValue = newValue
         self.setOn(newValue, animated: false)
     }
     }
@@ -197,6 +201,7 @@ import QuartzCore
     var didChangeWhileTracking: Bool!
     var isAnimating: Bool = false
     var userDidSpecifyOnThumbTintColor: Bool = false
+    var switchValue: Bool = false
     
     /*
     *   Initialization
@@ -335,9 +340,9 @@ import QuartzCore
     
     override func endTrackingWithTouch(touch: UITouch!, withEvent event: UIEvent!) {
         super.endTrackingWithTouch(touch, withEvent: event)
-        
+
         let previousValue = self.on
-        
+
         if didChangeWhileTracking {
             self.setOn(currentVisualValue, animated: true)
         }
@@ -394,7 +399,9 @@ import QuartzCore
     /*
     *   Set the state of the switch to on or off, optionally animating the transition.
     */
-    func setOn(on: Bool, animated: Bool) {
+    func setOn(isOn: Bool, animated: Bool) {
+        switchValue = isOn
+        
         if on {
             self.showOn(animated)
         }

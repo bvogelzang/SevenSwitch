@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		4593DA5E19560DB4006EB924 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4593DA5D19560DB4006EB924 /* ViewController.swift */; };
+		4593DA6019561AEC006EB924 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 45F7C64D176D202700AE1301 /* ViewController.m */; };
 		45B6529F176E3A440006F201 /* check.png in Resources */ = {isa = PBXBuildFile; fileRef = 45B6529B176E3A440006F201 /* check.png */; };
 		45B652A0176E3A440006F201 /* check@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 45B6529C176E3A440006F201 /* check@2x.png */; };
 		45B652A1176E3A440006F201 /* cross.png in Resources */ = {isa = PBXBuildFile; fileRef = 45B6529D176E3A440006F201 /* cross.png */; };
@@ -23,7 +23,6 @@
 		45F7C646176D202700AE1301 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 45F7C645176D202700AE1301 /* Default@2x.png */; };
 		45F7C648176D202700AE1301 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 45F7C647176D202700AE1301 /* Default-568h@2x.png */; };
 		45F7C64B176D202700AE1301 /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 45F7C649176D202700AE1301 /* MainStoryboard.storyboard */; };
-		45F7C64E176D202700AE1301 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 45F7C64D176D202700AE1301 /* ViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,7 +31,7 @@
 		45B6529C176E3A440006F201 /* check@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "check@2x.png"; sourceTree = "<group>"; };
 		45B6529D176E3A440006F201 /* cross.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cross.png; sourceTree = "<group>"; };
 		45B6529E176E3A440006F201 /* cross@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "cross@2x.png"; sourceTree = "<group>"; };
-		45DD2ABD1954C14B0028A5DB /* SevenSwitch.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SevenSwitch.swift; sourceTree = "<group>"; };
+		45DD2ABD1954C14B0028A5DB /* SevenSwitch.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SevenSwitch.swift; path = ../../SevenSwitch.swift; sourceTree = "<group>"; };
 		45F7C62E176D202700AE1301 /* SevenSwitchExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SevenSwitchExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		45F7C631176D202700AE1301 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		45F7C633176D202700AE1301 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -195,11 +194,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4593DA5E19560DB4006EB924 /* ViewController.swift in Sources */,
 				45DD2ABE1954C14B0028A5DB /* SevenSwitch.swift in Sources */,
 				45F7C63E176D202700AE1301 /* main.m in Sources */,
 				45F7C642176D202700AE1301 /* AppDelegate.m in Sources */,
-				45F7C64E176D202700AE1301 /* ViewController.m in Sources */,
+				4593DA6019561AEC006EB924 /* ViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

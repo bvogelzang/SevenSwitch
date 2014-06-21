@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4593DA5E19560DB4006EB924 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4593DA5D19560DB4006EB924 /* ViewController.swift */; };
 		45B6529F176E3A440006F201 /* check.png in Resources */ = {isa = PBXBuildFile; fileRef = 45B6529B176E3A440006F201 /* check.png */; };
 		45B652A0176E3A440006F201 /* check@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 45B6529C176E3A440006F201 /* check@2x.png */; };
 		45B652A1176E3A440006F201 /* cross.png in Resources */ = {isa = PBXBuildFile; fileRef = 45B6529D176E3A440006F201 /* cross.png */; };
@@ -26,6 +27,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		4593DA5D19560DB4006EB924 /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		45B6529B176E3A440006F201 /* check.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = check.png; sourceTree = "<group>"; };
 		45B6529C176E3A440006F201 /* check@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "check@2x.png"; sourceTree = "<group>"; };
 		45B6529D176E3A440006F201 /* cross.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cross.png; sourceTree = "<group>"; };
@@ -98,6 +100,7 @@
 				45F7C649176D202700AE1301 /* MainStoryboard.storyboard */,
 				45F7C64C176D202700AE1301 /* ViewController.h */,
 				45F7C64D176D202700AE1301 /* ViewController.m */,
+				4593DA5D19560DB4006EB924 /* ViewController.swift */,
 				45DD2ABD1954C14B0028A5DB /* SevenSwitch.swift */,
 				45B6529B176E3A440006F201 /* check.png */,
 				45B6529C176E3A440006F201 /* check@2x.png */,
@@ -192,6 +195,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4593DA5E19560DB4006EB924 /* ViewController.swift in Sources */,
 				45DD2ABE1954C14B0028A5DB /* SevenSwitch.swift in Sources */,
 				45F7C63E176D202700AE1301 /* main.m in Sources */,
 				45F7C642176D202700AE1301 /* AppDelegate.m in Sources */,

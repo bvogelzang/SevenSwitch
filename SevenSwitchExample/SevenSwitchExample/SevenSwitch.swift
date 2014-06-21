@@ -32,20 +32,19 @@ import QuartzCore
     /*
     *   Set (without animation) whether the switch is on or off
     */
-    var on: Bool {
-    get { return on }
-    set {
+    var on: Bool = false {
+    willSet {
         self.setOn(newValue, animated: false)
     }
     }
-    
+
     /*
     *	Sets the background color that shows when the switch off and actively being touched.
     *   Defaults to light gray.
     */
-    var activeColor: UIColor {
+    var activeColor: UIColor = UIColor(red: 0.89, green: 0.89, blue: 0.89, alpha: 1) {
     willSet {
-        if self.on && !self.isTracking {
+        if self.on && !self.tracking {
             backgroundView.backgroundColor = newValue
         }
     }
@@ -55,9 +54,9 @@ import QuartzCore
     *	Sets the background color when the switch is off.
     *   Defaults to clear color.
     */
-    var inactiveColor: UIColor {
+    var inactiveColor: UIColor = UIColor.clearColor() {
     willSet {
-        if !self.on && !self.isTracking {
+        if !self.on && !self.tracking {
             backgroundView.backgroundColor = newValue
         }
     }
@@ -67,9 +66,9 @@ import QuartzCore
     *   Sets the background color that shows when the switch is on.
     *   Defaults to green.
     */
-    var onTintColor: UIColor {
+    var onTintColor: UIColor = UIColor(red: 0.3, green: 0.85, blue: 0.39, alpha: 1) {
     willSet {
-        if self.on && !self.isTracking {
+        if self.on && !self.tracking {
             backgroundView.backgroundColor = newValue
             backgroundView.layer.borderColor = newValue.CGColor
         }
@@ -81,7 +80,7 @@ import QuartzCore
     /*
     *   Sets the border color that shows when the switch is off. Defaults to light gray.
     */
-    var borderColor: UIColor {
+    var borderColor: UIColor = UIColor(red: 0.78, green: 0.78, blue: 0.8, alpha: 1) {
     willSet {
         if !self.on {
             backgroundView.layer.borderColor = newValue.CGColor
@@ -92,13 +91,13 @@ import QuartzCore
     /*
     *	Sets the knob color. Defaults to white.
     */
-    var thumbTintColor: UIColor {
+    var thumbTintColor: UIColor = UIColor.whiteColor() {
     willSet {
         if !userDidSpecifyOnThumbTintColor {
             onThumbTintColor = newValue
         }
-        if (!userDidSpecifyOnThumbTintColor || !self.on) && !self.isTracking {
-            thumb.backgroundColor = newValue
+        if (!userDidSpecifyOnThumbTintColor || !self.on) && !self.tracking {
+            thumbView.backgroundColor = newValue
         }
     }
     }
@@ -106,11 +105,11 @@ import QuartzCore
     /*
     *	Sets the knob color that shows when the switch is on. Defaults to white.
     */
-    var onThumbTintColor: UIColor {
+    var onThumbTintColor: UIColor = UIColor.whiteColor() {
     willSet {
-        userDidSpecifyOnThumbTintColor = YES
-        if self.on && !self.isTracking {
-            thumb.backgroundColor = newValue
+        userDidSpecifyOnThumbTintColor = true
+        if self.on && !self.tracking {
+            thumbView.backgroundColor = newValue
         }
     }
     }
@@ -118,9 +117,9 @@ import QuartzCore
     /*
     *	Sets the shadow color of the knob. Defaults to gray.
     */
-    var shadowColor: UIColor {
+    var shadowColor: UIColor = UIColor.grayColor() {
     willSet {
-        thumb.layer.shadowColor = newValue.CGColor
+        thumbView.layer.shadowColor = newValue.CGColor
     }
     }
     
@@ -129,25 +128,25 @@ import QuartzCore
     *   Set to NO to get a stylish square switch.
     *   Defaults to YES.
     */
-    var isRounded: Bool {
+    var isRounded: Bool = true {
     willSet {
         if newValue {
             backgroundView.layer.cornerRadius = self.frame.size.height * 0.5
-            thumb.layer.cornerRadius = (self.frame.size.height * 0.5) - 1
+            thumbView.layer.cornerRadius = (self.frame.size.height * 0.5) - 1
         }
         else {
             backgroundView.layer.cornerRadius = 2
-            thumb.layer.cornerRadius = 2
+            thumbView.layer.cornerRadius = 2
         }
         
-        thumb.layer.shadowPath = UIBezierPath(roundedRect: thumb.bounds, cornerRadius: thumb.layer.cornerRadius).CGPath
+        thumbView.layer.shadowPath = UIBezierPath(roundedRect: thumbView.bounds, cornerRadius: thumbView.layer.cornerRadius).CGPath
     }
     }
     
     /*
     *   Sets the image that shows on the switch thumb.
     */
-    var thumbImage: UIImage {
+    var thumbImage: UIImage! {
     willSet {
         thumbImageView.image = newValue
     }
@@ -158,7 +157,7 @@ import QuartzCore
     *   The image is centered in the area not covered by the knob.
     *   Make sure to size your images appropriately.
     */
-    var onImage: UIImage {
+    var onImage: UIImage! {
     willSet {
         onImageView.image = newValue
     }
@@ -169,7 +168,7 @@ import QuartzCore
     *   The image is centered in the area not covered by the knob.
     *   Make sure to size your images appropriately.
     */
-    var offImage: UIImage {
+    var offImage: UIImage! {
     willSet {
         offImageView.image = newValue
     }
@@ -179,43 +178,46 @@ import QuartzCore
     *	Sets the text that shows when the switch is on.
     *   The text is centered in the area not covered by the knob.
     */
-    var onLabel: UILabel
+    var onLabel: UILabel!
     
     /*
     *	Sets the text that shows when the switch is off.
     *   The text is centered in the area not covered by the knob.
     */
-    var offLabel: UILabel
+    var offLabel: UILabel!
     
     // private
-    var backgroundView: UIView
-    var thumbView: UIView
-    var onImageView: UIImageView
-    var offImageView: UIImageView
-    var thumbImageView: UIImageView
-    var currentVisualValue: Bool
-    var startTrackingValue: Bool
-    var didChangeWhileTracking: Bool
-    var isAnimating: Bool
-    var userDidSpecifyOnThumbTintColor: Bool
+    var backgroundView: UIView!
+    var thumbView: UIView!
+    var onImageView: UIImageView!
+    var offImageView: UIImageView!
+    var thumbImageView: UIImageView!
+    var currentVisualValue: Bool = false
+    var startTrackingValue: Bool!
+    var didChangeWhileTracking: Bool!
+    var isAnimating: Bool = false
+    var userDidSpecifyOnThumbTintColor: Bool = false
     
     /*
     *   Initialization
     */
     init() {
-        super.initWithFrame(CGRectMake(0, 0, 50, 30))
-        setup()
+        super.init(frame: CGRectMake(0, 0, 50, 30))
+        
+        self.setup()
     }
     
     init(coder aDecoder: NSCoder!) {
         super.init(coder: aDecoder)
-        setup()
+        
+        self.setup()
     }
     
     init(frame: CGRect) {
-        let initialFrame = CGRectIsEmpty(frame) ? CGRectMake(0, 0, 50, 30) : frame;
-        super.initWithFrame(initialFrame)
-        setup()
+        let initialFrame = CGRectIsEmpty(frame) ? CGRectMake(0, 0, 50, 30) : frame
+        super.init(frame: initialFrame)
+        
+        self.setup()
     }
     
     
@@ -223,21 +225,6 @@ import QuartzCore
     *   Setup the individual elements of the switch and set default values
     */
     func setup() {
-        
-        self.on = false
-        self.isRounded = true
-        self.currentVisualValue = false
-        self.userDidSpecifyOnThumbTintColor = false
-        self.isAnimating = false
-        
-        // default colors
-        self.inactiveColor = UIColor.clearColor()
-        self.activeColor = UIColor(0.89, 0.89, 0.89, 1)
-        self.onTintColor = UIColor(0.3, 0.85, 0.39, 1)
-        self.borderColor = UIColor(0.78, 0.78, 0.8, 1)
-        self.thumbTintColor = UIColor.whiteColor()
-        self.onThumbTintColor = UIColor.whiteColor()
-        self.shadowColor = UIColor.grayColor()
         
         // background
         self.backgroundView = UIView(frame: CGRectMake(0, 0, self.frame.size.width, self.frame.size.height))
@@ -274,26 +261,28 @@ import QuartzCore
         backgroundView.addSubview(offLabel)
         
         // thumb
-        self.thumb = UIView(frame: CGRectMake(1, 1, self.frame.size.height - 2, self.frame.size.height - 2))
-        thumb.backgroundColor = self.thumbTintColor
-        thumb.layer.cornerRadius = (self.frame.size.height * 0.5) - 1
-        thumb.layer.shadowColor = self.shadowColor.CGColor
-        thumb.layer.shadowRadius = 2.0
-        thumb.layer.shadowOpacity = 0.5
-        thumb.layer.shadowOffset = CGSizeMake(0, 3)
-        thumb.layer.shadowPath = UIBezierPath(roundedRect: thumb.bounds, cornerRadius: thumb.layer.cornerRadius).CGPath;
-        thumb.layer.masksToBounds = false
-        thumb.userInteractionEnabled = false
-        self.addSubview(thumb)
+        self.thumbView = UIView(frame: CGRectMake(1, 1, self.frame.size.height - 2, self.frame.size.height - 2))
+        thumbView.backgroundColor = self.thumbTintColor
+        thumbView.layer.cornerRadius = (self.frame.size.height * 0.5) - 1
+        thumbView.layer.shadowColor = self.shadowColor.CGColor
+        thumbView.layer.shadowRadius = 2.0
+        thumbView.layer.shadowOpacity = 0.5
+        thumbView.layer.shadowOffset = CGSizeMake(0, 3)
+        thumbView.layer.shadowPath = UIBezierPath(roundedRect: thumbView.bounds, cornerRadius: thumbView.layer.cornerRadius).CGPath;
+        thumbView.layer.masksToBounds = false
+        thumbView.userInteractionEnabled = false
+        self.addSubview(thumbView)
         
         // thumb image
-        self.thumbImageView = UIImageView(frame: CGRectMake(0, 0, thumb.frame.size.width, thumb.frame.size.height))
+        self.thumbImageView = UIImageView(frame: CGRectMake(0, 0, thumbView.frame.size.width, thumbView.frame.size.height))
         thumbImageView.contentMode = UIViewContentMode.Center
         thumbImageView.autoresizingMask = UIViewAutoresizing.FlexibleWidth
-        thumb.addSubview(thumbImageView)
+        thumbView.addSubview(thumbImageView)
+    
+        self.on = false
     }
     
-    func beginTrackingWithTouch(touch: UITouch!, withEvent event: UIEvent!) -> Bool {
+    override func beginTrackingWithTouch(touch: UITouch!, withEvent event: UIEvent!) -> Bool {
         super.beginTrackingWithTouch(touch, withEvent: event)
         
         startTrackingValue = self.on
@@ -304,23 +293,23 @@ import QuartzCore
         
         UIView.animateWithDuration(0.3, delay: 0.0, options: UIViewAnimationOptions.CurveEaseOut | UIViewAnimationOptions.BeginFromCurrentState, animations: {
                 if self.on {
-                    thumb.frame = CGRectMake(self.bounds.size.width - (activeKnobWidth + 1), thumb.frame.origin.y, activeKnobWidth, thumb.frame.size.height)
-                    backgroundView.backgroundColor = self.onTintColor
-                    thumb.backgroundColor = self.onThumbTintColor
+                    self.thumbView.frame = CGRectMake(self.bounds.size.width - (activeKnobWidth + 1), self.thumbView.frame.origin.y, activeKnobWidth, self.thumbView.frame.size.height)
+                    self.backgroundView.backgroundColor = self.onTintColor
+                    self.thumbView.backgroundColor = self.onThumbTintColor
                 }
                 else {
-                    thumb.frame = CGRectMake(thumb.frame.origin.x, thumb.frame.origin.y, activeKnobWidth, thumb.frame.size.height)
-                    backgroundView.backgroundColor = self.activeColor
-                    thumb.backgroundColor = self.thumbTintColor
+                    self.thumbView.frame = CGRectMake(self.thumbView.frame.origin.x, self.thumbView.frame.origin.y, activeKnobWidth, self.thumbView.frame.size.height)
+                    self.backgroundView.backgroundColor = self.activeColor
+                    self.thumbView.backgroundColor = self.thumbTintColor
                 }
-            }, completion: {
-                isAnimating = false
+            }, completion: { finished in
+                self.isAnimating = false
         })
         
         return true
     }
     
-    func continueTrackingWithTouch(touch: UITouch!, withEvent event: UIEvent!) -> Bool {
+    override func continueTrackingWithTouch(touch: UITouch!, withEvent event: UIEvent!) -> Bool {
         super.continueTrackingWithTouch(touch, withEvent: event)
         
         // Get touch location
@@ -344,10 +333,10 @@ import QuartzCore
         return true
     }
     
-    func endTrackingWithTouch(touch: UITouch!, withEvent event: UIEvent!) {
+    override func endTrackingWithTouch(touch: UITouch!, withEvent event: UIEvent!) {
         super.endTrackingWithTouch(touch, withEvent: event)
         
-        previousValue = self.on
+        let previousValue = self.on
         
         if didChangeWhileTracking {
             self.setOn(currentVisualValue, animated: true)
@@ -357,11 +346,11 @@ import QuartzCore
         }
         
         if previousValue != self.on {
-            self.sendActionsForControlEvents(UIControlEvent.ValueChanged)
+            self.sendActionsForControlEvents(UIControlEvents.ValueChanged)
         }
     }
     
-    func cancelTrackingWithEvent(event: UIEvent) {
+    override func cancelTrackingWithEvent(event: UIEvent) {
         super.cancelTrackingWithEvent(event)
         
         // just animate back to the original value
@@ -373,7 +362,7 @@ import QuartzCore
         }
     }
     
-    func layoutSubviews() {
+    override func layoutSubviews() {
         super.layoutSubviews()
         
         if !isAnimating {
@@ -392,13 +381,13 @@ import QuartzCore
             // thumb
             let normalKnobWidth = frame.size.height - 2
             if self.on {
-                thumb.frame = CGRectMake(frame.size.width - (normalKnobWidth + 1), 1, frame.size.height - 2, normalKnobWidth)
+                thumbView.frame = CGRectMake(frame.size.width - (normalKnobWidth + 1), 1, frame.size.height - 2, normalKnobWidth)
             }
             else {
-                thumb.frame = CGRectMake(1, 1, normalKnobWidth, normalKnobWidth)
+                thumbView.frame = CGRectMake(1, 1, normalKnobWidth, normalKnobWidth)
             }
             
-            thumb.layer.cornerRadius = self.isRounded ? (frame.size.height * 0.5) - 1 : 2
+            thumbView.layer.cornerRadius = self.isRounded ? (frame.size.height * 0.5) - 1 : 2
         }
     }
     
@@ -434,34 +423,34 @@ import QuartzCore
             isAnimating = true
             UIView.animateWithDuration(0.3, delay: 0.0, options: UIViewAnimationOptions.CurveEaseOut | UIViewAnimationOptions.BeginFromCurrentState, animations: {
                 if self.tracking {
-                    thumb.frame = CGRectMake(self.bounds.size.width - (activeKnobWidth + 1), thumb.frame.origin.y, activeKnobWidth, thumb.frame.size.height)
+                    self.thumbView.frame = CGRectMake(self.bounds.size.width - (activeKnobWidth + 1), self.thumbView.frame.origin.y, activeKnobWidth, self.thumbView.frame.size.height)
                 }
                 else {
-                    thumb.frame = CGRectMake(self.bounds.size.width - (normalKnobWidth + 1), thumb.frame.origin.y, normalKnobWidth, thumb.frame.size.height)
+                    self.thumbView.frame = CGRectMake(self.bounds.size.width - (normalKnobWidth + 1), self.thumbView.frame.origin.y, normalKnobWidth, self.thumbView.frame.size.height)
                 }
                 
-                backgroundView.backgroundColor = self.onTintColor
-                backgroundView.layer.borderColor = self.onTintColor.CGColor
-                thumb.backgroundColor = self.onThumbTintColor
-                onImageView.alpha = 1.0
-                offImageView.alpha = 0
-                onLabel.alpha = 1.0
-                offLabel.alpha = 0
-            }, completion: {
-                isAnimating = false
+                self.backgroundView.backgroundColor = self.onTintColor
+                self.backgroundView.layer.borderColor = self.onTintColor.CGColor
+                self.thumbView.backgroundColor = self.onThumbTintColor
+                self.onImageView.alpha = 1.0
+                self.offImageView.alpha = 0
+                self.onLabel.alpha = 1.0
+                self.offLabel.alpha = 0
+            }, completion: { finished in
+                self.isAnimating = false
             })
         }
         else {
             if self.tracking {
-                thumb.frame = CGRectMake(self.bounds.size.width - (activeKnobWidth + 1), thumb.frame.origin.y, activeKnobWidth, thumb.frame.size.height)
+                thumbView.frame = CGRectMake(self.bounds.size.width - (activeKnobWidth + 1), thumbView.frame.origin.y, activeKnobWidth, thumbView.frame.size.height)
             }
             else {
-                thumb.frame = CGRectMake(self.bounds.size.width - (normalKnobWidth + 1), thumb.frame.origin.y, normalKnobWidth, thumb.frame.size.height)
+                thumbView.frame = CGRectMake(self.bounds.size.width - (normalKnobWidth + 1), thumbView.frame.origin.y, normalKnobWidth, thumbView.frame.size.height)
             }
             
             backgroundView.backgroundColor = self.onTintColor
             backgroundView.layer.borderColor = self.onTintColor.CGColor
-            thumb.backgroundColor = self.onThumbTintColor
+            thumbView.backgroundColor = self.onThumbTintColor
             onImageView.alpha = 1.0
             offImageView.alpha = 0
             onLabel.alpha = 1.0
@@ -483,36 +472,36 @@ import QuartzCore
             isAnimating = true
             UIView.animateWithDuration(0.3, delay: 0.0, options: UIViewAnimationOptions.CurveEaseOut | UIViewAnimationOptions.BeginFromCurrentState, animations: {
                 if self.tracking {
-                    thumb.frame = CGRectMake(1, thumb.frame.origin.y, activeKnobWidth, thumb.frame.size.height);
-                    backgroundView.backgroundColor = self.activeColor
+                    self.thumbView.frame = CGRectMake(1, self.thumbView.frame.origin.y, activeKnobWidth, self.thumbView.frame.size.height);
+                    self.backgroundView.backgroundColor = self.activeColor
                 }
                 else {
-                    thumb.frame = CGRectMake(1, thumb.frame.origin.y, normalKnobWidth, thumb.frame.size.height);
-                    backgroundView.backgroundColor = self.inactiveColor
+                    self.thumbView.frame = CGRectMake(1, self.thumbView.frame.origin.y, normalKnobWidth, self.thumbView.frame.size.height);
+                    self.backgroundView.backgroundColor = self.inactiveColor
                 }
                 
-                backgroundView.layer.borderColor = self.borderColor.CGColor
-                thumb.backgroundColor = self.thumbTintColor
-                onImageView.alpha = 0
-                offImageView.alpha = 1.0
+                self.backgroundView.layer.borderColor = self.borderColor.CGColor
+                self.thumbView.backgroundColor = self.thumbTintColor
+                self.onImageView.alpha = 0
+                self.offImageView.alpha = 1.0
                 self.onLabel.alpha = 0
                 self.offLabel.alpha = 1.0
                 
-            }, completion: {
-                isAnimating = false
+            }, completion: { finished in
+                self.isAnimating = false
             })
         }
         else {
             if (self.tracking) {
-                thumb.frame = CGRectMake(1, thumb.frame.origin.y, activeKnobWidth, thumb.frame.size.height)
+                thumbView.frame = CGRectMake(1, thumbView.frame.origin.y, activeKnobWidth, thumbView.frame.size.height)
                 backgroundView.backgroundColor = self.activeColor
             }
             else {
-                thumb.frame = CGRectMake(1, thumb.frame.origin.y, normalKnobWidth, thumb.frame.size.height)
+                thumbView.frame = CGRectMake(1, thumbView.frame.origin.y, normalKnobWidth, thumbView.frame.size.height)
                 backgroundView.backgroundColor = self.inactiveColor
             }
             backgroundView.layer.borderColor = self.borderColor.CGColor
-            thumb.backgroundColor = self.thumbTintColor
+            thumbView.backgroundColor = self.thumbTintColor
             onImageView.alpha = 0
             offImageView.alpha = 1.0
             onLabel.alpha = 0

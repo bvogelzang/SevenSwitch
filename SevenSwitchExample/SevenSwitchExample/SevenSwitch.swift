@@ -403,7 +403,7 @@ class SevenSwitch: UIControl {
     }
     
     /*
-    * Set the state of the switch to on or off, optionally animating the transition.
+    *   Set the state of the switch to on or off, optionally animating the transition.
     */
     func setOn(on: Bool, animated: Bool) {
         if on {
@@ -472,8 +472,8 @@ class SevenSwitch: UIControl {
     }
     
     /*
-    * update the looks of the switch to be in the off position
-    * optionally make it animated
+    *   update the looks of the switch to be in the off position
+    *   optionally make it animated
     */
     func showOff(animated: Bool) {
         let normalKnobWidth = self.bounds.size.height - 2

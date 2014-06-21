@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "SevenSwitch.h"
+@class SevenSwitch;
+
 
 @interface ViewController : UIViewController
 

@@ -23,7 +23,6 @@
 		45F7C648176D202700AE1301 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 45F7C647176D202700AE1301 /* Default-568h@2x.png */; };
 		45F7C64B176D202700AE1301 /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 45F7C649176D202700AE1301 /* MainStoryboard.storyboard */; };
 		45F7C64E176D202700AE1301 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 45F7C64D176D202700AE1301 /* ViewController.m */; };
-		45F7C656176D203F00AE1301 /* SevenSwitch.m in Sources */ = {isa = PBXBuildFile; fileRef = 45F7C655176D203F00AE1301 /* SevenSwitch.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -48,8 +47,6 @@
 		45F7C64A176D202700AE1301 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard.storyboard; sourceTree = "<group>"; };
 		45F7C64C176D202700AE1301 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
 		45F7C64D176D202700AE1301 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
-		45F7C654176D203F00AE1301 /* SevenSwitch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SevenSwitch.h; path = ../../SevenSwitch.h; sourceTree = "<group>"; };
-		45F7C655176D203F00AE1301 /* SevenSwitch.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SevenSwitch.m; path = ../../SevenSwitch.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -101,8 +98,6 @@
 				45F7C649176D202700AE1301 /* MainStoryboard.storyboard */,
 				45F7C64C176D202700AE1301 /* ViewController.h */,
 				45F7C64D176D202700AE1301 /* ViewController.m */,
-				45F7C654176D203F00AE1301 /* SevenSwitch.h */,
-				45F7C655176D203F00AE1301 /* SevenSwitch.m */,
 				45DD2ABD1954C14B0028A5DB /* SevenSwitch.swift */,
 				45B6529B176E3A440006F201 /* check.png */,
 				45B6529C176E3A440006F201 /* check@2x.png */,
@@ -201,7 +196,6 @@
 				45F7C63E176D202700AE1301 /* main.m in Sources */,
 				45F7C642176D202700AE1301 /* AppDelegate.m in Sources */,
 				45F7C64E176D202700AE1301 /* ViewController.m in Sources */,
-				45F7C656176D203F00AE1301 /* SevenSwitch.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -292,7 +286,8 @@
 				INFOPLIST_FILE = "SevenSwitchExample/SevenSwitchExample-Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "SevenSwitchExample/SevenSwitchExample-Bridging-Header.h";
+				SWIFT_INSTALL_OBJC_HEADER = NO;
+				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				WRAPPER_EXTENSION = app;
 			};
@@ -307,7 +302,8 @@
 				INFOPLIST_FILE = "SevenSwitchExample/SevenSwitchExample-Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "SevenSwitchExample/SevenSwitchExample-Bridging-Header.h";
+				SWIFT_INSTALL_OBJC_HEADER = NO;
+				SWIFT_OBJC_BRIDGING_HEADER = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

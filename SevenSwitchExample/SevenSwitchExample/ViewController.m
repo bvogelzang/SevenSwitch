@@ -7,6 +7,7 @@
 //
 
 #import "ViewController.h"
+#import "SevenSwitchExample-Swift.h"
 
 @interface ViewController ()
 

@@ -198,7 +198,7 @@ import QuartzCore
     var thumbImageView: UIImageView!
     var currentVisualValue: Bool = false
     var startTrackingValue: Bool!
-    var didChangeWhileTracking: Bool!
+    var didChangeWhileTracking: Bool = false
     var isAnimating: Bool = false
     var userDidSpecifyOnThumbTintColor: Bool = false
     var switchValue: Bool = false

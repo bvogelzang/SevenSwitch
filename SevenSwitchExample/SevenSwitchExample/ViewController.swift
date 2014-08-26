@@ -9,7 +9,7 @@
 import UIKit
 
 class ViewController: UIViewController {
-    @IBOutlet var ibSwitch: SevenSwitch
+    @IBOutlet var ibSwitch: SevenSwitch!
     
     override func viewDidLoad() {
         super.viewDidLoad()

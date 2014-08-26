@@ -197,7 +197,7 @@ import QuartzCore
     var offImageView: UIImageView!
     var thumbImageView: UIImageView!
     var currentVisualValue: Bool = false
-    var startTrackingValue: Bool!
+    var startTrackingValue: Bool = false
     var didChangeWhileTracking: Bool = false
     var isAnimating: Bool = false
     var userDidSpecifyOnThumbTintColor: Bool = false
@@ -206,19 +206,19 @@ import QuartzCore
     /*
     *   Initialization
     */
-    init() {
+    override init() {
         super.init(frame: CGRectMake(0, 0, 50, 30))
         
         self.setup()
     }
     
-    init(coder aDecoder: NSCoder!) {
+    required init(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         
         self.setup()
     }
     
-    init(frame: CGRect) {
+    override init(frame: CGRect) {
         let initialFrame = CGRectIsEmpty(frame) ? CGRectMake(0, 0, 50, 30) : frame
         super.init(frame: initialFrame)
         
@@ -273,7 +273,7 @@ import QuartzCore
         thumbView.layer.shadowRadius = 2.0
         thumbView.layer.shadowOpacity = 0.5
         thumbView.layer.shadowOffset = CGSizeMake(0, 3)
-        thumbView.layer.shadowPath = UIBezierPath(roundedRect: thumbView.bounds, cornerRadius: thumbView.layer.cornerRadius).CGPath;
+        thumbView.layer.shadowPath = UIBezierPath(roundedRect: thumbView.bounds, cornerRadius: thumbView.layer.cornerRadius).CGPath
         thumbView.layer.masksToBounds = false
         thumbView.userInteractionEnabled = false
         self.addSubview(thumbView)

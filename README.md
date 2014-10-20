@@ -14,7 +14,7 @@ iOS7 style drop in replacement for UISwitch
 pod 'SevenSwitch', '~> 2.0'
 ```
 
-*Currently swift is not supported in cocoapods. so `2.0` will not work. You should be using `1.3` for the time being.*
+*Currently Swift is not supported in Cocoapods. So `2.0` will not work. You should be using `1.4` for the time being. If you'd like to keep track of progress on Swift integration in Cocoapods you can see [this issue](https://github.com/CocoaPods/CocoaPods/issues/2272)*
 
 ### Without Cocoapods
 

@@ -25,14 +25,14 @@
 import UIKit
 import QuartzCore
 
-@objc class SevenSwitch: UIControl {
+@IBDesignable @objc  class  SevenSwitch: UIControl {
     
     // public
     
     /*
     *   Set (without animation) whether the switch is on or off
     */
-    var on: Bool {
+    @IBInspectable var  on: Bool {
     get {
         return switchValue
     }
@@ -46,7 +46,7 @@ import QuartzCore
     *	Sets the background color that shows when the switch off and actively being touched.
     *   Defaults to light gray.
     */
-    var activeColor: UIColor = UIColor(red: 0.89, green: 0.89, blue: 0.89, alpha: 1) {
+    @IBInspectable var activeColor: UIColor = UIColor(red: 0.89, green: 0.89, blue: 0.89, alpha: 1) {
     willSet {
         if self.on && !self.tracking {
             backgroundView.backgroundColor = newValue
@@ -58,7 +58,7 @@ import QuartzCore
     *	Sets the background color when the switch is off.
     *   Defaults to clear color.
     */
-    var inactiveColor: UIColor = UIColor.clearColor() {
+    @IBInspectable var inactiveColor: UIColor = UIColor.clearColor() {
     willSet {
         if !self.on && !self.tracking {
             backgroundView.backgroundColor = newValue
@@ -70,7 +70,7 @@ import QuartzCore
     *   Sets the background color that shows when the switch is on.
     *   Defaults to green.
     */
-    var onTintColor: UIColor = UIColor(red: 0.3, green: 0.85, blue: 0.39, alpha: 1) {
+    @IBInspectable var onTintColor: UIColor = UIColor(red: 0.3, green: 0.85, blue: 0.39, alpha: 1) {
     willSet {
         if self.on && !self.tracking {
             backgroundView.backgroundColor = newValue
@@ -84,7 +84,7 @@ import QuartzCore
     /*
     *   Sets the border color that shows when the switch is off. Defaults to light gray.
     */
-    var borderColor: UIColor = UIColor(red: 0.78, green: 0.78, blue: 0.8, alpha: 1) {
+    @IBInspectable var borderColor: UIColor = UIColor(red: 0.78, green: 0.78, blue: 0.8, alpha: 1) {
     willSet {
         if !self.on {
             backgroundView.layer.borderColor = newValue.CGColor
@@ -95,7 +95,7 @@ import QuartzCore
     /*
     *	Sets the knob color. Defaults to white.
     */
-    var thumbTintColor: UIColor = UIColor.whiteColor() {
+    @IBInspectable var thumbTintColor: UIColor = UIColor.whiteColor() {
     willSet {
         if !userDidSpecifyOnThumbTintColor {
             onThumbTintColor = newValue
@@ -109,7 +109,7 @@ import QuartzCore
     /*
     *	Sets the knob color that shows when the switch is on. Defaults to white.
     */
-    var onThumbTintColor: UIColor = UIColor.whiteColor() {
+    @IBInspectable var onThumbTintColor: UIColor = UIColor.whiteColor() {
     willSet {
         userDidSpecifyOnThumbTintColor = true
         if self.on && !self.tracking {
@@ -121,7 +121,7 @@ import QuartzCore
     /*
     *	Sets the shadow color of the knob. Defaults to gray.
     */
-    var shadowColor: UIColor = UIColor.grayColor() {
+    @IBInspectable var shadowColor: UIColor = UIColor.grayColor() {
     willSet {
         thumbView.layer.shadowColor = newValue.CGColor
     }
@@ -132,7 +132,7 @@ import QuartzCore
     *   Set to NO to get a stylish square switch.
     *   Defaults to YES.
     */
-    var isRounded: Bool = true {
+    @IBInspectable var isRounded: Bool = true {
     willSet {
         if newValue {
             backgroundView.layer.cornerRadius = self.frame.size.height * 0.5
@@ -150,7 +150,7 @@ import QuartzCore
     /*
     *   Sets the image that shows on the switch thumb.
     */
-    var thumbImage: UIImage! {
+    @IBInspectable var thumbImage: UIImage! {
     willSet {
         thumbImageView.image = newValue
     }
@@ -161,7 +161,7 @@ import QuartzCore
     *   The image is centered in the area not covered by the knob.
     *   Make sure to size your images appropriately.
     */
-    var onImage: UIImage! {
+    @IBInspectable var onImage: UIImage! {
     willSet {
         onImageView.image = newValue
     }
@@ -172,7 +172,7 @@ import QuartzCore
     *   The image is centered in the area not covered by the knob.
     *   Make sure to size your images appropriately.
     */
-    var offImage: UIImage! {
+    @IBInspectable var offImage: UIImage! {
     willSet {
         offImageView.image = newValue
     }

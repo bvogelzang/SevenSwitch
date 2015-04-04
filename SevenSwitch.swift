@@ -25,106 +25,104 @@
 import UIKit
 import QuartzCore
 
-@IBDesignable @objc  class  SevenSwitch: UIControl {
+@IBDesignable @objc public class SevenSwitch: UIControl {
     
     // public
     
     /*
     *   Set (without animation) whether the switch is on or off
     */
-    @IBInspectable var  on: Bool {
-    get {
-        return switchValue
-    }
-    set {
-        switchValue = newValue
-        self.setOn(newValue, animated: false)
-    }
+    @IBInspectable public var on: Bool {
+        get {
+            return switchValue
+        }
+        set {
+            switchValue = newValue
+            self.setOn(newValue, animated: false)
+        }
     }
 
     /*
     *	Sets the background color that shows when the switch off and actively being touched.
     *   Defaults to light gray.
     */
-    @IBInspectable var activeColor: UIColor = UIColor(red: 0.89, green: 0.89, blue: 0.89, alpha: 1) {
-    willSet {
-        if self.on && !self.tracking {
-            backgroundView.backgroundColor = newValue
+    @IBInspectable public var activeColor: UIColor = UIColor(red: 0.89, green: 0.89, blue: 0.89, alpha: 1) {
+        willSet {
+            if self.on && !self.tracking {
+                backgroundView.backgroundColor = newValue
+            }
         }
-    }
     }
     
     /*
     *	Sets the background color when the switch is off.
     *   Defaults to clear color.
     */
-    @IBInspectable var inactiveColor: UIColor = UIColor.clearColor() {
-    willSet {
-        if !self.on && !self.tracking {
-            backgroundView.backgroundColor = newValue
+    @IBInspectable public var inactiveColor: UIColor = UIColor.clearColor() {
+        willSet {
+            if !self.on && !self.tracking {
+                backgroundView.backgroundColor = newValue
+            }
         }
-    }
     }
     
     /*
     *   Sets the background color that shows when the switch is on.
     *   Defaults to green.
     */
-    @IBInspectable var onTintColor: UIColor = UIColor(red: 0.3, green: 0.85, blue: 0.39, alpha: 1) {
-    willSet {
-        if self.on && !self.tracking {
-            backgroundView.backgroundColor = newValue
-            backgroundView.layer.borderColor = newValue.CGColor
+    @IBInspectable public var onTintColor: UIColor = UIColor(red: 0.3, green: 0.85, blue: 0.39, alpha: 1) {
+        willSet {
+            if self.on && !self.tracking {
+                backgroundView.backgroundColor = newValue
+                backgroundView.layer.borderColor = newValue.CGColor
+            }
         }
     }
-    }
-    
-    //var offTintColor: UIColor
     
     /*
     *   Sets the border color that shows when the switch is off. Defaults to light gray.
     */
-    @IBInspectable var borderColor: UIColor = UIColor(red: 0.78, green: 0.78, blue: 0.8, alpha: 1) {
-    willSet {
-        if !self.on {
-            backgroundView.layer.borderColor = newValue.CGColor
+    @IBInspectable public var borderColor: UIColor = UIColor(red: 0.78, green: 0.78, blue: 0.8, alpha: 1) {
+        willSet {
+            if !self.on {
+                backgroundView.layer.borderColor = newValue.CGColor
+            }
         }
-    }
     }
     
     /*
     *	Sets the knob color. Defaults to white.
     */
-    @IBInspectable var thumbTintColor: UIColor = UIColor.whiteColor() {
-    willSet {
-        if !userDidSpecifyOnThumbTintColor {
-            onThumbTintColor = newValue
+    @IBInspectable public var thumbTintColor: UIColor = UIColor.whiteColor() {
+        willSet {
+            if !userDidSpecifyOnThumbTintColor {
+                onThumbTintColor = newValue
+            }
+            if (!userDidSpecifyOnThumbTintColor || !self.on) && !self.tracking {
+                thumbView.backgroundColor = newValue
+            }
         }
-        if (!userDidSpecifyOnThumbTintColor || !self.on) && !self.tracking {
-            thumbView.backgroundColor = newValue
-        }
-    }
     }
     
     /*
     *	Sets the knob color that shows when the switch is on. Defaults to white.
     */
-    @IBInspectable var onThumbTintColor: UIColor = UIColor.whiteColor() {
-    willSet {
-        userDidSpecifyOnThumbTintColor = true
-        if self.on && !self.tracking {
-            thumbView.backgroundColor = newValue
+    @IBInspectable public var onThumbTintColor: UIColor = UIColor.whiteColor() {
+        willSet {
+            userDidSpecifyOnThumbTintColor = true
+            if self.on && !self.tracking {
+                thumbView.backgroundColor = newValue
+            }
         }
-    }
     }
     
     /*
     *	Sets the shadow color of the knob. Defaults to gray.
     */
-    @IBInspectable var shadowColor: UIColor = UIColor.grayColor() {
-    willSet {
-        thumbView.layer.shadowColor = newValue.CGColor
-    }
+    @IBInspectable public var shadowColor: UIColor = UIColor.grayColor() {
+        willSet {
+            thumbView.layer.shadowColor = newValue.CGColor
+        }
     }
     
     /*
@@ -132,28 +130,28 @@ import QuartzCore
     *   Set to NO to get a stylish square switch.
     *   Defaults to YES.
     */
-    @IBInspectable var isRounded: Bool = true {
-    willSet {
-        if newValue {
-            backgroundView.layer.cornerRadius = self.frame.size.height * 0.5
-            thumbView.layer.cornerRadius = (self.frame.size.height * 0.5) - 1
+    @IBInspectable public var isRounded: Bool = true {
+        willSet {
+            if newValue {
+                backgroundView.layer.cornerRadius = self.frame.size.height * 0.5
+                thumbView.layer.cornerRadius = (self.frame.size.height * 0.5) - 1
+            }
+            else {
+                backgroundView.layer.cornerRadius = 2
+                thumbView.layer.cornerRadius = 2
+            }
+            
+            thumbView.layer.shadowPath = UIBezierPath(roundedRect: thumbView.bounds, cornerRadius: thumbView.layer.cornerRadius).CGPath
         }
-        else {
-            backgroundView.layer.cornerRadius = 2
-            thumbView.layer.cornerRadius = 2
-        }
-        
-        thumbView.layer.shadowPath = UIBezierPath(roundedRect: thumbView.bounds, cornerRadius: thumbView.layer.cornerRadius).CGPath
-    }
     }
     
     /*
     *   Sets the image that shows on the switch thumb.
     */
-    @IBInspectable var thumbImage: UIImage! {
-    willSet {
-        thumbImageView.image = newValue
-    }
+    @IBInspectable public var thumbImage: UIImage! {
+        willSet {
+            thumbImageView.image = newValue
+        }
     }
     
     /*
@@ -161,10 +159,10 @@ import QuartzCore
     *   The image is centered in the area not covered by the knob.
     *   Make sure to size your images appropriately.
     */
-    @IBInspectable var onImage: UIImage! {
-    willSet {
-        onImageView.image = newValue
-    }
+    @IBInspectable public var onImage: UIImage! {
+        willSet {
+            onImageView.image = newValue
+        }
     }
     
     /*
@@ -172,53 +170,53 @@ import QuartzCore
     *   The image is centered in the area not covered by the knob.
     *   Make sure to size your images appropriately.
     */
-    @IBInspectable var offImage: UIImage! {
-    willSet {
-        offImageView.image = newValue
-    }
+    @IBInspectable public var offImage: UIImage! {
+        willSet {
+            offImageView.image = newValue
+        }
     }
     
     /*
     *	Sets the text that shows when the switch is on.
     *   The text is centered in the area not covered by the knob.
     */
-    var onLabel: UILabel!
+    public var onLabel: UILabel!
     
     /*
     *	Sets the text that shows when the switch is off.
     *   The text is centered in the area not covered by the knob.
     */
-    var offLabel: UILabel!
+    public var offLabel: UILabel!
     
     // private
-    var backgroundView: UIView!
-    var thumbView: UIView!
-    var onImageView: UIImageView!
-    var offImageView: UIImageView!
-    var thumbImageView: UIImageView!
-    var currentVisualValue: Bool = false
-    var startTrackingValue: Bool = false
-    var didChangeWhileTracking: Bool = false
-    var isAnimating: Bool = false
-    var userDidSpecifyOnThumbTintColor: Bool = false
-    var switchValue: Bool = false
+    private var backgroundView: UIView!
+    private var thumbView: UIView!
+    private var onImageView: UIImageView!
+    private var offImageView: UIImageView!
+    private var thumbImageView: UIImageView!
+    private var currentVisualValue: Bool = false
+    private var startTrackingValue: Bool = false
+    private var didChangeWhileTracking: Bool = false
+    private var isAnimating: Bool = false
+    private var userDidSpecifyOnThumbTintColor: Bool = false
+    private var switchValue: Bool = false
     
     /*
     *   Initialization
     */
-    override init() {
+    override public init() {
         super.init(frame: CGRectMake(0, 0, 50, 30))
         
         self.setup()
     }
     
-    required init(coder aDecoder: NSCoder) {
+    required public init(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         
         self.setup()
     }
     
-    override init(frame: CGRect) {
+    override public init(frame: CGRect) {
         let initialFrame = CGRectIsEmpty(frame) ? CGRectMake(0, 0, 50, 30) : frame
         super.init(frame: initialFrame)
         
@@ -229,7 +227,7 @@ import QuartzCore
     /*
     *   Setup the individual elements of the switch and set default values
     */
-    func setup() {
+    private func setup() {
         
         // background
         self.backgroundView = UIView(frame: CGRectMake(0, 0, self.frame.size.width, self.frame.size.height))
@@ -287,7 +285,7 @@ import QuartzCore
         self.on = false
     }
     
-    override func beginTrackingWithTouch(touch: UITouch, withEvent event: UIEvent) -> Bool {
+    override public func beginTrackingWithTouch(touch: UITouch, withEvent event: UIEvent) -> Bool {
         super.beginTrackingWithTouch(touch, withEvent: event)
         
         startTrackingValue = self.on
@@ -314,7 +312,7 @@ import QuartzCore
         return true
     }
     
-    override func continueTrackingWithTouch(touch: UITouch, withEvent event: UIEvent) -> Bool {
+    override public func continueTrackingWithTouch(touch: UITouch, withEvent event: UIEvent) -> Bool {
         super.continueTrackingWithTouch(touch, withEvent: event)
         
         // Get touch location
@@ -338,7 +336,7 @@ import QuartzCore
         return true
     }
     
-    override func endTrackingWithTouch(touch: UITouch, withEvent event: UIEvent) {
+    override public func endTrackingWithTouch(touch: UITouch, withEvent event: UIEvent) {
         super.endTrackingWithTouch(touch, withEvent: event)
 
         let previousValue = self.on
@@ -355,7 +353,7 @@ import QuartzCore
         }
     }
     
-    override func cancelTrackingWithEvent(event: UIEvent?) {
+    override public func cancelTrackingWithEvent(event: UIEvent?) {
         super.cancelTrackingWithEvent(event)
         
         // just animate back to the original value
@@ -367,7 +365,7 @@ import QuartzCore
         }
     }
     
-    override func layoutSubviews() {
+    override public func layoutSubviews() {
         super.layoutSubviews()
         
         if !isAnimating {
@@ -399,7 +397,7 @@ import QuartzCore
     /*
     *   Set the state of the switch to on or off, optionally animating the transition.
     */
-    func setOn(isOn: Bool, animated: Bool) {
+    public func setOn(isOn: Bool, animated: Bool) {
         switchValue = isOn
         
         if on {
@@ -415,7 +413,7 @@ import QuartzCore
     *
     *	@return	BOOL YES if switch is on. NO if switch is off
     */
-    func isOn() -> Bool {
+    public func isOn() -> Bool {
         return self.on
     }
     
@@ -423,7 +421,7 @@ import QuartzCore
     *   update the looks of the switch to be in the on position
     *   optionally make it animated
     */
-    func showOn(animated: Bool) {
+    private func showOn(animated: Bool) {
         let normalKnobWidth = self.bounds.size.height - 2
         let activeKnobWidth = normalKnobWidth + 5
         if animated {
@@ -471,7 +469,7 @@ import QuartzCore
     *   update the looks of the switch to be in the off position
     *   optionally make it animated
     */
-    func showOff(animated: Bool) {
+    private func showOff(animated: Bool) {
         let normalKnobWidth = self.bounds.size.height - 2
         let activeKnobWidth = normalKnobWidth + 5
         

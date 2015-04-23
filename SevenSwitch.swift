@@ -188,12 +188,13 @@ import QuartzCore
     */
     public var offLabel: UILabel!
     
+    // internal
+    internal var backgroundView: UIView!
+    internal var thumbView: UIView!
+    internal var onImageView: UIImageView!
+    internal var offImageView: UIImageView!
+    internal var thumbImageView: UIImageView!
     // private
-    private var backgroundView: UIView!
-    private var thumbView: UIView!
-    private var onImageView: UIImageView!
-    private var offImageView: UIImageView!
-    private var thumbImageView: UIImageView!
     private var currentVisualValue: Bool = false
     private var startTrackingValue: Bool = false
     private var didChangeWhileTracking: Bool = false

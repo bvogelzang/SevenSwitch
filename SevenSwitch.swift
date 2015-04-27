@@ -205,10 +205,8 @@ import QuartzCore
     /*
     *   Initialization
     */
-    public init() {
-        super.init(frame: CGRectMake(0, 0, 50, 30))
-        
-        self.setup()
+    public convenience init() {
+        self.init(frame: CGRectMake(0, 0, 50, 30))
     }
     
     required public init(coder aDecoder: NSCoder) {

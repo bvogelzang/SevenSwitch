@@ -213,7 +213,7 @@ import QuartzCore
     *   Initialization
     */
     public convenience init() {
-        self.init(frame: CGRectMake(0, 0, 50, 30))
+        self.init(frame: CGRectMake(0, 0, 50, 31))
     }
     
     required public init(coder aDecoder: NSCoder) {
@@ -223,7 +223,7 @@ import QuartzCore
     }
     
     override public init(frame: CGRect) {
-        let initialFrame = CGRectIsEmpty(frame) ? CGRectMake(0, 0, 50, 30) : frame
+        let initialFrame = CGRectIsEmpty(frame) ? CGRectMake(0, 0, 50, 31) : frame
         super.init(frame: initialFrame)
         
         self.setup()

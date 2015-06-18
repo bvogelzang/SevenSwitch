@@ -196,9 +196,10 @@ import QuartzCore
         willSet {
             newValue.sizeToFit()
             knobSize.width = newValue.frame.size.width + self.frame.height - 2
+            layoutSubviews()
         }
         didSet {
-            textLabel.center = thumbImageView.center
+            textLabel.center = thumbView.center
             thumbImageView.addSubview(textLabel)
         }
     }
@@ -218,7 +219,7 @@ import QuartzCore
     private var switchValue: Bool = false
     lazy var knobSize: CGSize = {
         let height = self.frame.height - 2
-        let width = self.frame.height + 20
+        let width = self.frame.height - 2
         let size = CGSize (width: width, height: height)
         return size
     } ()

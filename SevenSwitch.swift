@@ -209,6 +209,11 @@ let uiswitchFrame = CGRect(x: 0, y: 0, width: 51, height: 31)
             textLabel.center = thumbImageView.center
         }
     }
+    
+    /*
+    *   Sets the margin between switch bounds and knob
+    */
+    public var knobMargin: CGFloat = 0.0
 
     // internal
     internal var backgroundView: UIView!

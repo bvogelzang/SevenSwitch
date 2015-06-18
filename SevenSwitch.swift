@@ -25,6 +25,8 @@
 import UIKit
 import QuartzCore
 
+let uiswitchFrame = CGRect(x: 0, y: 0, width: 51, height: 31)
+
 @IBDesignable @objc public class SevenSwitch: UIControl {
     
     // public
@@ -188,6 +190,26 @@ import QuartzCore
     */
     public var offLabel: UILabel!
     
+    /*
+    *	For customizations only. Text should be set to knobTest
+    *   The size of the knob changes depending on the text size.
+    */
+    public var textLabel: UILabel!
+    
+    /*
+    *	Set text which appears on top of the knob
+    *   The size of the knob changes depending on the text size.
+    */
+    public var knobText: String! {
+        didSet {
+            textLabel.text = knobText
+            textLabel.sizeToFit()
+            knobSize.width = textLabel.frame.size.width + self.frame.height - 2
+            layoutSubviews()
+            textLabel.center = thumbImageView.center
+        }
+    }
+
     // internal
     internal var backgroundView: UIView!
     internal var thumbView: UIView!
@@ -201,12 +223,18 @@ import QuartzCore
     private var isAnimating: Bool = false
     private var userDidSpecifyOnThumbTintColor: Bool = false
     private var switchValue: Bool = false
+    lazy var knobSize: CGSize = {
+        let height = self.frame.height - 2
+        let width = self.frame.height - 2
+        let size = CGSize (width: width, height: height)
+        return size
+    } ()
     
     /*
     *   Initialization
     */
     public convenience init() {
-        self.init(frame: CGRectMake(0, 0, 50, 30))
+        self.init(frame: uiswitchFrame)
     }
     
     required public init(coder aDecoder: NSCoder) {
@@ -216,7 +244,7 @@ import QuartzCore
     }
     
     override public init(frame: CGRect) {
-        let initialFrame = CGRectIsEmpty(frame) ? CGRectMake(0, 0, 50, 30) : frame
+        let initialFrame = CGRectIsEmpty(frame) ? uiswitchFrame : frame
         super.init(frame: initialFrame)
         
         self.setup()
@@ -261,9 +289,13 @@ import QuartzCore
         offLabel.textColor = UIColor.lightGrayColor()
         offLabel.font = UIFont.systemFontOfSize(12)
         backgroundView.addSubview(offLabel)
+
+        textLabel = UILabel()
+        textLabel.textColor = .grayColor()
+        textLabel.font = .systemFontOfSize(12)
         
         // thumb
-        self.thumbView = UIView(frame: CGRectMake(1, 1, self.frame.size.height - 2, self.frame.size.height - 2))
+        self.thumbView = UIView(frame: CGRectMake(1, 1, knobSize.width, knobSize.height))
         thumbView.backgroundColor = self.thumbTintColor
         thumbView.layer.cornerRadius = (self.frame.size.height * 0.5) - 1
         thumbView.layer.shadowColor = self.shadowColor.CGColor
@@ -280,7 +312,9 @@ import QuartzCore
         thumbImageView.contentMode = UIViewContentMode.Center
         thumbImageView.autoresizingMask = UIViewAutoresizing.FlexibleWidth
         thumbView.addSubview(thumbImageView)
-    
+        
+        thumbImageView.addSubview(textLabel)
+
         self.on = false
     }
     
@@ -290,7 +324,7 @@ import QuartzCore
         startTrackingValue = self.on
         didChangeWhileTracking = false
         
-        let activeKnobWidth = self.bounds.size.height - 2 + 5
+        let activeKnobWidth = knobSize.width + 5
         isAnimating = true
         
         UIView.animateWithDuration(0.3, delay: 0.0, options: UIViewAnimationOptions.CurveEaseOut | UIViewAnimationOptions.BeginFromCurrentState, animations: {
@@ -381,15 +415,16 @@ import QuartzCore
             self.offLabel.frame = CGRectMake(frame.size.height, 0, frame.size.width - frame.size.height, frame.size.height)
             
             // thumb
-            let normalKnobWidth = frame.size.height - 2
+            let normalKnobWidth = knobSize.width
             if self.on {
-                thumbView.frame = CGRectMake(frame.size.width - (normalKnobWidth + 1), 1, frame.size.height - 2, normalKnobWidth)
+                thumbView.frame = CGRectMake(frame.size.width - (normalKnobWidth + 1), 1, normalKnobWidth, knobSize.height)
             }
             else {
-                thumbView.frame = CGRectMake(1, 1, normalKnobWidth, normalKnobWidth)
+                thumbView.frame = CGRectMake(1, 1, normalKnobWidth, knobSize.height)
             }
             
             thumbView.layer.cornerRadius = self.isRounded ? (frame.size.height * 0.5) - 1 : 2
+            thumbView.layer.shadowPath = UIBezierPath(roundedRect: thumbView.bounds, cornerRadius: thumbView.layer.cornerRadius).CGPath
         }
     }
     
@@ -421,7 +456,7 @@ import QuartzCore
     *   optionally make it animated
     */
     private func showOn(animated: Bool) {
-        let normalKnobWidth = self.bounds.size.height - 2
+        let normalKnobWidth = knobSize.width
         let activeKnobWidth = normalKnobWidth + 5
         if animated {
             isAnimating = true
@@ -469,7 +504,7 @@ import QuartzCore
     *   optionally make it animated
     */
     private func showOff(animated: Bool) {
-        let normalKnobWidth = self.bounds.size.height - 2
+        let normalKnobWidth = knobSize.width
         let activeKnobWidth = normalKnobWidth + 5
         
         if animated {

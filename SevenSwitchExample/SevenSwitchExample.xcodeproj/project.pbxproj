@@ -31,7 +31,7 @@
 		45B6529C176E3A440006F201 /* check@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "check@2x.png"; sourceTree = "<group>"; };
 		45B6529D176E3A440006F201 /* cross.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cross.png; sourceTree = "<group>"; };
 		45B6529E176E3A440006F201 /* cross@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "cross@2x.png"; sourceTree = "<group>"; };
-		45DD2ABD1954C14B0028A5DB /* SevenSwitch.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SevenSwitch.swift; path = ../../SevenSwitch.swift; sourceTree = "<group>"; };
+		45DD2ABD1954C14B0028A5DB /* SevenSwitch.swift */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 4; lastKnownFileType = sourcecode.swift; name = SevenSwitch.swift; path = ../../SevenSwitch.swift; sourceTree = "<group>"; };
 		45F7C62E176D202700AE1301 /* SevenSwitchExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SevenSwitchExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		45F7C631176D202700AE1301 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		45F7C633176D202700AE1301 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };

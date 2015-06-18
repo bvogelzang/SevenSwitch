@@ -207,7 +207,11 @@ import QuartzCore
     private var isAnimating: Bool = false
     private var userDidSpecifyOnThumbTintColor: Bool = false
     private var switchValue: Bool = false
-    private var knobSize: CGSize = CGSize(width: 31, height: 31)
+    lazy var knobSize: CGSize = {
+        let height = self.frame.height - 2
+        let size = CGSize (width: height, height: height)
+        return size
+    } ()
     
     /*
     *   Initialization
@@ -270,7 +274,7 @@ import QuartzCore
         backgroundView.addSubview(offLabel)
         
         // thumb
-        self.thumbView = UIView(frame: CGRectMake(1, 1, self.frame.size.height - 2, self.frame.size.height - 2))
+        self.thumbView = UIView(frame: CGRectMake(1, 1, knobSize.width, knobSize.height))
         thumbView.backgroundColor = self.thumbTintColor
         thumbView.layer.cornerRadius = (self.frame.size.height * 0.5) - 1
         thumbView.layer.shadowColor = self.shadowColor.CGColor

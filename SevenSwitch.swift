@@ -25,6 +25,8 @@
 import UIKit
 import QuartzCore
 
+let uiswitchFrame = CGRect(x: 0, y: 0, width: 51, height: 31)
+
 @IBDesignable @objc public class SevenSwitch: UIControl {
     
     // public
@@ -232,7 +234,7 @@ import QuartzCore
     *   Initialization
     */
     public convenience init() {
-        self.init(frame: CGRectMake(0, 0, 51, 31))
+        self.init(frame: uiswitchFrame)
     }
     
     required public init(coder aDecoder: NSCoder) {
@@ -242,7 +244,7 @@ import QuartzCore
     }
     
     override public init(frame: CGRect) {
-        let initialFrame = CGRectIsEmpty(frame) ? CGRectMake(0, 0, 51, 31) : frame
+        let initialFrame = CGRectIsEmpty(frame) ? uiswitchFrame : frame
         super.init(frame: initialFrame)
         
         self.setup()

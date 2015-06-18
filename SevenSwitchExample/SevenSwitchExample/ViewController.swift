@@ -16,6 +16,11 @@ class ViewController: UIViewController {
         
         ibSwitch.onTintColor = UIColor(red: 0.20, green: 0.42, blue: 0.86, alpha: 1)
         ibSwitch.on = true
+      
+      let label = UILabel()
+      label.text = "chk "
+      
+      //ibSwitch.textLabel = label
         
         // this will create the switch with default dimensions, you'll still need to set the position though
         // you also have the option to pass in a frame of any size you choose

@@ -192,7 +192,16 @@ import QuartzCore
     *	Sets the text on a knob.
     *   The size of the knob changes depending on the text size.
     */
-    public var textLabel: UILabel!
+    public var textLabel: UILabel! {
+        willSet {
+            newValue.sizeToFit()
+            knobSize.width = newValue.frame.size.width + self.frame.height - 2
+        }
+        didSet {
+            textLabel.center = thumbImageView.center
+            thumbImageView.addSubview(textLabel)
+        }
+    }
     
     // internal
     internal var backgroundView: UIView!

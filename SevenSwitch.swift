@@ -232,7 +232,7 @@ import QuartzCore
     *   Initialization
     */
     public convenience init() {
-        self.init(frame: CGRectMake(0, 0, 50, 31))
+        self.init(frame: CGRectMake(0, 0, 51, 31))
     }
     
     required public init(coder aDecoder: NSCoder) {
@@ -242,7 +242,7 @@ import QuartzCore
     }
     
     override public init(frame: CGRect) {
-        let initialFrame = CGRectIsEmpty(frame) ? CGRectMake(0, 0, 50, 31) : frame
+        let initialFrame = CGRectIsEmpty(frame) ? CGRectMake(0, 0, 51, 31) : frame
         super.init(frame: initialFrame)
         
         self.setup()
@@ -288,9 +288,9 @@ import QuartzCore
         offLabel.font = UIFont.systemFontOfSize(12)
         backgroundView.addSubview(offLabel)
 
-        self.textLabel = UILabel()
-        textLabel.textColor = UIColor.grayColor()
-        textLabel.font = UIFont.systemFontOfSize(12)
+        textLabel = UILabel()
+        textLabel.textColor = .grayColor()
+        textLabel.font = .systemFontOfSize(12)
         
         // thumb
         self.thumbView = UIView(frame: CGRectMake(1, 1, knobSize.width, knobSize.height))

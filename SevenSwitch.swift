@@ -209,7 +209,8 @@ import QuartzCore
     private var switchValue: Bool = false
     lazy var knobSize: CGSize = {
         let height = self.frame.height - 2
-        let size = CGSize (width: height, height: height)
+        let width = self.frame.height + 20
+        let size = CGSize (width: width, height: height)
         return size
     } ()
     
@@ -392,12 +393,12 @@ import QuartzCore
             self.offLabel.frame = CGRectMake(frame.size.height, 0, frame.size.width - frame.size.height, frame.size.height)
             
             // thumb
-            let normalKnobWidth = frame.size.height - 2
+            let normalKnobWidth = knobSize.width
             if self.on {
-                thumbView.frame = CGRectMake(frame.size.width - (normalKnobWidth + 1), 1, frame.size.height - 2, normalKnobWidth)
+                thumbView.frame = CGRectMake(frame.size.width - (normalKnobWidth + 1), 1, normalKnobWidth, knobSize.height)
             }
             else {
-                thumbView.frame = CGRectMake(1, 1, normalKnobWidth, normalKnobWidth)
+                thumbView.frame = CGRectMake(1, 1, normalKnobWidth, knobSize.height)
             }
             
             thumbView.layer.cornerRadius = self.isRounded ? (frame.size.height * 0.5) - 1 : 2

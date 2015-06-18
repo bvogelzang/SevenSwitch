@@ -424,6 +424,7 @@ let uiswitchFrame = CGRect(x: 0, y: 0, width: 51, height: 31)
             }
             
             thumbView.layer.cornerRadius = self.isRounded ? (frame.size.height * 0.5) - 1 : 2
+            thumbView.layer.shadowPath = UIBezierPath(roundedRect: thumbView.bounds, cornerRadius: thumbView.layer.cornerRadius).CGPath
         }
     }
     

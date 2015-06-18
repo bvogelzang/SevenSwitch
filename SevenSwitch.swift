@@ -189,21 +189,25 @@ import QuartzCore
     public var offLabel: UILabel!
     
     /*
-    *	Sets the text on a knob.
+    *	For customizations only. Text should be set to knobTest
     *   The size of the knob changes depending on the text size.
     */
-    public var textLabel: UILabel! {
-        willSet {
-            newValue.sizeToFit()
-            knobSize.width = newValue.frame.size.width + self.frame.height - 2
-            layoutSubviews()
-        }
+    public var textLabel: UILabel!
+    
+    /*
+    *	Set text which appears on top of the knob
+    *   The size of the knob changes depending on the text size.
+    */
+    public var knobText: String! {
         didSet {
-            textLabel.center = thumbView.center
-            thumbImageView.addSubview(textLabel)
+            textLabel.text = knobText
+            textLabel.sizeToFit()
+            knobSize.width = textLabel.frame.size.width + self.frame.height - 2
+            layoutSubviews()
+            textLabel.center = thumbImageView.center
         }
     }
-    
+
     // internal
     internal var backgroundView: UIView!
     internal var thumbView: UIView!
@@ -283,6 +287,10 @@ import QuartzCore
         offLabel.textColor = UIColor.lightGrayColor()
         offLabel.font = UIFont.systemFontOfSize(12)
         backgroundView.addSubview(offLabel)
+
+        self.textLabel = UILabel()
+        textLabel.textColor = UIColor.grayColor()
+        textLabel.font = UIFont.systemFontOfSize(12)
         
         // thumb
         self.thumbView = UIView(frame: CGRectMake(1, 1, knobSize.width, knobSize.height))
@@ -302,7 +310,9 @@ import QuartzCore
         thumbImageView.contentMode = UIViewContentMode.Center
         thumbImageView.autoresizingMask = UIViewAutoresizing.FlexibleWidth
         thumbView.addSubview(thumbImageView)
-    
+        
+        thumbImageView.addSubview(textLabel)
+
         self.on = false
     }
     

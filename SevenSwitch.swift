@@ -301,7 +301,7 @@ import QuartzCore
         startTrackingValue = self.on
         didChangeWhileTracking = false
         
-        let activeKnobWidth = self.bounds.size.height - 2 + 5
+        let activeKnobWidth = knobSize.width + 5
         isAnimating = true
         
         UIView.animateWithDuration(0.3, delay: 0.0, options: UIViewAnimationOptions.CurveEaseOut | UIViewAnimationOptions.BeginFromCurrentState, animations: {
@@ -432,7 +432,7 @@ import QuartzCore
     *   optionally make it animated
     */
     private func showOn(animated: Bool) {
-        let normalKnobWidth = self.bounds.size.height - 2
+        let normalKnobWidth = knobSize.width
         let activeKnobWidth = normalKnobWidth + 5
         if animated {
             isAnimating = true
@@ -480,7 +480,7 @@ import QuartzCore
     *   optionally make it animated
     */
     private func showOff(animated: Bool) {
-        let normalKnobWidth = self.bounds.size.height - 2
+        let normalKnobWidth = knobSize.width
         let activeKnobWidth = normalKnobWidth + 5
         
         if animated {

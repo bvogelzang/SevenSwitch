@@ -188,6 +188,12 @@ import QuartzCore
     */
     public var offLabel: UILabel!
     
+    /*
+    *	Sets the text on a knob.
+    *   The size of the knob changes depending on the text size.
+    */
+    public var textLabel: UILabel!
+    
     // internal
     internal var backgroundView: UIView!
     internal var thumbView: UIView!
@@ -201,6 +207,7 @@ import QuartzCore
     private var isAnimating: Bool = false
     private var userDidSpecifyOnThumbTintColor: Bool = false
     private var switchValue: Bool = false
+    private var knobSize: CGSize = CGSize(width: 31, height: 31)
     
     /*
     *   Initialization

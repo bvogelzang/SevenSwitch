@@ -5,7 +5,10 @@ Pod::Spec.new do |s|
   s.homepage         = "https://github.com/bvogelzang/SevenSwitch"
   s.license          = { :type => 'MIT', file: 'LICENSE'}
   s.author           = { "Ben Vogelzang" => "bvogelzang@breuer.com" }
-  s.source           = { :https://github.com/bvogelzang/SevenSwitch.git", :tag => s.version.to_s }
+  s.source           = {
+    :git => "https://github.com/hyperoslo/SevenSwitch.git",
+    :tag => s.version.to_s
+  }
   s.platform     = :ios, '8.0'
   s.requires_arc = true
   s.source_files = 'SevenSwitch.swift'

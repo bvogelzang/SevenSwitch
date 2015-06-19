@@ -136,7 +136,7 @@ let uiswitchFrame = CGRect(x: 0, y: 0, width: 51, height: 31)
         willSet {
             if newValue {
                 backgroundView.layer.cornerRadius = self.frame.size.height * 0.5
-                thumbView.layer.cornerRadius = (self.frame.size.height * 0.5) - 1
+                thumbView.layer.cornerRadius = (knobSize.height * 0.5) - 1
             }
             else {
                 backgroundView.layer.cornerRadius = 2
@@ -204,16 +204,23 @@ let uiswitchFrame = CGRect(x: 0, y: 0, width: 51, height: 31)
         didSet {
             textLabel.text = knobText
             textLabel.sizeToFit()
-            knobSize.width = textLabel.frame.size.width + self.frame.height - 2
+            knobSize.width = textLabel.frame.size.width + self.frame.height - knobMargin
             layoutSubviews()
-            textLabel.center = thumbImageView.center
+            textLabel.center = thumbView.center
         }
     }
     
     /*
     *   Sets the margin between switch bounds and knob
+    *   Apple uses 1.5pt as a default value
     */
-    public var knobMargin: CGFloat = 0.0
+    public var knobMargin: CGFloat = 1.5 {
+        willSet {
+            let newWidth = knobSize.width + (knobMargin - newValue) * 2
+            let newHeight = knobSize.height + (knobMargin - newValue) * 2
+            knobSize = CGSize(width: newWidth, height: newHeight)
+        }
+    }
 
     // internal
     internal var backgroundView: UIView!
@@ -228,12 +235,8 @@ let uiswitchFrame = CGRect(x: 0, y: 0, width: 51, height: 31)
     private var isAnimating: Bool = false
     private var userDidSpecifyOnThumbTintColor: Bool = false
     private var switchValue: Bool = false
-    lazy var knobSize: CGSize = {
-        let height = self.frame.height - 2
-        let width = self.frame.height - 2
-        let size = CGSize (width: width, height: height)
-        return size
-    } ()
+    var knobSize: CGSize = CGSize.zeroSize
+
     
     /*
     *   Initialization
@@ -260,6 +263,10 @@ let uiswitchFrame = CGRect(x: 0, y: 0, width: 51, height: 31)
     *   Setup the individual elements of the switch and set default values
     */
     private func setup() {
+        
+        // margin
+        let knobDiameter = self.frame.height - knobMargin * 2
+        knobSize = CGSize (width: knobDiameter, height: knobDiameter)
         
         // background
         self.backgroundView = UIView(frame: CGRectMake(0, 0, self.frame.size.width, self.frame.size.height))
@@ -300,9 +307,9 @@ let uiswitchFrame = CGRect(x: 0, y: 0, width: 51, height: 31)
         textLabel.font = .systemFontOfSize(12)
         
         // thumb
-        self.thumbView = UIView(frame: CGRectMake(1, 1, knobSize.width, knobSize.height))
+        self.thumbView = UIView(frame: CGRectMake(knobMargin, knobMargin, knobSize.width, knobSize.height))
         thumbView.backgroundColor = self.thumbTintColor
-        thumbView.layer.cornerRadius = (self.frame.size.height * 0.5) - 1
+        thumbView.layer.cornerRadius = (knobSize.height * 0.5) - 1
         thumbView.layer.shadowColor = self.shadowColor.CGColor
         thumbView.layer.shadowRadius = 2.0
         thumbView.layer.shadowOpacity = 0.5
@@ -334,12 +341,12 @@ let uiswitchFrame = CGRect(x: 0, y: 0, width: 51, height: 31)
         
         UIView.animateWithDuration(0.3, delay: 0.0, options: UIViewAnimationOptions.CurveEaseOut | UIViewAnimationOptions.BeginFromCurrentState, animations: {
                 if self.on {
-                    self.thumbView.frame = CGRectMake(self.bounds.size.width - (activeKnobWidth + 1), self.thumbView.frame.origin.y, activeKnobWidth, self.thumbView.frame.size.height)
+                    self.thumbView.frame = CGRectMake(self.bounds.size.width - (activeKnobWidth + self.knobMargin), self.thumbView.frame.origin.y, activeKnobWidth, self.thumbView.frame.size.height)
                     self.backgroundView.backgroundColor = self.onTintColor
                     self.thumbView.backgroundColor = self.onThumbTintColor
                 }
                 else {
-                    self.thumbView.frame = CGRectMake(self.thumbView.frame.origin.x, self.thumbView.frame.origin.y, activeKnobWidth, self.thumbView.frame.size.height)
+                    self.thumbView.frame = CGRectMake(self.knobMargin, self.thumbView.frame.origin.y, activeKnobWidth, self.thumbView.frame.size.height)
                     self.backgroundView.backgroundColor = self.activeColor
                     self.thumbView.backgroundColor = self.thumbTintColor
                 }
@@ -422,13 +429,13 @@ let uiswitchFrame = CGRect(x: 0, y: 0, width: 51, height: 31)
             // thumb
             let normalKnobWidth = knobSize.width
             if self.on {
-                thumbView.frame = CGRectMake(frame.size.width - (normalKnobWidth + 1), 1, normalKnobWidth, knobSize.height)
+                thumbView.frame = CGRectMake(frame.size.width - (normalKnobWidth + knobMargin), knobMargin, normalKnobWidth, knobSize.height)
             }
             else {
-                thumbView.frame = CGRectMake(1, 1, normalKnobWidth, knobSize.height)
+                thumbView.frame = CGRectMake(knobMargin, knobMargin, normalKnobWidth, knobSize.height)
             }
             
-            thumbView.layer.cornerRadius = self.isRounded ? (frame.size.height * 0.5) - 1 : 2
+            thumbView.layer.cornerRadius = self.isRounded ? (knobSize.height * 0.5)  : 2
             thumbView.layer.shadowPath = UIBezierPath(roundedRect: thumbView.bounds, cornerRadius: thumbView.layer.cornerRadius).CGPath
         }
     }
@@ -467,10 +474,10 @@ let uiswitchFrame = CGRect(x: 0, y: 0, width: 51, height: 31)
             isAnimating = true
             UIView.animateWithDuration(0.3, delay: 0.0, options: UIViewAnimationOptions.CurveEaseOut | UIViewAnimationOptions.BeginFromCurrentState, animations: {
                 if self.tracking {
-                    self.thumbView.frame = CGRectMake(self.bounds.size.width - (activeKnobWidth + 1), self.thumbView.frame.origin.y, activeKnobWidth, self.thumbView.frame.size.height)
+                    self.thumbView.frame = CGRectMake(self.bounds.size.width - (activeKnobWidth + self.knobMargin), self.thumbView.frame.origin.y, activeKnobWidth, self.thumbView.frame.size.height)
                 }
                 else {
-                    self.thumbView.frame = CGRectMake(self.bounds.size.width - (normalKnobWidth + 1), self.thumbView.frame.origin.y, normalKnobWidth, self.thumbView.frame.size.height)
+                    self.thumbView.frame = CGRectMake(self.bounds.size.width - (normalKnobWidth + self.knobMargin), self.thumbView.frame.origin.y, normalKnobWidth, self.thumbView.frame.size.height)
                 }
                 
                 self.backgroundView.backgroundColor = self.onTintColor
@@ -486,10 +493,10 @@ let uiswitchFrame = CGRect(x: 0, y: 0, width: 51, height: 31)
         }
         else {
             if self.tracking {
-                thumbView.frame = CGRectMake(self.bounds.size.width - (activeKnobWidth + 1), thumbView.frame.origin.y, activeKnobWidth, thumbView.frame.size.height)
+                thumbView.frame = CGRectMake(self.bounds.size.width - (activeKnobWidth + knobMargin), thumbView.frame.origin.y, activeKnobWidth, thumbView.frame.size.height)
             }
             else {
-                thumbView.frame = CGRectMake(self.bounds.size.width - (normalKnobWidth + 1), thumbView.frame.origin.y, normalKnobWidth, thumbView.frame.size.height)
+                thumbView.frame = CGRectMake(self.bounds.size.width - (normalKnobWidth + knobMargin), thumbView.frame.origin.y, normalKnobWidth, thumbView.frame.size.height)
             }
             
             backgroundView.backgroundColor = self.onTintColor
@@ -516,11 +523,11 @@ let uiswitchFrame = CGRect(x: 0, y: 0, width: 51, height: 31)
             isAnimating = true
             UIView.animateWithDuration(0.3, delay: 0.0, options: UIViewAnimationOptions.CurveEaseOut | UIViewAnimationOptions.BeginFromCurrentState, animations: {
                 if self.tracking {
-                    self.thumbView.frame = CGRectMake(1, self.thumbView.frame.origin.y, activeKnobWidth, self.thumbView.frame.size.height);
+                    self.thumbView.frame = CGRectMake(self.knobMargin, self.thumbView.frame.origin.y, activeKnobWidth, self.thumbView.frame.size.height);
                     self.backgroundView.backgroundColor = self.activeColor
                 }
                 else {
-                    self.thumbView.frame = CGRectMake(1, self.thumbView.frame.origin.y, normalKnobWidth, self.thumbView.frame.size.height);
+                    self.thumbView.frame = CGRectMake(self.knobMargin, self.thumbView.frame.origin.y, normalKnobWidth, self.thumbView.frame.size.height);
                     self.backgroundView.backgroundColor = self.inactiveColor
                 }
                 
@@ -537,11 +544,11 @@ let uiswitchFrame = CGRect(x: 0, y: 0, width: 51, height: 31)
         }
         else {
             if (self.tracking) {
-                thumbView.frame = CGRectMake(1, thumbView.frame.origin.y, activeKnobWidth, thumbView.frame.size.height)
+                thumbView.frame = CGRectMake(self.knobMargin, thumbView.frame.origin.y, activeKnobWidth, thumbView.frame.size.height)
                 backgroundView.backgroundColor = self.activeColor
             }
             else {
-                thumbView.frame = CGRectMake(1, thumbView.frame.origin.y, normalKnobWidth, thumbView.frame.size.height)
+                thumbView.frame = CGRectMake(self.knobMargin, thumbView.frame.origin.y, normalKnobWidth, thumbView.frame.size.height)
                 backgroundView.backgroundColor = self.inactiveColor
             }
             backgroundView.layer.borderColor = self.borderColor.CGColor

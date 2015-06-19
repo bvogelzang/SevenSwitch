@@ -206,7 +206,6 @@ let uiswitchFrame = CGRect(x: 0, y: 0, width: 51, height: 31)
             textLabel.sizeToFit()
             knobSize.width = textLabel.frame.size.width + self.frame.height - knobMargin
             layoutSubviews()
-            textLabel.center = thumbView.center
         }
     }
     
@@ -437,6 +436,11 @@ let uiswitchFrame = CGRect(x: 0, y: 0, width: 51, height: 31)
             
             thumbView.layer.cornerRadius = self.isRounded ? (knobSize.height * 0.5)  : 2
             thumbView.layer.shadowPath = UIBezierPath(roundedRect: thumbView.bounds, cornerRadius: thumbView.layer.cornerRadius).CGPath
+            
+            var center = thumbView.center
+            center.y = center.y - knobMargin
+            center.x = center.x - knobMargin
+            textLabel.center = center
         }
     }
     

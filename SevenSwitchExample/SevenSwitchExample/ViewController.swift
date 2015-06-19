@@ -17,10 +17,6 @@ class ViewController: UIViewController {
     ibSwitch.onTintColor = UIColor(red: 0.20, green: 0.42, blue: 0.86, alpha: 1)
     ibSwitch.on = true
     
-    ibSwitch.knobMargin = 10.0
-    
-    //ibSwitch.textLabel = label
-    
     // this will create the switch with default dimensions, you'll still need to set the position though
     // you also have the option to pass in a frame of any size you choose
     let mySwitch = SevenSwitch(frame: CGRectZero)
@@ -58,27 +54,19 @@ class ViewController: UIViewController {
     mySwitch3.borderColor = UIColor.clearColor()
     mySwitch3.shadowColor = UIColor.blackColor()
     
+    // Text Switch example
+    let size = CGSize (width: 200, height: 50)
+    let frame = CGRect(origin: CGPoint.zeroPoint, size: size)
+    let myTextSwitch = SevenSwitch(frame: frame)
+    myTextSwitch.center = CGPointMake(self.view.bounds.size.width * 0.5, self.view.bounds.size.height * 0.5 + 180)
+    myTextSwitch.addTarget(self, action: "switchChanged:", forControlEvents: UIControlEvents.ValueChanged)
+    self.view.addSubview(myTextSwitch)
     
-    let textSwitch = SevenSwitch(frame: CGRect(x: 20, y: 400, width: 250, height: 50))
-    textSwitch.center = CGPoint(x: self.view.bounds.size.width * 0.5, y: 416)
-    view.addSubview(textSwitch)
-    textSwitch.knobText = "KAMPANJEKLAR"
-    textSwitch.knobMargin = 5.0
-    textSwitch.inactiveColor = UIColor.whiteColor()
-    textSwitch.layoutSubviews()
-    
-    
-    let nextSwitch = SevenSwitch(frame: CGRect(x: 20, y: 400, width: 250, height: 100))
-    nextSwitch.center = CGPoint(x: self.view.bounds.size.width * 0.5, y: 500)
-    view.addSubview(nextSwitch)
-    //nextSwitch.knobText = "KAMPANJEKLAR"
-    nextSwitch.knobMargin = 10.0
-    nextSwitch.inactiveColor = UIColor.whiteColor()
-        nextSwitch.layoutSubviews()
+    myTextSwitch.knobText = "TEXTSWITCH"
+    myTextSwitch.knobMargin = 5.0
   }
   
   func switchChanged(sender: SevenSwitch) {
     println("Changed value to: \(sender.on)")
   }
-  
 }

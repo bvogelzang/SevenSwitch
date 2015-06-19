@@ -58,12 +58,14 @@ class ViewController: UIViewController {
     let size = CGSize (width: 200, height: 50)
     let frame = CGRect(origin: CGPoint.zeroPoint, size: size)
     let myTextSwitch = SevenSwitch(frame: frame)
-    myTextSwitch.center = CGPointMake(self.view.bounds.size.width * 0.5, self.view.bounds.size.height * 0.5 + 180)
+    myTextSwitch.center = CGPointMake(self.view.bounds.size.width * 0.5, self.view.bounds.size.height * 0.5 + 150)
     myTextSwitch.addTarget(self, action: "switchChanged:", forControlEvents: UIControlEvents.ValueChanged)
     self.view.addSubview(myTextSwitch)
     
+    // Customizations
     myTextSwitch.knobText = "TEXTSWITCH"
     myTextSwitch.knobMargin = 5.0
+    myTextSwitch.backgroundView.layer.borderWidth = 5.0
   }
   
   func switchChanged(sender: SevenSwitch) {

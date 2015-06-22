@@ -506,9 +506,9 @@ let uiswitchFrame = CGRect(x: 0, y: 0, width: 51, height: 31)
                 }
                 else {
                     self.thumbView.frame = CGRectMake(self.bounds.size.width - (normalKnobWidth + self.knobMargin), self.thumbView.frame.origin.y, normalKnobWidth, self.thumbView.frame.size.height)
+                    self.textLabel.textColor = self.onTextColor
                 }
                 
-                self.textLabel.textColor = self.onTextColor
                 self.backgroundView.backgroundColor = self.onTintColor
                 self.backgroundView.layer.borderColor = self.onTintColor.CGColor
                 self.thumbView.backgroundColor = self.onThumbTintColor
@@ -525,10 +525,10 @@ let uiswitchFrame = CGRect(x: 0, y: 0, width: 51, height: 31)
                 thumbView.frame = CGRectMake(self.bounds.size.width - (activeKnobWidth + knobMargin), thumbView.frame.origin.y, activeKnobWidth, thumbView.frame.size.height)
             }
             else {
+                self.textLabel.textColor = self.onTextColor
                 thumbView.frame = CGRectMake(self.bounds.size.width - (normalKnobWidth + knobMargin), thumbView.frame.origin.y, normalKnobWidth, thumbView.frame.size.height)
             }
             
-            textLabel.textColor = onTextColor
             backgroundView.backgroundColor = self.onTintColor
             backgroundView.layer.borderColor = self.onTintColor.CGColor
             thumbView.backgroundColor = self.onThumbTintColor
@@ -559,9 +559,8 @@ let uiswitchFrame = CGRect(x: 0, y: 0, width: 51, height: 31)
                 else {
                     self.thumbView.frame = CGRectMake(self.knobMargin, self.thumbView.frame.origin.y, normalKnobWidth, self.thumbView.frame.size.height);
                     self.backgroundView.backgroundColor = self.inactiveColor
+                    self.textLabel.textColor = self.offTextColor
                 }
-                
-                self.textLabel.textColor = self.offTextColor
                 self.backgroundView.layer.borderColor = self.borderColor.CGColor
                 self.thumbView.backgroundColor = self.thumbTintColor
                 self.onImageView.alpha = 0

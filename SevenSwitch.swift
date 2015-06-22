@@ -119,6 +119,30 @@ let uiswitchFrame = CGRect(x: 0, y: 0, width: 51, height: 31)
     }
     
     /*
+    *	Sets the text color when the switch is on.
+    *   Defaults to gray.
+    */
+    @IBInspectable public var onTextColor: UIColor = .grayColor() {
+        willSet {
+            if self.on && !self.tracking {
+                textLabel.textColor = newValue
+            }
+        }
+    }
+    
+    /*
+    *	Sets the text color when the switch is off.
+    *   Defaults to gray.
+    */
+    @IBInspectable public var offTextColor: UIColor = .grayColor() {
+        willSet {
+            if !self.on && !self.tracking {
+                textLabel.textColor = newValue
+            }
+        }
+    }
+    
+    /*
     *	Sets the shadow color of the knob. Defaults to gray.
     */
     @IBInspectable public var shadowColor: UIColor = UIColor.grayColor() {
@@ -302,7 +326,7 @@ let uiswitchFrame = CGRect(x: 0, y: 0, width: 51, height: 31)
         backgroundView.addSubview(offLabel)
 
         textLabel = UILabel()
-        textLabel.textColor = .grayColor()
+        textLabel.textColor = offTextColor
         textLabel.font = .systemFontOfSize(12)
         
         // thumb
@@ -484,6 +508,7 @@ let uiswitchFrame = CGRect(x: 0, y: 0, width: 51, height: 31)
                     self.thumbView.frame = CGRectMake(self.bounds.size.width - (normalKnobWidth + self.knobMargin), self.thumbView.frame.origin.y, normalKnobWidth, self.thumbView.frame.size.height)
                 }
                 
+                self.textLabel.textColor = self.onTextColor
                 self.backgroundView.backgroundColor = self.onTintColor
                 self.backgroundView.layer.borderColor = self.onTintColor.CGColor
                 self.thumbView.backgroundColor = self.onThumbTintColor
@@ -503,6 +528,7 @@ let uiswitchFrame = CGRect(x: 0, y: 0, width: 51, height: 31)
                 thumbView.frame = CGRectMake(self.bounds.size.width - (normalKnobWidth + knobMargin), thumbView.frame.origin.y, normalKnobWidth, thumbView.frame.size.height)
             }
             
+            textLabel.textColor = onTextColor
             backgroundView.backgroundColor = self.onTintColor
             backgroundView.layer.borderColor = self.onTintColor.CGColor
             thumbView.backgroundColor = self.onThumbTintColor
@@ -535,6 +561,7 @@ let uiswitchFrame = CGRect(x: 0, y: 0, width: 51, height: 31)
                     self.backgroundView.backgroundColor = self.inactiveColor
                 }
                 
+                self.textLabel.textColor = self.offTextColor
                 self.backgroundView.layer.borderColor = self.borderColor.CGColor
                 self.thumbView.backgroundColor = self.thumbTintColor
                 self.onImageView.alpha = 0
@@ -555,6 +582,7 @@ let uiswitchFrame = CGRect(x: 0, y: 0, width: 51, height: 31)
                 thumbView.frame = CGRectMake(self.knobMargin, thumbView.frame.origin.y, normalKnobWidth, thumbView.frame.size.height)
                 backgroundView.backgroundColor = self.inactiveColor
             }
+            textLabel.textColor = offTextColor
             backgroundView.layer.borderColor = self.borderColor.CGColor
             thumbView.backgroundColor = self.thumbTintColor
             onImageView.alpha = 0

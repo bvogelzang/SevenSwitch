@@ -55,7 +55,7 @@ class ViewController: UIViewController {
     mySwitch3.shadowColor = UIColor.blackColor()
     
     // Text Switch example
-    let size = CGSize (width: 200, height: 50)
+    let size = CGSize (width: 247, height: 50)
     let frame = CGRect(origin: CGPoint.zeroPoint, size: size)
     let myTextSwitch = SevenSwitch(frame: frame)
     myTextSwitch.center = CGPointMake(self.view.bounds.size.width * 0.5, self.view.bounds.size.height * 0.5 + 150)
@@ -64,8 +64,11 @@ class ViewController: UIViewController {
     
     // Customizations
     myTextSwitch.knobText = "TEXTSWITCH"
+    myTextSwitch.onTextColor = UIColor(red: 52/255.0, green: 224/255.0, blue: 183/255.0, alpha: 1)
+    myTextSwitch.offTextColor = UIColor(red: 176/255.0, green: 182/255.0, blue: 193/255.0, alpha: 1)
+    myTextSwitch.onTintColor = UIColor(red: 52/255.0, green: 224/255.0, blue: 183/255.0, alpha: 1)
     myTextSwitch.knobMargin = 5.0
-    myTextSwitch.backgroundView.layer.borderWidth = 5.0
+    myTextSwitch.backgroundView.layer.borderWidth = 1.0
   }
   
   func switchChanged(sender: SevenSwitch) {

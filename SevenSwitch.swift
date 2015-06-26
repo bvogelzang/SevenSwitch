@@ -439,6 +439,8 @@ let uiswitchFrame = CGRect(x: 0, y: 0, width: 51, height: 31)
         if !isAnimating {
             let frame = self.frame
             
+            recalculateKnobSize()
+            
             // background
             backgroundView.frame = CGRectMake(0, 0, frame.size.width, frame.size.height)
             backgroundView.layer.cornerRadius = self.isRounded ? frame.size.height * 0.5 : 2
@@ -466,6 +468,11 @@ let uiswitchFrame = CGRect(x: 0, y: 0, width: 51, height: 31)
             center.x = center.x - knobMargin
             textLabel.center = center
         }
+    }
+    
+    func recalculateKnobSize () {
+        knobSize.width = textLabel.frame.size.width + self.frame.height - knobMargin
+        knobSize.height = self.frame.height - knobMargin * 2
     }
     
     /*

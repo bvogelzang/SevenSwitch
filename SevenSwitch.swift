@@ -247,7 +247,7 @@ let uiswitchFrame = CGRect(x: 0, y: 0, width: 51, height: 31)
 
     // internal
     public var backgroundView: UIView!
-    internal var thumbView: UIView!
+    public var thumbView: UIView!
     internal var onImageView: UIImageView!
     internal var offImageView: UIImageView!
     internal var thumbImageView: UIImageView!

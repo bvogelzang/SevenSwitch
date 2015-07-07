@@ -382,25 +382,27 @@ let uiswitchFrame = CGRect(x: 0, y: 0, width: 51, height: 31)
     
     override public func continueTrackingWithTouch(touch: UITouch, withEvent event: UIEvent) -> Bool {
         super.continueTrackingWithTouch(touch, withEvent: event)
-        
-        // Get touch location
-        let lastPoint = touch.locationInView(self)
-        
-        // update the switch to the correct visuals depending on if
-        // they moved their touch to the right or left side of the switch
-        if lastPoint.x > self.bounds.size.width * 0.5 {
-            self.showOn(true)
-            if !startTrackingValue {
-                didChangeWhileTracking = true
-            }
-        }
-        else {
-            self.showOff(true)
-            if startTrackingValue {
-                didChangeWhileTracking = true
-            }
-        }
 
+        if !isAnimating {
+
+            // Get touch location
+            let lastPoint = touch.locationInView(self)
+
+            // update the switch to the correct visuals depending on if
+            // they moved their touch to the right or left side of the switch
+            if lastPoint.x > self.bounds.size.width * 0.5 {
+                self.showOn(true)
+                if !startTrackingValue {
+                    didChangeWhileTracking = true
+                }
+            }
+            else {
+                self.showOff(true)
+                if startTrackingValue {
+                    didChangeWhileTracking = true
+                }
+            }
+        }
         return true
     }
     

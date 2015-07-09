@@ -432,7 +432,8 @@ import QuartzCore
                 else {
                     self.thumbView.frame = CGRectMake(self.bounds.size.width - (normalKnobWidth + 1), self.thumbView.frame.origin.y, normalKnobWidth, self.thumbView.frame.size.height)
                 }
-                
+
+                self.thumbImageView.tintColor = self.onTintColor
                 self.backgroundView.backgroundColor = self.onTintColor
                 self.backgroundView.layer.borderColor = self.onTintColor.CGColor
                 self.thumbView.backgroundColor = self.onThumbTintColor
@@ -451,7 +452,8 @@ import QuartzCore
             else {
                 thumbView.frame = CGRectMake(self.bounds.size.width - (normalKnobWidth + 1), thumbView.frame.origin.y, normalKnobWidth, thumbView.frame.size.height)
             }
-            
+
+            thumbImageView.tintColor = self.onTintColor
             backgroundView.backgroundColor = self.onTintColor
             backgroundView.layer.borderColor = self.onTintColor.CGColor
             thumbView.backgroundColor = self.onThumbTintColor
@@ -482,6 +484,7 @@ import QuartzCore
                 else {
                     self.thumbView.frame = CGRectMake(1, self.thumbView.frame.origin.y, normalKnobWidth, self.thumbView.frame.size.height);
                     self.backgroundView.backgroundColor = self.inactiveColor
+                    self.thumbImageView.tintColor = self.inactiveColor
                 }
                 
                 self.backgroundView.layer.borderColor = self.borderColor.CGColor
@@ -503,6 +506,7 @@ import QuartzCore
             else {
                 thumbView.frame = CGRectMake(1, thumbView.frame.origin.y, normalKnobWidth, thumbView.frame.size.height)
                 backgroundView.backgroundColor = self.inactiveColor
+                thumbImageView.tintColor = self.inactiveColor
             }
             backgroundView.layer.borderColor = self.borderColor.CGColor
             thumbView.backgroundColor = self.thumbTintColor

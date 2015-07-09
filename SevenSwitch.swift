@@ -442,7 +442,8 @@ import QuartzCore
                 else {
                     self.thumbView.frame = CGRect(x: self.bounds.size.width - (normalKnobWidth + 1), y: self.thumbView.frame.origin.y, width: normalKnobWidth, height: self.thumbView.frame.size.height)
                 }
-                
+
+                self.thumbImageView.tintColor = self.onTintColor
                 self.backgroundView.backgroundColor = self.onTintColor
                 self.backgroundView.layer.borderColor = self.onTintColor.cgColor
                 self.thumbView.backgroundColor = self.onThumbTintColor
@@ -468,7 +469,8 @@ import QuartzCore
             else {
                 thumbView.frame = CGRect(x: self.bounds.size.width - (normalKnobWidth + 1), y: thumbView.frame.origin.y, width: normalKnobWidth, height: thumbView.frame.size.height)
             }
-            
+
+            thumbImageView.tintColor = self.onTintColor
             backgroundView.backgroundColor = self.onTintColor
             backgroundView.layer.borderColor = self.onTintColor.cgColor
             thumbView.backgroundColor = self.onThumbTintColor
@@ -499,6 +501,7 @@ import QuartzCore
                 else {
                     self.thumbView.frame = CGRect(x: 1, y: self.thumbView.frame.origin.y, width: normalKnobWidth, height: self.thumbView.frame.size.height);
                     self.backgroundView.backgroundColor = self.inactiveColor
+                    self.thumbImageView.tintColor = self.inactiveColor
                 }
                 
                 self.backgroundView.layer.borderColor = self.borderColor.cgColor
@@ -527,6 +530,7 @@ import QuartzCore
             else {
                 thumbView.frame = CGRect(x: 1, y: thumbView.frame.origin.y, width: normalKnobWidth, height: thumbView.frame.size.height)
                 backgroundView.backgroundColor = self.inactiveColor
+                thumbImageView.tintColor = self.inactiveColor
             }
             backgroundView.layer.borderColor = self.borderColor.cgColor
             thumbView.backgroundColor = self.thumbTintColor

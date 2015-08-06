@@ -146,6 +146,18 @@ import QuartzCore
     }
     
     /*
+        Sets the top and bottom margin to get a thinner background view.
+        Defaults to 0.0.
+    */
+    @IBInspectable public var verticalMargin:CGFloat = 0.0 {
+        willSet {
+            backgroundView.frame.origin.y = newValue
+            backgroundView.frame.size.height = frame.size.height - 2 * newValue
+            backgroundView.layer.cornerRadius = self.isRounded ? (frame.size.height - 2*newValue) * 0.5 : 2
+        }
+    }
+    
+    /*
     *   Sets the image that shows on the switch thumb.
     */
     @IBInspectable public var thumbImage: UIImage! {
@@ -371,8 +383,13 @@ import QuartzCore
             let frame = self.frame
             
             // background
-            backgroundView.frame = CGRectMake(0, 0, frame.size.width, frame.size.height)
-            backgroundView.layer.cornerRadius = self.isRounded ? frame.size.height * 0.5 : 2
+            if verticalMargin > 0 {
+                backgroundView.frame = CGRectMake(1, verticalMargin, frame.size.width - 2, frame.size.height - 2*verticalMargin)
+            } else {
+                backgroundView.frame = CGRectMake(0, 0, frame.size.width, frame.size.height)
+            }
+
+            backgroundView.layer.cornerRadius = self.isRounded ? (frame.size.height - 2*verticalMargin) * 0.5 : 2
             
             // images
             onImageView.frame = CGRectMake(0, 0, frame.size.width - frame.size.height, frame.size.height)

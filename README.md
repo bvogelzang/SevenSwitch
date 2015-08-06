@@ -73,6 +73,12 @@ You can turn off the rounded look by setting the `isRounded` property to `NO`
 mySwitch.isRounded = false
 ```
 
+You can make the background thin by setting the 'verticalMargin' property to a positive `CGFloat`
+
+```
+mySwitch.verticalMargin = 8.0
+```
+
 ## Swift and Objective-C compatability
 
 SevenSwitch uses Swift as of its 2.0 release. SevenSwitch.swift can be used in Objective-C. See [ViewController.m](SevenSwitchExample/SevenSwitchExample/ViewController.m) for an example.

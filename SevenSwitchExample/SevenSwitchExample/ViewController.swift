@@ -53,6 +53,15 @@ class ViewController: UIViewController {
         mySwitch3.onTintColor =  UIColor(red: 0.45, green: 0.58, blue: 0.67, alpha: 1)
         mySwitch3.borderColor = UIColor.clearColor()
         mySwitch3.shadowColor = UIColor.blackColor()
+        
+        // Example of a thinner switch
+        let mySwitch4 = SevenSwitch(frame: CGRectMake(0, 0, 100, 25))
+        mySwitch4.center = CGPointMake(self.view.bounds.size.width * 0.5, self.view.bounds.size.height * 0.5 + 140)
+        mySwitch4.addTarget(self, action: "switchChanged:", forControlEvents: UIControlEvents.ValueChanged)
+        self.view.addSubview(mySwitch4)
+        
+        mySwitch4.thumbTintColor = UIColor(red: 0.20, green: 0.42, blue: 0.86, alpha: 1)
+        mySwitch4.verticalMargin = 8.0
     }
     
     func switchChanged(sender: SevenSwitch) {

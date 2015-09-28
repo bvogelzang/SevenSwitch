@@ -194,6 +194,7 @@ import QuartzCore
     internal var onImageView: UIImageView!
     internal var offImageView: UIImageView!
     internal var thumbImageView: UIImageView!
+
     // private
     private var currentVisualValue: Bool = false
     private var startTrackingValue: Bool = false
@@ -205,8 +206,10 @@ import QuartzCore
     /*
     *   Initialization
     */
-    public convenience init() {
+    convenience public init() {
         self.init(frame: CGRectMake(0, 0, 50, 30))
+
+        self.setup()
     }
     
     required public init?(coder aDecoder: NSCoder) {

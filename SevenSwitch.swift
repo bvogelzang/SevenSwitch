@@ -25,9 +25,22 @@
 import UIKit
 import QuartzCore
 
+@objc protocol SevenSwitchDelegate {
+    
+    /*
+    * Notifies the delegate, that switch animation has completed.
+    */
+    func didFinishAnimating()
+}
+
 @IBDesignable @objc public class SevenSwitch: UIControl {
     
     // public
+    
+    /*
+    * Delegate object, that is going to be notified when switch animation is completed.
+    */
+    var delegate: AnyObject?
     
     /*
     *   Set (without animation) whether the switch is on or off
@@ -442,6 +455,7 @@ import QuartzCore
                 self.offLabel.alpha = 0
             }, completion: { finished in
                 self.isAnimating = false
+                self.notifyDelegate()
             })
         }
         else {
@@ -493,6 +507,7 @@ import QuartzCore
                 
             }, completion: { finished in
                 self.isAnimating = false
+                self.notifyDelegate()
             })
         }
         else {
@@ -515,5 +530,15 @@ import QuartzCore
         currentVisualValue = false
     }
     
+    func notifyDelegate() {
+        let selector: Selector = "didFinishAnimating"
+        if delegate != nil {
+            if delegate!.respondsToSelector(selector) {
+                dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                    delegate!.performSelector(selector)
+                })
+            }
+        }
+    }
     
 }

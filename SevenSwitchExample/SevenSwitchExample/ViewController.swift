@@ -56,6 +56,6 @@ class ViewController: UIViewController {
     }
     
     func switchChanged(sender: SevenSwitch) {
-        println("Changed value to: \(sender.on)")
+        print("Changed value to: \(sender.on)")
     }
 }

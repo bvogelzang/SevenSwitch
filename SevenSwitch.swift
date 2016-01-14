@@ -180,19 +180,91 @@ import QuartzCore
     *	Sets the text that shows when the switch is on.
     *   The text is centered in the area not covered by the knob.
     */
-    public var onLabel: UILabel!
+    @IBInspectable public var onText: String! {
+        willSet {
+            onLabel.text = newValue
+        }
+    }
     
+    /*
+    *	Sets the text color of onLabel. Defaults to black.
+    */
+    @IBInspectable public var onTextColor: UIColor = UIColor.blackColor() {
+        willSet {
+            onLabel.textColor = newValue
+        }
+    }
+    
+    /*
+    *	Sets the text size of onLabel. Defaults to UIFont.labelFontSize
+    */
+    @IBInspectable public var onTextSize: CGFloat = UIFont.labelFontSize() {
+        willSet {
+            onLabel.font = UIFont(name: onLabel.font.fontName, size: newValue)
+        }
+    }
+    
+    /*
+    *   Set whether the text style is bold(on) or not(off). Defaults to not bold
+    */
+    @IBInspectable public var onTextIsBold: Bool = false {
+        willSet(isBold) {
+            if isBold {
+                onLabel.font = UIFont.boldSystemFontOfSize(onLabel.font.pointSize)
+            } else {
+                onLabel.font = UIFont(name: onLabel.font.fontName, size: onLabel.font.pointSize)
+            }
+        }
+    }
+
     /*
     *	Sets the text that shows when the switch is off.
     *   The text is centered in the area not covered by the knob.
     */
-    public var offLabel: UILabel!
+    @IBInspectable public var offText: String! {
+        willSet {
+            offLabel.text = newValue
+        }
+    }
+    
+    /*
+    *	Sets the text color of offLabel. Defaults to black.
+    */
+    @IBInspectable public var offTextColor: UIColor = UIColor.blackColor() {
+        willSet {
+            offLabel.textColor = newValue
+        }
+    }
+    
+    /*
+    *	Sets the text size of offLabel. Defaults to UIFont.labelFontSize
+    */
+    @IBInspectable public var offTextSize: CGFloat = UIFont.labelFontSize() {
+        willSet {
+            offLabel.font = UIFont(name: offLabel.font.fontName, size: newValue)
+        }
+    }
+    
+    /*
+    *   Set whether the text style is bold(on) or not(off). Defaults to not bold
+    */
+    @IBInspectable public var offTextIsBold: Bool = false {
+        willSet(isBold) {
+            if isBold {
+                offLabel.font = UIFont.boldSystemFontOfSize(offLabel.font.pointSize)
+            } else {
+                offLabel.font = UIFont(name: offLabel.font.fontName, size: offLabel.font.pointSize)
+            }
+        }
+    }
     
     // internal
     internal var backgroundView: UIView!
     internal var thumbView: UIView!
     internal var onImageView: UIImageView!
+    internal var onLabel: UILabel!
     internal var offImageView: UIImageView!
+    internal var offLabel: UILabel!
     internal var thumbImageView: UIImageView!
     // private
     private var currentVisualValue: Bool = false

@@ -193,7 +193,7 @@ import QuartzCore
     internal var thumbView: UIView!
     internal var onImageView: UIImageView!
     internal var offImageView: UIImageView!
-    internal var thumbImageView: UIImageView!
+    public var thumbImageView: UIImageView!
     // private
     private var currentVisualValue: Bool = false
     private var startTrackingValue: Bool = false

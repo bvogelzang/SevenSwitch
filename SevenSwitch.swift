@@ -376,20 +376,26 @@ import QuartzCore
             
             // images
             onImageView.frame = CGRectMake(0, 0, frame.size.width - frame.size.height, frame.size.height)
+            onLabel.frame = onImageView.frame
             offImageView.frame = CGRectMake(frame.size.height, 0, frame.size.width - frame.size.height, frame.size.height)
+            offLabel.frame = offImageView.frame
             self.onLabel.frame = CGRectMake(0, 0, frame.size.width - frame.size.height, frame.size.height)
             self.offLabel.frame = CGRectMake(frame.size.height, 0, frame.size.width - frame.size.height, frame.size.height)
             
             // thumb
-            let normalKnobWidth = frame.size.height - 2
+            let normalKnobDiameter = frame.size.height - 2
             if self.on {
-                thumbView.frame = CGRectMake(frame.size.width - (normalKnobWidth + 1), 1, frame.size.height - 2, normalKnobWidth)
+                thumbView.frame = CGRectMake(frame.size.width - (normalKnobDiameter + 1), 1, normalKnobDiameter, normalKnobDiameter)
+                thumbImageView.frame = CGRectMake(frame.size.width - normalKnobDiameter, 0, normalKnobDiameter, normalKnobDiameter)
             }
             else {
-                thumbView.frame = CGRectMake(1, 1, normalKnobWidth, normalKnobWidth)
+                thumbView.frame = CGRectMake(1, 1, normalKnobDiameter, normalKnobDiameter)
+                thumbImageView.frame = CGRectMake(0, 0, normalKnobDiameter, normalKnobDiameter)
             }
             
             thumbView.layer.cornerRadius = self.isRounded ? (frame.size.height * 0.5) - 1 : 2
+            thumbView.layer.shadowPath = UIBezierPath(roundedRect: thumbView.bounds, cornerRadius: thumbView.layer.cornerRadius).CGPath
+            
         }
     }
     

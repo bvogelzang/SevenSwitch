@@ -308,6 +308,13 @@ import QuartzCore
                 self.isAnimating = false
         })
         
+        let shadowAnim = CABasicAnimation(keyPath: "shadowPath")
+        shadowAnim.duration = 0.3
+        shadowAnim.fromValue = thumbView.layer.shadowPath
+        shadowAnim.toValue = UIBezierPath(roundedRect: thumbView.bounds, cornerRadius: thumbView.layer.cornerRadius).cgPath
+        thumbView.layer.add(shadowAnim, forKey: "shadowPath")
+        thumbView.layer.shadowPath = UIBezierPath(roundedRect: thumbView.bounds, cornerRadius: thumbView.layer.cornerRadius).cgPath
+        
         return true
     }
     
@@ -446,6 +453,13 @@ import QuartzCore
             }, completion: { finished in
                 self.isAnimating = false
             })
+            
+            let shadowAnim = CABasicAnimation(keyPath: "shadowPath")
+            shadowAnim.duration = 0.3
+            shadowAnim.fromValue = thumbView.layer.shadowPath
+            shadowAnim.toValue = UIBezierPath(roundedRect: thumbView.bounds, cornerRadius: thumbView.layer.cornerRadius).cgPath
+            thumbView.layer.add(shadowAnim, forKey: "shadowPath")
+            thumbView.layer.shadowPath = UIBezierPath(roundedRect: thumbView.bounds, cornerRadius: thumbView.layer.cornerRadius).cgPath
         }
         else {
             if self.isTracking {
@@ -497,6 +511,13 @@ import QuartzCore
             }, completion: { finished in
                 self.isAnimating = false
             })
+            
+            let shadowAnim = CABasicAnimation(keyPath: "shadowPath")
+            shadowAnim.duration = 0.3
+            shadowAnim.fromValue = thumbView.layer.shadowPath
+            shadowAnim.toValue = UIBezierPath(roundedRect: thumbView.bounds, cornerRadius: thumbView.layer.cornerRadius).cgPath
+            thumbView.layer.add(shadowAnim, forKey: "shadowPath")
+            thumbView.layer.shadowPath = UIBezierPath(roundedRect: thumbView.bounds, cornerRadius: thumbView.layer.cornerRadius).cgPath
         }
         else {
             if (self.isTracking) {

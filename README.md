@@ -29,10 +29,10 @@ let mySwitch = SevenSwitch()
 self.view.addSubview(mySwitch)
 ```
 
-When the user manipulates the switch control ("flips" it) a `UIControlEvent.ValueChanged` event is generated.
+When the user manipulates the switch control ("flips" it) a `UIControlEvents.valueChanged` event is generated.
 
 ```swift
-mySwitch.addTarget(self, action: "switchChanged:", forControlEvents: UIControlEvents.ValueChanged)
+mySwitch.addTarget(self, action: #selector(ViewController.switchChanged(_:)), for: UIControlEvents.valueChanged)
 ```
 
 You can set images for the on/off states
@@ -57,17 +57,17 @@ mySwitch.thumbTintColor = UIColor(red: 0.19, green: 0.23, blue: 0.33, alpha: 1)
 mySwitch.activeColor =  UIColor(red: 0.07, green: 0.09, blue: 0.11, alpha: 1)
 mySwitch.inactiveColor =  UIColor(red: 0.07, green: 0.09, blue: 0.11, alpha: 1)
 mySwitch.onTintColor =  UIColor(red: 0.45, green: 0.58, blue: 0.67, alpha: 1)
-mySwitch.borderColor = UIColor.clearColor()
-mySwitch.shadowColor = UIColor.blackColor()
+mySwitch.borderColor = UIColor.clear
+mySwitch.shadowColor = UIColor.black
 ```
 
 You can resize the switch frame to whatever you like to make fatter/skinnier controls
 
 ```swift
-mySwitch.frame = CGRectMake(0, 0, 100, 50)
+mySwitch.frame = CGRect(x: 0, y: 0, width: 100, height: 50)
 ```
 
-You can turn off the rounded look by setting the `isRounded` property to `NO`
+You can turn off the rounded look by setting the `isRounded` property to `false`
 
 ```swift
 mySwitch.isRounded = false
@@ -79,7 +79,7 @@ SevenSwitch uses Swift as of its 2.0 release. SevenSwitch.swift can be used in O
 
 ## Requirements
 
-SevenSwitch requires iOS 5.0 and above.
+SevenSwitch requires iOS 8.0 and above.
 
 #### ARC
 

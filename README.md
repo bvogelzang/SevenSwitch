@@ -11,7 +11,7 @@ iOS7 style drop in replacement for UISwitch
 ### Cocoapods
 
 ```
-pod 'SevenSwitch', '~> 2.0'
+pod 'SevenSwitch', '~> 2.1'
 ```
 
 *Swift support was added in version `2.0`. If your project does not support swift you can use `1.4`.*

@@ -1,6 +1,6 @@
 {
   "name": "SevenSwitch",
-  "version": "2.0.0",
+  "version": "2.1.0",
   "summary": "iOS7 style drop in replacement for UISwitch.",
   "homepage": "https://github.com/bvogelzang/SevenSwitch",
   "screenshots": [
@@ -16,7 +16,7 @@
   },
   "source": {
     "git": "https://github.com/bvogelzang/SevenSwitch.git",
-    "tag": "2.0.0"
+    "tag": "2.1.0"
   },
   "platforms": {
     "ios": "8.0"

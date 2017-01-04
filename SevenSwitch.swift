@@ -203,7 +203,7 @@ import QuartzCore
     fileprivate var userDidSpecifyOnThumbTintColor: Bool = false
     fileprivate var switchValue: Bool = false {
         willSet {
-            if newValue != switchValue {
+            if newValue != switchValue || thumbImageView.image == nil {
                 thumbImageView.image = newValue ? thumbOnImage : thumbOffImage
             }
         }

@@ -33,7 +33,10 @@ class ViewController: UIViewController {
         mySwitch2.addTarget(self, action: #selector(ViewController.switchChanged(_:)), for: UIControlEvents.valueChanged)
         mySwitch2.offImage = UIImage(named: "cross.png")
         mySwitch2.onImage = UIImage(named: "check.png")
+        mySwitch2.thumbOnImage = UIImage(named: "check.png")
+        mySwitch2.thumbOffImage = UIImage(named: "cross.png")
         mySwitch2.onTintColor = UIColor(hue: 0.08, saturation: 0.74, brightness: 1.00, alpha: 1.00)
+        mySwitch2.thumbTintColor = .yellow
         mySwitch2.isRounded = false
         self.view.addSubview(mySwitch2)
         

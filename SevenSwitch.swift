@@ -146,13 +146,14 @@ import QuartzCore
     }
     
     /*
-    *   Sets the image that shows on the switch thumb.
+    *   Sets the image that shows on the switch thumb when it On.
     */
-    @IBInspectable open var thumbImage: UIImage! {
-        willSet {
-            thumbImageView.image = newValue
-        }
-    }
+    @IBInspectable open var thumbOnImage: UIImage!
+    
+    /*
+     *   Sets the image that shows on the switch thumb when it Off.
+     */
+    @IBInspectable open var thumbOffImage: UIImage!
     
     /*
     *   Sets the image that shows when the switch is on.
@@ -200,7 +201,13 @@ import QuartzCore
     fileprivate var didChangeWhileTracking: Bool = false
     fileprivate var isAnimating: Bool = false
     fileprivate var userDidSpecifyOnThumbTintColor: Bool = false
-    fileprivate var switchValue: Bool = false
+    fileprivate var switchValue: Bool = false {
+        willSet {
+            if newValue != switchValue || thumbImageView.image == nil {
+                thumbImageView.image = newValue ? thumbOnImage ?? thumbOffImage : thumbOffImage ?? thumbOnImage
+            }
+        }
+    }
     
     /*
     *   Initialization

@@ -204,7 +204,7 @@ import QuartzCore
     fileprivate var switchValue: Bool = false {
         willSet {
             if newValue != switchValue || thumbImageView.image == nil {
-                thumbImageView.image = newValue ? thumbOnImage : thumbOffImage
+                thumbImageView.image = newValue ? thumbOnImage ?? thumbOffImage : thumbOffImage ?? thumbOnImage
             }
         }
     }

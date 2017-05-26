@@ -80,6 +80,17 @@ import QuartzCore
     }
     
     /*
+     *   Sets the border color that shows when the switch is on. Defaults to clear.
+     */
+    @IBInspectable open var onBorderColor: UIColor = UIColor.clear {
+        willSet {
+            if self.on {
+                backgroundView.layer.borderColor = newValue.cgColor
+            }
+        }
+    }
+
+    /*
     *   Sets the border color that shows when the switch is off. Defaults to light gray.
     */
     @IBInspectable open var borderColor: UIColor = UIColor(red: 0.78, green: 0.78, blue: 0.8, alpha: 1) {
@@ -444,7 +455,7 @@ import QuartzCore
                 }
                 
                 self.backgroundView.backgroundColor = self.onTintColor
-                self.backgroundView.layer.borderColor = self.onTintColor.cgColor
+                self.backgroundView.layer.borderColor = self.onBorderColor.cgColor
                 self.thumbView.backgroundColor = self.onThumbTintColor
                 self.onImageView.alpha = 1.0
                 self.offImageView.alpha = 0
@@ -470,7 +481,7 @@ import QuartzCore
             }
             
             backgroundView.backgroundColor = self.onTintColor
-            backgroundView.layer.borderColor = self.onTintColor.cgColor
+            backgroundView.layer.borderColor = self.onBorderColor.cgColor
             thumbView.backgroundColor = self.onThumbTintColor
             onImageView.alpha = 1.0
             offImageView.alpha = 0

@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SevenSwitch
 
 class ViewController: UIViewController {
     @IBOutlet var ibSwitch: SevenSwitch!
@@ -55,7 +56,7 @@ class ViewController: UIViewController {
         mySwitch3.shadowColor = UIColor.black
     }
     
-    func switchChanged(_ sender: SevenSwitch) {
+    @objc func switchChanged(_ sender: SevenSwitch) {
         print("Changed value to: \(sender.on)")
     }
 }

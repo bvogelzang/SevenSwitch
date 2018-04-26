@@ -16,7 +16,7 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         
         ibSwitch.onTintColor = UIColor(red: 0.20, green: 0.42, blue: 0.86, alpha: 1)
-        ibSwitch.on = true
+        ibSwitch.isOn = true
         
         // this will create the switch with default dimensions, you'll still need to set the position though
         // you also have the option to pass in a frame of any size you choose
@@ -26,7 +26,7 @@ class ViewController: UIViewController {
         self.view.addSubview(mySwitch)
 
         // turn the switch on
-        mySwitch.on = true
+        mySwitch.isOn = true
         
         // Example of a bigger switch with images
         let mySwitch2 = SevenSwitch(frame: CGRect(x: 0, y: 0, width: 100, height: 50))
@@ -57,6 +57,6 @@ class ViewController: UIViewController {
     }
     
     @objc func switchChanged(_ sender: SevenSwitch) {
-        print("Changed value to: \(sender.on)")
+        print("Changed value to: \(sender.isOn)")
     }
 }

@@ -32,7 +32,7 @@ import QuartzCore
     /*
     *   Set (without animation) whether the switch is on or off
     */
-    @IBInspectable open var on: Bool {
+    @IBInspectable open var isOn: Bool {
         get {
             return switchValue
         }

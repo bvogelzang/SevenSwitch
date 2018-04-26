@@ -11,7 +11,6 @@
 		692CBBDA20928A570092A786 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 692CBBCA20928A570092A786 /* ViewController.swift */; };
 		692CBBDB20928A570092A786 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 692CBBCB20928A570092A786 /* InfoPlist.strings */; };
 		692CBBDC20928A570092A786 /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 692CBBCD20928A570092A786 /* MainStoryboard.storyboard */; };
-		692CBBDE20928A570092A786 /* SevenSwitchExample-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 692CBBD020928A570092A786 /* SevenSwitchExample-Info.plist */; };
 		692CBBE320928A570092A786 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 692CBBD520928A570092A786 /* AppDelegate.swift */; };
 		692CBBE720928A670092A786 /* SevenSwitch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 692CBBE620928A670092A786 /* SevenSwitch.swift */; };
 		692CBBE920928AB40092A786 /* SevenSwitch.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 692CBBA92092450D0092A786 /* SevenSwitch.framework */; };
@@ -230,7 +229,6 @@
 			files = (
 				692CBBDC20928A570092A786 /* MainStoryboard.storyboard in Resources */,
 				692CBBED20928AF00092A786 /* Images.xcassets in Resources */,
-				692CBBDE20928A570092A786 /* SevenSwitchExample-Info.plist in Resources */,
 				692CBBF120928BD90092A786 /* LaunchScreen.storyboard in Resources */,
 				692CBBDB20928A570092A786 /* InfoPlist.strings in Resources */,
 			);
@@ -290,6 +288,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				APPLICATION_EXTENSION_API_ONLY = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -346,7 +345,6 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				INFOPLIST_FILE = SevenSwitch/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 11.3;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -372,6 +370,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				APPLICATION_EXTENSION_API_ONLY = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -422,7 +421,6 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				INFOPLIST_FILE = SevenSwitch/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 11.3;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -499,7 +497,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				INFOPLIST_FILE = "$(SRCROOT)/SevenSwitchExample/Supporting files/SevenSwitchExample-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 11.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -566,7 +564,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				INFOPLIST_FILE = "$(SRCROOT)/SevenSwitchExample/Supporting files/SevenSwitchExample-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 11.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -587,12 +585,14 @@
 		69C5A530209244A2009A8BE6 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 			};
 			name = Debug;
 		};
 		69C5A531209244A2009A8BE6 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 			};
 			name = Release;
 		};

@@ -41,6 +41,7 @@
 		692CBBE620928A670092A786 /* SevenSwitch.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SevenSwitch.swift; sourceTree = "<group>"; };
 		692CBBEC20928AF00092A786 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		692CBBF020928BD90092A786 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
+		692CBBF220928D110092A786 /* SevenSwitch.podspec.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = SevenSwitch.podspec.json; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -121,6 +122,7 @@
 		69C5A52B209244A2009A8BE6 = {
 			isa = PBXGroup;
 			children = (
+				692CBBF220928D110092A786 /* SevenSwitch.podspec.json */,
 				692CBBAB2092450D0092A786 /* SevenSwitch */,
 				692CBBC820928A570092A786 /* SevenSwitchExample */,
 				692CBBAA2092450D0092A786 /* Products */,

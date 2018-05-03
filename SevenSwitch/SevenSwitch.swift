@@ -282,6 +282,10 @@ import QuartzCore
         thumbView.addSubview(thumbImageView)
     
         self.isOn = false
+        
+        if #available(iOSApplicationExtension 9.0, *) {
+            addTarget(self, action: #selector(valueChanged), for: .valueChanged)
+        }
     }
     
     override open func beginTracking(_ touch: UITouch, with event: UIEvent?) -> Bool {
@@ -470,6 +474,12 @@ import QuartzCore
         }
         
         currentVisualValue = true
+    }
+    
+    @objc
+    @available(iOSApplicationExtension 9.0, *)
+    private func valueChanged() {
+        sendActions(for: .primaryActionTriggered)
     }
     
     /*

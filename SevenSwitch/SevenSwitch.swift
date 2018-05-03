@@ -32,7 +32,7 @@ import QuartzCore
     /*
     *   Set (without animation) whether the switch is on or off
     */
-    @IBInspectable open var on: Bool {
+    @IBInspectable open var isOn: Bool {
         get {
             return switchValue
         }
@@ -48,7 +48,7 @@ import QuartzCore
     */
     @IBInspectable open var activeColor: UIColor = UIColor(red: 0.89, green: 0.89, blue: 0.89, alpha: 1) {
         willSet {
-            if self.on && !self.isTracking {
+            if self.isOn && !self.isTracking {
                 backgroundView.backgroundColor = newValue
             }
         }
@@ -60,7 +60,7 @@ import QuartzCore
     */
     @IBInspectable open var inactiveColor: UIColor = UIColor.clear {
         willSet {
-            if !self.on && !self.isTracking {
+            if !self.isOn && !self.isTracking {
                 backgroundView.backgroundColor = newValue
             }
         }
@@ -72,7 +72,7 @@ import QuartzCore
     */
     @IBInspectable open var onTintColor: UIColor = UIColor(red: 0.3, green: 0.85, blue: 0.39, alpha: 1) {
         willSet {
-            if self.on && !self.isTracking {
+            if self.isOn && !self.isTracking {
                 backgroundView.backgroundColor = newValue
                 backgroundView.layer.borderColor = newValue.cgColor
             }
@@ -84,7 +84,7 @@ import QuartzCore
     */
     @IBInspectable open var borderColor: UIColor = UIColor(red: 0.78, green: 0.78, blue: 0.8, alpha: 1) {
         willSet {
-            if !self.on {
+            if !self.isOn {
                 backgroundView.layer.borderColor = newValue.cgColor
             }
         }
@@ -98,7 +98,7 @@ import QuartzCore
             if !userDidSpecifyOnThumbTintColor {
                 onThumbTintColor = newValue
             }
-            if (!userDidSpecifyOnThumbTintColor || !self.on) && !self.isTracking {
+            if (!userDidSpecifyOnThumbTintColor || !self.isOn) && !self.isTracking {
                 thumbView.backgroundColor = newValue
             }
         }
@@ -110,7 +110,7 @@ import QuartzCore
     @IBInspectable open var onThumbTintColor: UIColor = UIColor.white {
         willSet {
             userDidSpecifyOnThumbTintColor = true
-            if self.on && !self.isTracking {
+            if self.isOn && !self.isTracking {
                 thumbView.backgroundColor = newValue
             }
         }
@@ -281,20 +281,24 @@ import QuartzCore
         thumbImageView.autoresizingMask = UIViewAutoresizing.flexibleWidth
         thumbView.addSubview(thumbImageView)
     
-        self.on = false
+        self.isOn = false
+        
+        if #available(iOSApplicationExtension 9.0, *) {
+            addTarget(self, action: #selector(valueChanged), for: .valueChanged)
+        }
     }
     
     override open func beginTracking(_ touch: UITouch, with event: UIEvent?) -> Bool {
         super.beginTracking(touch, with: event)
         
-        startTrackingValue = self.on
+        startTrackingValue = self.isOn
         didChangeWhileTracking = false
         
         let activeKnobWidth = self.bounds.size.height - 2 + 5
         isAnimating = true
         
         UIView.animate(withDuration: 0.3, delay: 0.0, options: [UIViewAnimationOptions.curveEaseOut, UIViewAnimationOptions.beginFromCurrentState], animations: {
-                if self.on {
+                if self.isOn {
                     self.thumbView.frame = CGRect(x: self.bounds.size.width - (activeKnobWidth + 1), y: self.thumbView.frame.origin.y, width: activeKnobWidth, height: self.thumbView.frame.size.height)
                     self.backgroundView.backgroundColor = self.onTintColor
                     self.thumbView.backgroundColor = self.onThumbTintColor
@@ -345,16 +349,16 @@ import QuartzCore
     override open func endTracking(_ touch: UITouch?, with event: UIEvent?) {
         super.endTracking(touch, with: event)
 
-        let previousValue = self.on
+        let previousValue = self.isOn
 
         if didChangeWhileTracking {
             self.setOn(currentVisualValue, animated: true)
         }
         else {
-            self.setOn(!self.on, animated: true)
+            self.setOn(!self.isOn, animated: true)
         }
         
-        if previousValue != self.on {
+        if previousValue != self.isOn {
             self.sendActions(for: UIControlEvents.valueChanged)
         }
     }
@@ -363,7 +367,7 @@ import QuartzCore
         super.cancelTracking(with: event)
         
         // just animate back to the original value
-        if self.on {
+        if self.isOn {
             self.showOn(true)
         }
         else {
@@ -389,7 +393,7 @@ import QuartzCore
             
             // thumb
             let normalKnobWidth = frame.size.height - 2
-            if self.on {
+            if self.isOn {
                 thumbView.frame = CGRect(x: frame.size.width - (normalKnobWidth + 1), y: 1, width: frame.size.height - 2, height: normalKnobWidth)
                 thumbImageView.frame = CGRect(x: frame.size.width - normalKnobWidth, y: 0, width: normalKnobWidth, height: normalKnobWidth)
             }
@@ -409,21 +413,12 @@ import QuartzCore
     open func setOn(_ isOn: Bool, animated: Bool) {
         switchValue = isOn
         
-        if on {
+        if self.isOn {
             self.showOn(animated)
         }
         else {
             self.showOff(animated)
         }
-    }
-    
-    /*
-    *   Detects whether the switch is on or off
-    *
-    *	@return	BOOL YES if switch is on. NO if switch is off
-    */
-    open func isOn() -> Bool {
-        return self.on
     }
     
     /*
@@ -479,6 +474,12 @@ import QuartzCore
         }
         
         currentVisualValue = true
+    }
+    
+    @objc
+    @available(iOSApplicationExtension 9.0, *)
+    private func valueChanged() {
+        sendActions(for: .primaryActionTriggered)
     }
     
     /*

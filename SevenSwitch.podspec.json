@@ -21,7 +21,7 @@
   "platforms": {
     "ios": "8.0"
   },
-  "source_files": "SevenSwitch.swift",
+  "source_files": "SevenSwitch/SevenSwitch.swift",
   "exclude_files": "Classes/Exclude",
   "frameworks": [
     "UIKit",

@@ -21,7 +21,7 @@ class ViewController: UIViewController {
         // you also have the option to pass in a frame of any size you choose
         let mySwitch = SevenSwitch(frame: CGRect.zero)
         mySwitch.center = CGPoint(x: self.view.bounds.size.width * 0.5, y: self.view.bounds.size.height * 0.5)
-        mySwitch.addTarget(self, action: #selector(ViewController.switchChanged(_:)), for: UIControlEvents.valueChanged)
+        mySwitch.addTarget(self, action: #selector(ViewController.switchChanged(_:)), for: UIControl.Event.valueChanged)
         self.view.addSubview(mySwitch)
 
         // turn the switch on
@@ -30,7 +30,7 @@ class ViewController: UIViewController {
         // Example of a bigger switch with images
         let mySwitch2 = SevenSwitch(frame: CGRect(x: 0, y: 0, width: 100, height: 50))
         mySwitch2.center = CGPoint(x: self.view.bounds.size.width * 0.5, y: self.view.bounds.size.height * 0.5 - 80)
-        mySwitch2.addTarget(self, action: #selector(ViewController.switchChanged(_:)), for: UIControlEvents.valueChanged)
+        mySwitch2.addTarget(self, action: #selector(ViewController.switchChanged(_:)), for: UIControl.Event.valueChanged)
         mySwitch2.offImage = UIImage(named: "cross.png")
         mySwitch2.onImage = UIImage(named: "check.png")
         mySwitch2.onTintColor = UIColor(hue: 0.08, saturation: 0.74, brightness: 1.00, alpha: 1.00)
@@ -43,7 +43,7 @@ class ViewController: UIViewController {
         // Example of color customization
         let mySwitch3 = SevenSwitch(frame: CGRect.zero)
         mySwitch3.center = CGPoint(x: self.view.bounds.size.width * 0.5, y: self.view.bounds.size.height * 0.5 + 70)
-        mySwitch3.addTarget(self, action: #selector(ViewController.switchChanged(_:)), for: UIControlEvents.valueChanged)
+        mySwitch3.addTarget(self, action: #selector(ViewController.switchChanged(_:)), for: UIControl.Event.valueChanged)
         self.view.addSubview(mySwitch3)
         
         //self.view.backgroundColor = [UIColor colorWithRed:0.19f green:0.23f blue:0.33f alpha:1.00f];
@@ -55,7 +55,7 @@ class ViewController: UIViewController {
         mySwitch3.shadowColor = UIColor.black
     }
     
-    func switchChanged(_ sender: SevenSwitch) {
+    @objc func switchChanged(_ sender: SevenSwitch) {
         print("Changed value to: \(sender.on)")
     }
 }

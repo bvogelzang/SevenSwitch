@@ -2,11 +2,18 @@
 
 iOS7 style drop in replacement for UISwitch
 
+
 ![Animation](https://raw.github.com/bvogelzang/SevenSwitch/master/ExampleImages/example.gif)
 
 ![Default](https://raw.github.com/bvogelzang/SevenSwitch/master/ExampleImages/example.png)
 
 ## Usage
+
+### Carthage
+
+```
+github "bvogelzang/SevenSwitch" ~> 2.2
+```
 
 ### Cocoapods
 

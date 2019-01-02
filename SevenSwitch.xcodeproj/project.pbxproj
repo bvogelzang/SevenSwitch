@@ -7,13 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		190AB21B21DCD32D00034FE6 /* SevenSwitch.h in Headers */ = {isa = PBXBuildFile; fileRef = 190AB21921DCD32D00034FE6 /* SevenSwitch.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		190AB22221DCD7A600034FE6 /* SevenSwitch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 190AB22121DCD7A600034FE6 /* SevenSwitch.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		190AB21621DCD32D00034FE6 /* SevenSwitch.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SevenSwitch.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		190AB21921DCD32D00034FE6 /* SevenSwitch.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SevenSwitch.h; sourceTree = "<group>"; };
-		190AB21A21DCD32D00034FE6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		190AB22121DCD7A600034FE6 /* SevenSwitch.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SevenSwitch.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -30,7 +29,7 @@
 		190AB20C21DCD32D00034FE6 = {
 			isa = PBXGroup;
 			children = (
-				190AB21821DCD32D00034FE6 /* SevenSwitch */,
+				190AB22121DCD7A600034FE6 /* SevenSwitch.swift */,
 				190AB21721DCD32D00034FE6 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -43,15 +42,6 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		190AB21821DCD32D00034FE6 /* SevenSwitch */ = {
-			isa = PBXGroup;
-			children = (
-				190AB21921DCD32D00034FE6 /* SevenSwitch.h */,
-				190AB21A21DCD32D00034FE6 /* Info.plist */,
-			);
-			path = SevenSwitch;
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -59,7 +49,6 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				190AB21B21DCD32D00034FE6 /* SevenSwitch.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -94,6 +83,7 @@
 				TargetAttributes = {
 					190AB21521DCD32D00034FE6 = {
 						CreatedOnToolsVersion = 10.1;
+						LastSwiftMigration = 1010;
 					};
 				};
 			};
@@ -129,6 +119,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				190AB22221DCD7A600034FE6 /* SevenSwitch.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -260,13 +251,14 @@
 		190AB21F21DCD32D00034FE6 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Automatic;
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = SevenSwitch/Info.plist;
+				INFOPLIST_FILE = Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -276,6 +268,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = bvogelzang.SevenSwitch;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -284,13 +277,14 @@
 		190AB22021DCD32D00034FE6 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Automatic;
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = SevenSwitch/Info.plist;
+				INFOPLIST_FILE = nfo.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

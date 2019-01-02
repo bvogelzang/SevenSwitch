@@ -2,10 +2,10 @@
   "name": "SevenSwitch",
   "version": "2.2.0",
   "summary": "iOS7 style drop in replacement for UISwitch.",
-  "homepage": "https://github.com/pykaso/SevenSwitch",
+  "homepage": "https://github.com/bvogelzang/SevenSwitch",
   "screenshots": [
-    "https://raw.github.com/pykaso/SevenSwitch/master/ExampleImages/example.gif",
-    "https://raw.github.com/pykaso/SevenSwitch/master/ExampleImages/example.png"
+    "https://raw.github.com/bvogelzang/SevenSwitch/master/ExampleImages/example.gif",
+    "https://raw.github.com/bvogelzang/SevenSwitch/master/ExampleImages/example.png"
   ],
   "license": {
     "type": "MIT",
@@ -15,7 +15,7 @@
     "Ben Vogelzang": "ben.vogelzang@veracross.com"
   },
   "source": {
-    "git": "https://github.com/pykaso/SevenSwitch.git",
+    "git": "https://github.com/bvogelzang/SevenSwitch.git",
     "tag": "2.2.0"
   },
   "platforms": {

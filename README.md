@@ -2,10 +2,6 @@
 
 iOS7 style drop in replacement for UISwitch
 
-Changes in this fork:
-- Carthage support
-- Swift 4.2 support
-
 
 ![Animation](https://raw.github.com/bvogelzang/SevenSwitch/master/ExampleImages/example.gif)
 
@@ -16,7 +12,7 @@ Changes in this fork:
 ### Carthage
 
 ```
-github "pykaso/SevenSwitch" ~> 2.2
+github "bvogelzang/SevenSwitch" ~> 2.2
 ```
 
 ### Cocoapods
